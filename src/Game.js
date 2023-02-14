@@ -1,54 +1,38 @@
-import {TurnOrder} from "boardgame.io/core";
+//import Game from 'boardgame.io/game'
+import { useState } from 'react';
+import { TurnOrder , Step } from 'boardgame.io/core';
+import RollButton from './RollButton';
 
+const D6 = () => Math.floor(Math.random() * 6) + 1;
 
-export const UpwardsMobility = {
-    setup: () => ( { cells: Array(25).fill(null),
+export const upwardsmobility = {
+    setup: () => ({ cells: Array([50, 2]).file(null),
         players: {
-            "0" : {position: 0},
-            "1" : {position: 0}
-        }
-    } ),
+        "0" : {position: [0, 0]},
+        "1" : {position: [0, 1]}
+        },
+        turn: 0,
+        die1: 0,
+        die2: 0
+    }),
 
     moves: {
-        rollDice: (G, ctx) => {
-            G.die1 = ctx.random.D6();
-            G.die2 = ctx.random.D6();
+        roll: (G, ctx, currentPlayer) => {
+           diceRoll(G, ctx, currentPlayer);
+
         },
-        moveObject: (G, ctx) => {
-            G.position += (G.die1 + G.die2);
+        move: (G, ctx) => {
+            let currentPosition = G.players[ctx.currentPlayer].position;
+            let newPosition = currentPosition[0] + G.die1 + G.die2;
+            let DontChange = currentPosition[1]
+            G.players[ctx.currentPlayer].position = [newPosition, DontChange]
+            return G
         }
-    },
 
+    }
+}
 
-/*
-    moves: {
-        moveCell: ({G, ctx}, id) => {
-            console.log("This is G: " + G)
-            const die1 = Math.ceil(Math.random() * 6)
-            const die2 = Math.ceil(Math.random() * 6)
-            const moveDist = die1 + die2
-            // const id = G.players[ctx.currentPlayer]
-            // console.log("Current player: " + G.players[ctx.currentPlayer])
-            console.log("Roll value: " + moveDist)
-            G.cells[G.players[ctx.currentPlayer].position] = null;
-            G.players[ctx.currentPlayer].position += moveDist
-            G.cells[G.players[ctx.currentPlayer].position] = id
-            console.log("Logging player ID: " + id + G.players[ctx.currentPlayer].position)
-        },
-    },
-*/
-    endIf: ({G, ctx}) => {
-        for (const player in G.players) {
-            if (G.players[ctx.currentPlayer].position >= 25) {
-                console.log("Winning condition has been triggered for player: " + {winner: player} )
-                return { winner: player }
-            }
-        }
-    },
-
-    turn: {
-        order: TurnOrder.ONCE,
-        minMoves: 1,
-        maxMoves: 1,
-    },
-};
+const diceRoll = (G, ctx, currentPlayer) => {
+    return {...G, die1: D6(), die2: D6()}
+}
+export default upwardsmobility;

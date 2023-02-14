@@ -1,31 +1,39 @@
-import React from 'react';
-import {Board, Client} from 'boardgame.io/react';
-import { setBoard } from './Board';
-import { UpwardsMobility } from './Game';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import logo from './logo.svg';
+import './App.css';
+import React from "react";
+import { Client } from "boardgame.io/react";
+import {upwardsmobility} from "./Game";
+import { Debug } from 'boardgame.io/debug';
 
-const GameClient = Client({
-    game: UpwardsMobility,
-    board: setBoard,
-    debug: true,
-    enhancer: composeWithDevTools(),
-});
 
-function GameUI(){
-    const boardProps = {
-        G: {player1Pos: 0, player2Pos: 0},
-        moves: {
-            UpwardsMobility: (G, ctx, die1, die2) => {
-            const player1Pos = G.player1Pos + die1;
-            const player2Pos = G.player2Pos + die2;
-            return { ...G, player1Pos, player2Pos };
-        },
-        },
-    };
-    return (
-        <div>
-            <Board {...boardProps} board={setBoard} />
-        </div>
-    )
-}
+const App = Client({
+  game: upwardsmobility,
+  debug: {
+    collapseOnLoad: false,
+    hideToggleButton: false,
+  }
+})
+
+
+//function App() {
+ // return (
+   // <div className="App">
+     // <header className="App-header">
+       // <img src={logo} className="App-logo" alt="logo" />
+        //<p>
+        //  Edit <code>src/App.js</code> and save to reload.
+        //</p>
+        //<a
+         // className="App-link"
+        //  href="https://reactjs.org"
+       //   target="_blank"
+      //    rel="noopener noreferrer"
+     //   >
+    //      Learn React
+   //     </a>
+  //    </header>
+  //  </div>
+ // );
+//}
+
 export default App;
