@@ -1,47 +1,73 @@
 import React from 'react';
 
-export function TicTacToeBoard({ ctx, G, moves }) {
-    const onClick = (id) => moves.moveCell(id);
+export function upwardsMobilityBoard({ ctx, G, moves }) {
 
     const cellStyle = {
         border: '1px solid #555',
-        width: '50px',
-        height: '50px',
-        lineHeight: '50px',
-        textAlign: 'center',
+        width: '20px',
+        height: '20px',
+        lineHeight: '20px',
     };
 
-    let tbody = [];
-    for (let i = 0; i < 3; i++) {
-        let cells = [];
-        for (let j = 0; j < 3; j++) {
-            const id = 3 * i + j;
-            cells.push(
-                <td key={id}>
-                    {G.cells[id] ? (
-                        <div style={cellStyle}>{G.cells[id]}</div>
-                    ) : (
-                        <button style={cellStyle} onClick={() => onClick(id)} />
-                    )}
-                </td>
+    const playerPos = {
+
+    }
+    const onClick = (id) => moves.clickCell(id);
+
+    let winner = '';
+    if (ctx.gameover) {
+        winner =
+            ctx.gameover.winner !== undefined ? (
+                <div id="winner">Winner: {ctx.gameover.winner}</div>
+            ) : (
+                <div id="winner">Draw!</div>
             );
-        }
-        tbody.push(<tr key={i}>{cells}</tr>);
     }
 
+    // let tbody = [];
+    // for (let i = 0; i < 3; i++) {
+    //     let cells = [];
+    //     for (let j = 0; j < 3; j++) {
+    //         const id = 3 * i + j;
+    //         cells.push(
+    //             <td key={id}>
+    //                 {G.cells[id] ? (
+    //                     <div style={cellStyle}>{G.cells[id]}</div>
+    //                 ) : (
+    //                     <button style={cellStyle} onClick={() => onClick(id)}/>
+    //                 )}
+    //             </td>
+    //         );
+    //     }
+    //     tbody.push(<tr key={i}>{cells}</tr>);
+    // }
+
     let ubody = [];
-    for (let i = 0; i < 10; i++) {
-        let cells = [];
+    for (let i = 0; i < 25; i++) {
+        let cells = []
+        let cells2 = []
+
+        const id = i;
         cells.push(
-            <td key={id}>
+            <tr key={id}>
                 {G.cells[id] ? (
-                    <div style={cellStyle}>{G.cells[id]}</div>
+                    <div style={playerPos} style={cellStyle}>{G.cells[id]}</div>
                 ) : (
                     <button style={cellStyle} onClick={() => onClick(id)} />
                 )}
-            </td>
-        }
-        tbody.push(<tr key={i}>{cells}</tr>);
+            </tr>
+        );
+        cells2.push(
+            <tr key={id}>
+                {G.cells2[id] ? (
+                    <div style={playerPos} style={cellStyle}>{G.cells[id]}</div>
+                ) : (
+                    <button style={cellStyle} onClick={() => onClick(id)} />
+                )}
+            </tr>
+        );
+        ubody.push(<td key={i}>{cells}</td>)
+        ubody.push(<td key={i}>{cells2}</td>)
     }
 
     return (
@@ -52,4 +78,6 @@ export function TicTacToeBoard({ ctx, G, moves }) {
             {winner}
         </div>
     );
+
+
 }
