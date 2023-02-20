@@ -8,15 +8,16 @@ const RollButton = ({ G, ctx, moves,props }) => {
     const isDisabled = !isCurrentPlayer || !isActivePlayer
     return (
 
-            <div>
-                <button disabled={isDisabled} onClick={() => moves.roll()}> Roll Dice </button>,
-                <div>
-                    You rolled {G.die1} + {G.die2} = {G.die1 + G.die2}
-                    <button onClick={() => moves.move()}>Confirm</button>
+             <div>
+                 <button disabled={isDisabled} onClick={() => moves.roll()}> Roll Dice </button>,
+                 <div>
+                     You rolled {G.die1} + {G.die2} = {G.die1 + G.die2}
+                     <button onClick={() => moves.move()}>Confirm</button>
                 </div>
-                )}
-            </div>
+                 )}
+             </div>
     );
 }
+ rollbutton()
 
 export default RollButton;

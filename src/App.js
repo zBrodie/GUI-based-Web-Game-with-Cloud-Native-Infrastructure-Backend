@@ -3,15 +3,12 @@ import './App.css';
 import React from "react";
 import { Client } from "boardgame.io/react";
 import {upwardsmobility} from "./Game";
-import { Debug } from 'boardgame.io/debug';
+import {Board} from "./Board"
 
 
 const App = Client({
   game: upwardsmobility,
-  debug: {
-    collapseOnLoad: false,
-    hideToggleButton: false,
-  }
+  board: Board
 })
 
 

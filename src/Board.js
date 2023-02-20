@@ -1,11 +1,19 @@
 import React, { Component } from 'react'
 import Circle from './Curcle'
 
-class Board extends Component {
-    getPositionInfo = position => {
-        const { zis } = this.props.G
-        if (_hasZi(position, zis)) {
-    return zis.find(z => euqal(z, position))
+function Board(props) {
+    const rows = [];
+
+    for (let i = 0; i < 50; i++) {
+        const cells = [];
+
+
+        for (let j = 0; j = 4; j++) {
+            cells.push(<div key={i * 50 + j} className="Cell"></div>);
         }
+        rows.push(<div key={i} className="row">{cells}</div>)
     }
+    return <div className="board">{rows}</div>;
 }
+export default Board;
+

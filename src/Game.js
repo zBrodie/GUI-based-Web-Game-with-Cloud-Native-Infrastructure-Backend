@@ -1,12 +1,15 @@
-//import Game from 'boardgame.io/game'
+import Game from 'boardgame.io/game'
 import { useState } from 'react';
 import { TurnOrder , Step } from 'boardgame.io/core';
 import RollButton from './RollButton';
 
 const D6 = () => Math.floor(Math.random() * 6) + 1;
 
-export const upwardsmobility = {
+export const upwardsmobility = Game({
     setup: () => ({ cells: Array([50, 2]).file(null),
+        name: 'Upwards Mobility',
+        minPlayers:2,
+        maxPlayers:4,
         players: {
         "0" : {position: [0, 0]},
         "1" : {position: [0, 1]}
@@ -30,9 +33,9 @@ export const upwardsmobility = {
         }
 
     }
-}
+})
 
 const diceRoll = (G, ctx, currentPlayer) => {
     return {...G, die1: D6(), die2: D6()}
 }
-export default upwardsmobility;
+export default Game;
