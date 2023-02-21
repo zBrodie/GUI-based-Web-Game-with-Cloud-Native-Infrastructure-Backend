@@ -1,12 +1,15 @@
-import Game from 'boardgame.io/game'
+//import Game from 'boardgame.io/game'
 import { useState } from 'react';
 import { TurnOrder , Step } from 'boardgame.io/core';
 import RollButton from './RollButton';
+import flatted from 'flatted';
 
 const D6 = () => Math.floor(Math.random() * 6) + 1;
 
-export const upwardsmobility = Game({
-    setup: () => ({ cells: Array([50, 2]).file(null),
+export const upwardsmobility = {
+    name: "UpwardsMobility",
+    setup: () => ({
+        cells: Array([50, 2]),
         name: 'Upwards Mobility',
         minPlayers:2,
         maxPlayers:4,
@@ -21,21 +24,28 @@ export const upwardsmobility = Game({
 
     moves: {
         roll: (G, ctx, currentPlayer) => {
-           diceRoll(G, ctx, currentPlayer);
-
+            G.die1 = Math.floor(Math.random() * 6) + 1;
+            G.die2 = Math.floor(Math.random() * 6) + 1;
+            return { ...G };
         },
         move: (G, ctx) => {
-            let currentPosition = G.players[ctx.currentPlayer].position;
-            let newPosition = currentPosition[0] + G.die1 + G.die2;
-            let DontChange = currentPosition[1]
-            G.players[ctx.currentPlayer].position = [newPosition, DontChange]
-            return G
+            const currentPlayer = ctx.currentPlayer;
+            const currentPosition = G.players[currentPlayer].position;
+            const newPosition = currentPosition[0] + G.die1 + G.die2;
+            const dontChange = currentPosition[1];
+            const newPlayers = {...G.players, [currentPlayer]: {position: [newPosition, dontChange]}};
+            return {...G, players: newPlayers};
+        },
+        check: (G, ctx) => {
+            
+
         }
 
+
     }
-})
+}
 
 const diceRoll = (G, ctx, currentPlayer) => {
     return {...G, die1: D6(), die2: D6()}
 }
-export default Game;
+export default upwardsmobility;

@@ -18,6 +18,5 @@ const RollButton = ({ G, ctx, moves,props }) => {
              </div>
     );
 }
- rollbutton()
 
 export default RollButton;
