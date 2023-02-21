@@ -2,13 +2,6 @@ import React from 'react';
 
 export function upwardsMobilityBoard({ ctx, G, moves }) {
 
-    const cellStyle = {
-        border: '1px solid #555',
-        width: '20px',
-        height: '20px',
-        lineHeight: '20px',
-    };
-
     const playerPos = {
 
     }
@@ -24,60 +17,99 @@ export function upwardsMobilityBoard({ ctx, G, moves }) {
             );
     }
 
-    // let tbody = [];
-    // for (let i = 0; i < 3; i++) {
-    //     let cells = [];
-    //     for (let j = 0; j < 3; j++) {
-    //         const id = 3 * i + j;
-    //         cells.push(
-    //             <td key={id}>
-    //                 {G.cells[id] ? (
-    //                     <div style={cellStyle}>{G.cells[id]}</div>
-    //                 ) : (
-    //                     <button style={cellStyle} onClick={() => onClick(id)}/>
-    //                 )}
-    //             </td>
-    //         );
-    //     }
-    //     tbody.push(<tr key={i}>{cells}</tr>);
-    // }
+    const n = 6;
+    const matrixArray = [];
 
-    let ubody = [];
-    for (let i = 0; i < 25; i++) {
-        let cells = []
-        let cells2 = []
-
-        const id = i;
-        cells.push(
-            <tr key={id}>
-                {G.cells[id] ? (
-                    <div style={playerPos} style={cellStyle}>{G.cells[id]}</div>
-                ) : (
-                    <button style={cellStyle} onClick={() => onClick(id)} />
-                )}
-            </tr>
-        );
-        cells2.push(
-            <tr key={id}>
-                {G.cells2[id] ? (
-                    <div style={playerPos} style={cellStyle}>{G.cells[id]}</div>
-                ) : (
-                    <button style={cellStyle} onClick={() => onClick(id)} />
-                )}
-            </tr>
-        );
-        ubody.push(<td key={i}>{cells}</td>)
-        ubody.push(<td key={i}>{cells2}</td>)
+    const goodCell = {
+        3: 11,
+        5: 23,
+        7:15,
+        21:33,
+        26:31
     }
 
-    return (
-        <div>
-            <table id="board">
-                <tbody>{ubody}</tbody>
-            </table>
-            {winner}
-        </div>
-    );
+    const badCell = {
+        13: 6,
+        9: 4,
+        19: 2,
+        34: 22,
+        29: 16
+    }
+    const LADDER_CLASS = "ladder";
+    const SNAKE_CLASS = "snake";
 
+    function createMatrix(){
+        let block = (n * n) + 1;
+        for(let column=1;column<=n;column++){
+            let rows = [];
+            if (column % 2 === 0){
+                block = block - n;
+                let value = block;
+                for(let row=1;row<=n;row++){
+                    rows.push(value);
+                    value++
+                }
+            }else{
+                for(let row=1;row<=n;row++){
+                    block = block - 1;
+                    rows.push(block);
+                }
+            }
+            matrixArray.push(rows)
+        }
+        createBoard(matrixArray)
+    }
 
+    function createBoard(matrixArray){
+        const board = document.querySelector('.main-board')
+        let str = "";
+        matrixArray.map(row => {
+            str += `
+            <div class="row">`
+            row.map(block => {
+                str += `
+                    <div class="block ${goodCell[block] ? LADDER_CLASS : ''} ${badCell[block] ? SNAKE_CLASS : ''} ${block === 1 ? 'active' : ''} " data-value=${block}>
+                      ${block}
+                    </div>
+                `
+            })
+            str += `</div>`
+        })
+        board.innerHTML = str;
+    }
+
+    function roll(){
+        const dice = document.querySelector("img");
+        dice.classList.add("shake");
+        setTimeout(() => {
+            dice.classList.remove("shake");
+            const diceValue = Math.ceil(Math.random()* 6);
+            document.querySelector("#dice-id").setAttribute("src", `assets/dice${diceValue}.png`);
+            changeCurrentPosition(diceValue);
+        }, 1000);
+    }
+
+    function changeCurrentPosition(diceValue){
+        const activeBlock = document.querySelector('.active');
+        const activeBlockValue = parseInt(activeBlock.outerText);
+        let presentValue = diceValue + activeBlockValue;
+        if (badCell[presentValue]){
+            presentValue = badCell[presentValue];
+            changeActiveClass(presentValue);
+        }
+        if (goodCell[presentValue]){
+            presentValue = goodCell[presentValue];
+            changeActiveClass(presentValue);
+        }
+        if (presentValue <= (n*n)){
+            changeActiveClass(presentValue);
+        }
+    }
+
+    function changeActiveClass(presentValue) {
+        const activeBlock = document.querySelector('.active');
+        activeBlock.classList.remove('active');
+        const block = document.querySelector(`[data-value = "${presentValue}"]`);
+        block.classList.add('active');
+    }
 }
