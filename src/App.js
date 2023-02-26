@@ -6,10 +6,19 @@ import {upwardsmobility} from "./Game";
 import {Board} from "./Board"
 
 
-const App = Client({
+const UpwardsMobilityClient = Client ({
   game: upwardsmobility,
-  board: Board
+  numPlayers: 2,
 })
+
+const App = () => {
+  return (
+      <div>
+        <UpwardsMobilityClient playerID="0" />
+        <UpwardsMobilityClient playerID="1" />
+      </div>
+  );
+};
 
 
 //function App() {
