@@ -1,0 +1,333 @@
+@font-face {
+    font-family: 'Common Pixel';
+    src:url("./undertale-deltarune-text-font-extended.ttf") format('truetype')
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #767980;
+    opacity: 1; /* Firefox */
+}
+.mediaViewInfo {
+    --web-view-name: GamePage;
+    --web-view-id: GamePage;
+    --web-scale-to-fit: true;
+    --web-scale-to-fit-type: fit;
+    --web-scale-on-resize: true;
+    --web-enable-deep-linking: true;
+}
+:root {
+    --web-view-ids: GamePage;
+}
+#GamePage {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,1);
+    overflow: hidden;
+    --web-view-name: Web 1920 – 4;
+    --web-view-id: GamePage;
+    --web-scale-to-fit: true;
+    --web-scale-to-fit-type: fit;
+    --web-scale-on-resize: true;
+    --web-enable-deep-linking: true;
+}
+#Rectangle_42 {
+    fill: rgba(54,57,63,1);
+}
+.Rectangle_42 {
+    position: absolute;
+    overflow: visible;
+    background-color: #36393F;
+    width: 81.9018024%;
+    height: 67.900552%;
+    left: 17.800174%;
+    top: 146px;
+}
+#GameProgression {
+    fill: rgba(47,49,54,1);
+}
+.GameProgression {
+    position: absolute;
+    overflow: visible;
+    background-color: #2F3136;
+    width: 19.080174%;
+    height: 74.033149%;
+    left: 0px;
+    top: 0px;
+}
+#Inventory {
+    fill: rgba(41,43,47,1);
+}
+.Inventory{
+    position: absolute;
+    overflow: visible;
+    background-color: #292B2F;
+    width: 80.981976%;
+    height: 25.966851%;
+    left: 0px;
+    top: 74.033149%;
+}
+#ChatAndLogo {
+    fill: rgba(47,49,54,1);
+}
+.ChatAndLogo{
+    position: absolute;
+    overflow: visible;
+    background-color: #2F3136;
+    width:19.018024%;
+    height: 100%;
+    left: 80.981976%;
+    top: 18.563536%;
+}
+#ProgresionImage{
+    position: absolute;
+    content: url("./StartFinishScale.png");
+    width: 14.916097%;
+    height: 70.718232%;
+    left: 7px;
+    top: 15px;
+    overflow: visible;
+}
+#DiceButton {
+    fill: rgba(47,49,54,1);
+    width: 31.634556%;
+    height: 37.237569%;
+    left: 35.114978%;
+    top: 27.734807%;
+}
+.DiceButton {
+    filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 1));
+    overflow: visible;
+    position: absolute;
+    background-color: #2F3136;
+    border-radius: 25px;
+    width: 31.634556%;
+    height: 37.237569%;
+    left: 35.114978%;
+    top: 27.734807%;
+    transform: matrix(1,0,0,1,0,0);
+}
+#NoPath_-_Copy_8 {
+    content: url("./GameDieBigpng.png");
+    filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 1));
+    position: absolute;
+    width: 23.430702%;
+    height: 28.287293%;
+    left: 39.284649%;
+    top: 30.497238%;
+    overflow: visible;
+}
+.DiceImage{
+    content: url("./GameDieBigpng.png");
+    filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 1));
+    position: absolute;
+    width: 23.430702%;
+    height: 28.287293%;
+    left: 39.284649%;
+    top: 30.497238%;
+    overflow: visible;
+}
+#A_pair_of_strange_dice_lay_bef {
+    left: 39.903356%;
+    top: 66.883425%;
+    position: absolute;
+    overflow: visible;
+    width: 500px;
+    height: 116px;
+    text-align: center;
+    font-family: Common Pixel;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1vw;
+    color: rgba(255,255,255,1);
+}
+#Rectangle_46 {
+    fill: rgba(255,255,255,1);
+    stroke: rgba(112,112,112,1);
+    stroke-width: 1px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+.Rectangle_46 {
+    position: absolute;
+    overflow: visible;
+    width: 61.901802%;
+    height: 16.132597%;
+    left: 19.080174%;
+    top: 0px;
+}
+#NoPath_-_Copy_10 {
+    position: absolute;
+    overflow: hidden;
+    content: url("./PlayerListBackground.png");
+    width: 61.901802%;
+    height: 16.132597%;
+    left: 19.080174%;
+    top: 0px;
+    overflow: visible;
+}
+#Ellipse_2 {
+    fill: rgba(54,57,63,1);
+    stroke: rgba(234,0,217,1);
+    stroke-width: 5px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+.Ellipse_2 {
+    position: absolute;
+    overflow: visible;
+    width: 6.587943%;
+    height: 11.712707%;
+    left: 24.798011%;
+    top: 2.209945%;
+}
+#Ellipse_3 {
+    fill: rgba(54,57,63,1);
+    stroke: rgba(115,248,255,1);
+    stroke-width: 5px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+.Ellipse_3 {
+    position: absolute;
+    overflow: visible;
+    width: 6.587943%;
+    height: 11.712707%;
+    left: 33.561218%;
+    top: 2.209945%;
+}
+#Ellipse_4 {
+    fill: rgba(54,57,63,1);
+    stroke: rgba(0,201,60,1);
+    stroke-width: 5px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+.Ellipse_4 {
+    position: absolute;
+    overflow: visible;
+    width: 6.587943%;
+    height: 11.712707%;
+    left: 42.324425%;
+    top: 2.209945%;
+}
+#Ellipse_5 {
+    fill: rgba(54,57,63,1);
+    stroke: rgba(196,0,0,1);
+    stroke-width: 5px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+.Ellipse_5 {
+    position: absolute;
+    overflow: visible;
+    width: 6.587943%;
+    height: 11.712707%;
+    left:51.087632%;
+    top: 2.209945%;
+}
+#Ellipse_6 {
+    fill: rgba(54,57,63,1);
+    stroke: rgba(105,0,225,1);
+    stroke-width: 5px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+.Ellipse_6 {
+    position: absolute;
+    overflow: visible;
+    width: 6.587943%;
+    height: 11.712707%;
+    left: 59.850839%;
+    top: 2.209945%;
+}
+#Ellipse_7 {
+    fill: rgba(54,57,63,1);
+    stroke: rgba(0,61,204,1);
+    stroke-width: 5px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+.Ellipse_7 {
+    position: absolute;
+    overflow: visible;
+    width: 6.587943%;
+    height: 11.712707%;
+    left: 68.614046%;
+    top: 2.209945%;
+}
+#InventoryLabel {
+    fill: rgba(32,34,37,1);
+}
+.InventoryLabel{
+    background-color: #202225;
+    position: absolute;
+    overflow: visible;
+    width: 80.981976%;
+    height: 2.6519337%;
+    left: 0px;
+    top: 74.033149%;
+}
+#Inventory_Label_Word {
+    left: -4px;
+    top: 73.701657%;
+    position: absolute;
+    overflow: visible;
+    width: 229px;
+    height: 24px;
+    text-align: center;
+    font-family: Common Pixel;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1vw;
+    color: rgba(255,255,255,1);
+}
+#chatBox {
+    fill: rgba(64,68,75,1);
+}
+.chatBox {
+    position: absolute;
+    overflow: visible;
+    background-color: #40444B;
+    color:#767980;
+    font-family: 'Common Pixel';
+    width:18.02367%;
+    height: 3.64640884%;
+    left: 81.47918%;
+    top: 95.138122%;
+}
+#Rectangle_49 {
+    fill: rgba(41,43,47,1);
+}
+.Rectangle_49 {
+    position: absolute;
+    overflow: visible;
+    background-color: #292B2F;
+    width: 19.018024%;
+    height: 18.563536%;
+    left: 80.981976%;
+    top: 0px;
+}
+#Upward_Mobility_big_Game_Page {
+    filter: drop-shadow(0px 10px 16px rgba(0, 0, 0, 1));
+    content: url("./Upward_Mobility_big.png");
+    position: absolute;
+    width: 15.537601%;
+    height: 15.027624%;
+    left: 82.722188%;
+    top: 1.10497238%;
+    overflow: visible;
+}
