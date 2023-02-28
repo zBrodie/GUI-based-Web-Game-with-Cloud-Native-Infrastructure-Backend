@@ -1,42 +1,73 @@
-import {TurnOrder} from "boardgame.io/core";
-
+import { TurnOrder } from "boardgame.io/core";
 
 export const UpwardsMobility = {
-    setup: () => ( { cells: Array(25).fill(null),
-        players: {
-            "0" : {position: 0},
-            "1" : {position: 0}
-        }
-    } ),
+  setup: () => ({
+    cells: Array(25).fill(null),
 
-    moves: {
-        moveCell: ({G, ctx}, id) => {
-            console.log("This is G: " + G)
-            const die1 = Math.ceil(Math.random() * 6)
-            const die2 = Math.ceil(Math.random() * 6)
-            const moveDist = die1 + die2
-            // const id = G.players[ctx.currentPlayer]
-            // console.log("Current player: " + G.players[ctx.currentPlayer])
-            console.log("Roll value: " + moveDist)
-            G.cells[G.players[ctx.currentPlayer].position] = null;
-            G.players[ctx.currentPlayer].position += moveDist
-            G.cells[G.players[ctx.currentPlayer].position] = id
-            console.log("Logging player ID: " + id + G.players[ctx.currentPlayer].position)
+    // Initialize game.
+    upwards: {
+      board: [
+        { event: 'start' },
+        { event: 'none' },
+        { event: 'advance', steps: 2 },
+        { event: 'reverse' },
+        { event: 'advance', steps: 3 },
+        { event: 'none' },
+        { event: 'advance', steps: 1 },
+        { event: 'none' },
+        { event: 'none' },
+        { event: 'win' },
+        {
+          event: 'go-to-start',
+          description: 'Go back to the starting cell',
         },
-    },
 
-    endIf: ({G, ctx}) => {
-        for (const player in G.players) {
-            if (G.players[ctx.currentPlayer].position >= 25) {
-                console.log("Winning condition has been triggered for player: " + {winner: player} )
-                return { winner: player }
-            }
+      ],
+      players: {
+        '0': { position: 0 },
+        '1': { position: 0 },
+      },
+    },
+  }),
+
+  // Define the turn order for the game.
+  turn: {
+    order: TurnOrder.ONCE,
+    minMoves: 1,
+    maxMoves: 1,
+
+    // Define the moves for rolling the dice and updating the game state.
+    moves: {
+      rollDie: ({G, random, ctx}, id) => {
+        //rolling dice
+        const die1 = random.rollDie(6);
+        const die2 = random.rollDie(6);
+        let moveDist = die1 + die2;
+
+        //moveing players in array
+        G.cells[G.upwards.players[ctx.currentPlayer].position] = null;
+
+        // Check if the player lands on an event cell
+        const eventCell = G.upwards.board[G.upwards.players[ctx.currentPlayer].position + moveDist];
+        if (eventCell.event === 'advance') {
+          moveDist += eventCell.steps;
+        } else if (eventCell.event === 'reverse') {
+          moveDist = -moveDist;
+        } else if (eventCell.event === 'win') {
+          // End the game if a player has won.
+          ctx.events.endGame({ winner: ctx.currentPlayer });
+          return;
+        } else if (eventCell.event === 'go-to-start') {
+          moveDist = -G.upwards.players[ctx.currentPlayer].position;
         }
+
+        G.upwards.players[ctx.currentPlayer].position += moveDist;
+        G.cells[G.upwards.players[ctx.currentPlayer].position] = id;
+
+        ctx.events.endTurn();
+      },
     },
 
-    turn: {
-        order: TurnOrder.ONCE,
-        minMoves: 1,
-        maxMoves: 1,
-    },
+  },
+
 };
