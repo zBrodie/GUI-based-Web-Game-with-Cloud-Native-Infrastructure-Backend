@@ -35,12 +35,15 @@
 }
 .Rectangle_42 {
     position: absolute;
-    overflow: visible;
+    overflow: hidden;
     background-color: #36393F;
-    width: 81.9018024%;
-    height: 67.900552%;
-    left: 17.800174%;
-    top: 146px;
+    width: 62.5018024%;
+    height: 60.000552%;
+    left: 18.800174%;
+    top: 16%;
+    align-content: center;
+    display: inline-flex;
+    flex-direction: column;
 }
 #GameProgression {
     fill: rgba(47,49,54,1);
@@ -71,10 +74,10 @@
 }
 .ChatAndLogo{
     position: absolute;
-    overflow: visible;
+    overflow: hidden;
     background-color: #2F3136;
     width:19.018024%;
-    height: 100%;
+    height: 81.45%;
     left: 80.981976%;
     top: 18.563536%;
 }
@@ -89,10 +92,10 @@
 }
 #DiceButton {
     fill: rgba(47,49,54,1);
-    width: 31.634556%;
-    height: 37.237569%;
-    left: 35.114978%;
-    top: 27.734807%;
+    width: 45.634556%;
+    height: 52.237569%;
+    left: 27.114978%;
+    top: 24.734807%;
 }
 .DiceButton {
     filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 1));
@@ -102,7 +105,7 @@
     border-radius: 25px;
     width: 31.634556%;
     height: 37.237569%;
-    left: 35.114978%;
+    left: 30.114978%;
     top: 27.734807%;
     transform: matrix(1,0,0,1,0,0);
 }
@@ -110,9 +113,9 @@
     content: url("./GameDieBigpng.png");
     filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 1));
     position: absolute;
-    width: 23.430702%;
-    height: 28.287293%;
-    left: 39.284649%;
+    width: 33.430702%;
+    height: 40.287293%;
+    left: 32.284649%;
     top: 30.497238%;
     overflow: visible;
 }
@@ -127,8 +130,8 @@
     overflow: visible;
 }
 #A_pair_of_strange_dice_lay_bef {
-    left: 39.903356%;
-    top: 66.883425%;
+    left: 28.903356%;
+    top: 80.883425%;
     position: absolute;
     overflow: visible;
     width: 500px;
@@ -330,4 +333,75 @@
     left: 82.722188%;
     top: 1.10497238%;
     overflow: visible;
+}
+
+.inGameText {
+    position: absolute;
+    overflow: visible;
+    width: 500px;
+    height: 30px;
+    text-align: center;
+    font-family: Common Pixel;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1vw;
+    margin-top: 5%;
+    color: rgba(255, 255, 255, 1);
+}
+
+.inGameButton{
+    position: absolute;
+    border: solid white 3px;
+    -webkit-text-fill-color: white;
+    background-color: #36393F;
+    font-family: "Common Pixel";
+    font-size: 1vw;
+    text-align: center;
+    height: 7.5%;
+    width: 25%;
+    margin-top: 8%;
+}
+
+.tempDiv{
+    position: absolute;
+    width: 90%;
+    height: 100%;
+    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    margin: auto;
+}
+
+.gameImg{
+    position: absolute;
+    height: 40%;
+    width: 40%;
+    margin-top: 2%;
+}
+
+.eventButton{
+    position: absolute;
+    border: solid white 3px;
+    -webkit-text-fill-color: white;
+    background-color: #36393F;
+    font-family: "Common Pixel";
+    font-size: 1vw;
+    text-align: center;
+    height: 7.5%;
+    width: 25%;
+    margin-top: 52%;
+}
+
+.eventDesc{
+    position: absolute;
+    overflow: visible;
+    width: 500px;
+    height: 30px;
+    text-align: center;
+    font-family: Common Pixel;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1vw;
+    margin-top: 30%;
+    color: rgba(255, 255, 255, 1);
 }

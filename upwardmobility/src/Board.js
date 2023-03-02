@@ -1,60 +1,96 @@
-import React, { Component } from 'react'
+import React from 'react'
+import dice from './GameDieBigpng.png'
+import playerList from './PlayerListBackground.png'
+import gamelogo from './Upward_Mobility_big.png'
+import {disMoveDist} from "./Game";
 
+export function UpwardMobilityBoard({ctx, G, moves}){
 
-export function Board(props) {
-    const numSpaces = 10;
-    const spaceWidth = 50;
+   const rollDice = (id) =>{
+       moves.tempRoll(id)
+       console.log(ctx.currentPlayer.moveDist)
+   }
 
-    const renderSpaces = () => {
-        const spaces = [];
-        for (let i = 0; i < numSpaces; i++) {
-            spaces.push(
-                <div
-                    key={i}
-                    className="space"
-                    style={{ width: `${spaceWidth}px` }}
-                >
-                    {i + 1}
+    return(
+        <div className="GamePage">
+            <div className="Rectangle_42" id = "eventScreen">
+                <button onClick = {() => rollDice(0)}  className="DiceButton" id="DiceButton"></button>
+                <img  onClick = {() => rollDice(0)} className="DiceImage" id="NoPath_-_Copy_8" src="NoPath_-_Copy_8.png" srcSet="NoPath_-_Copy_8.png 1x, NoPath_-_Copy_8@2x.png 2x"/>
+                <div id="A_pair_of_strange_dice_lay_bef">
+                    A pair of strange dice lay before you...
                 </div>
-            );
-        }
-        return spaces;
-    };
+            </div>
 
-    const renderToken = () => {
-        return (
-            <div
-                className="token"
-                style={{ left: `${props.tokenPosition * spaceWidth}px` }}
-            />
-        );
-    };
+            <svg className="GameProgression">
+                <rect id="GameProgressionMenu" rx="0" ry="0" x="0" y="0">
+                </rect>
+            </svg>
 
-    return (
-        <div className="board">
-            {renderSpaces()}
-            {renderToken()}
+            <div className="Inventory">
+                <rect id="Inventory" rx="0" ry="0" x="0" y="0">
+                </rect>
+            </div>
+
+            <div className="ChatAndLogo">
+                <rect id="ChatAndLogo" rx="0" ry="0" x="0" y="0"></rect>
+                <div id="chatSection"></div>
+            </div>
+
+            <img id="ProgresionImage" src="src/Templates/assets/StartFinishScale.png" srcSet="NoPath_-_Copy_6.png 1x, NoPath_-_Copy_6@2x.png 2x"/>
+
+
+            <svg className="Rectangle_46">
+                <rect id="Rectangle_46" rx="0" ry="0" x="0" y="0" width="996" height="146">
+                </rect>
+            </svg>
+
+            <img id="NoPath_-_Copy_10" src="NoPath_-_Copy_10.png" srcSet="NoPath_-_Copy_10.png 1x, NoPath_-_Copy_10@2x.png 2x"/>
+
+            <svg className="Ellipse_2">
+                <ellipse id="Ellipse_2" rx="53" ry="53" cx="53" cy="53">
+                </ellipse>
+            </svg>
+            <svg className="Ellipse_3">
+                <ellipse id="Ellipse_3" rx="53" ry="53" cx="53" cy="53">
+                </ellipse>
+            </svg>
+            <svg className="Ellipse_4">
+                <ellipse id="Ellipse_4" rx="53" ry="53" cx="53" cy="53">
+                </ellipse>
+            </svg>
+            <svg className="Ellipse_5">
+                <ellipse id="Ellipse_5" rx="53" ry="53" cx="53" cy="53">
+                </ellipse>
+            </svg>
+            <svg className="Ellipse_6">
+                <ellipse id="Ellipse_6" rx="53" ry="53" cx="53" cy="53">
+                </ellipse>
+            </svg>
+            <svg className="Ellipse_7">
+                <ellipse id="Ellipse_7" rx="53" ry="53" cx="53" cy="53">
+                </ellipse>
+            </svg>
+
+            <svg className="InventoryLabel">
+                <rect id="InventoryLabel" rx="0" ry="0" x="0" y="0">
+                </rect>
+            </svg>
+
+            <div id="Inventory_Label_Word">
+                <span>Inventory</span><br/>
+            </div>
+            <input className="chatBox" type="text" placeholder="Type here to chat" id="chatBox" rx="7" ry="7" x="0" y="0" width="290" height="33"/>
+
+            <div id="Type_here_to_chat">
+                <span>Type here to chat...</span>
+            </div>
+
+            <svg className="Rectangle_49">
+                <rect id="Rectangle_49" rx="0" ry="0" x="0" y="0"></rect>
+            </svg>
+            <img id="Upward_Mobility_big_Game_Page" src="Upward_Mobility_big.png" srcSet="Upward_Mobility_big.png 1x, Upward_Mobility_big@2x.png 2x"/>
+
         </div>
-    );
+
+    )
 }
-
-export default Board;
-
-/*
-export function Board(props) {
-    const rows = [];
-
-    for (let i = 0; i < 50; i++) {
-        const cells = [];
-
-
-        for (let j = 0; j == 4; j++) {
-            cells.push(<div key={i * 50 + j} className="Cell"></div>);
-        }
-        rows.push(<div key={i} className="row">{cells}</div>)
-    }
-    return <div className="board">{rows}</div>;
-}
-export default Board;
-
-*/

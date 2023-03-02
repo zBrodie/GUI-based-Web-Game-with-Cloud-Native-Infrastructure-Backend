@@ -1,74 +1,132 @@
-//import Game from 'boardgame.io/game'
-import { useState } from 'react';
-import { TurnOrder , Step } from 'boardgame.io/core';
-import RollButton from './RollButton';
-import flatted from 'flatted';
-import { Client } from 'boardgame.io/react';
+import { TurnOrder } from "boardgame.io/core";
 
-const D6 = () => Math.floor(Math.random() * 6) + 1;
-export const upwardsmobility = {
+function setEvent() {
+  console.log("WORKS")
 
-    name: "UpwardsMobility",
-    setup: (ctx) => {
-        console.log("Setup function called!");
-        return{
-        cells: Array([50, 2]),
-        name: 'Upwards Mobility',
-        minPlayers: 2,
-        maxPlayers: 4,
-        players: {
-            "0": {position: [0, 0]},
-            "1": {position: [0, 1]}
+  //hides the confirm button from displaying roll amount, also disables and hides the roll amount text
+  document.getElementById("confirmButton").setAttribute("disabled", true)
+  document.getElementById("confirmButton").style.visibility = "hidden"
+  document.getElementById("rollVal").style.visibility = "hidden"
+
+  //creates the tags for events
+  let eventPic = document.createElement("img")
+  eventPic.setAttribute("class", "gameImg")
+  eventPic.src = ""
+
+  let eventDesc = document.createElement("span")
+  eventDesc.setAttribute("class", "eventDesc")
+  eventDesc.innerHTML = ""
+
+  let eventButton = document.createElement("button")
+  eventButton.setAttribute("class", "eventButton")
+  eventButton.innerHTML = "Confirm"
+
+  //clears the temp div
+  document.getElementById("temp").innerHTML = ""
+  document.getElementById("temp").append(eventPic)
+  document.getElementById("temp").append(eventDesc)
+  document.getElementById("temp").append(eventButton)
+}
+
+export const UpwardsMobility = {
+  setup: () => ({
+    cells: Array(25).fill(null),
+
+    // Initialize game.
+    upwards: {
+      board: [
+        { event: 'start' },
+        { event: 'none' },
+        { event: 'advance', steps: 2 },
+        { event: 'reverse' },
+        { event: 'advance', steps: 3 },
+        { event: 'none' },
+        { event: 'advance', steps: 1 },
+        { event: 'none' },
+        { event: 'none' },
+        { event: 'win' },
+        {
+          event: 'go-to-start',
+          description: 'Go back to the starting cell',
         },
-        currentPlayer: '0',
-        turn: 0,
-        die1: 0,
-        die2: 0,
-    }
+
+      ],
+      players: {
+        '0': { position: 0 },
+        '1': { position: 0 },
+      },
     },
+  }),
 
+  // Define the turn order for the game.
+
+
+    // Define the moves for rolling the dice and updating the game state.
     moves: {
-        roll: (G, ctx, currentPlayer) => {
-            const die1 = Math.floor(Math.random() * 6) + 1;
-            const die2 = Math.floor(Math.random() * 6) + 1;
-            const newG = {...G, die1, die2};
-            return JSON.parse(JSON.stringify(newG));
-        },
-        move: (G, ctx) => {
-            const currentPlayer = ctx.currentPlayer;
-            const currentPosition = G.players[currentPlayer.toString()].position;
-            const newPosition = currentPosition[0] + G.die1 + G.die2;
-            const dontChange = currentPosition[1];
-            const newPlayers = {
-                ...G.players,
-                [currentPlayer.toString()]: { position: [newPosition, dontChange] },
-            };
-            return { ...G, players: newPlayers };
-        },
-        check: (G, ctx) => {
-            try {
-                JSON.stringify(G);
-                console.log('G: ', G);
-            } catch (err) {
-                console.error('Error in G:', err.message);
-            }
+      tempRoll: ({G,ctx}, id) => {
+        const die1 = Math.floor(Math.random() * 6) + 1
+        const die2 = Math.floor(Math.random() * 6) + 1
+        let moveDist = die1 + die2;
+        document.getElementById("A_pair_of_strange_dice_lay_bef").style.visibility = "hidden"
+        document.getElementById("A_pair_of_strange_dice_lay_bef").setAttribute("disabled", "True")
 
-            try {
-                JSON.stringify(ctx);
-                console.log('ctx: ', ctx);
+        document.getElementById("DiceButton").style.visibility = "hidden"
+        document.getElementById("DiceButton").setAttribute("disabled", "True")
 
-            } catch (err) {
-                console.error('Error in ctx:', err.message);
-            }
+        document.getElementById("NoPath_-_Copy_8").style.visibility = "hidden"
+        document.getElementById("A_pair_of_strange_dice_lay_bef").style.top = "20%"
 
-        },
-        endTurn: (G, ctx) => {
-            return {
-                ...G,
-                turn: (ctx.playOrderPos + 1) % ctx.numPlayers,
-            };
+        let showConfirmButton = document.createElement(`button`)
+        showConfirmButton.setAttribute("class", "inGameButton")
+        showConfirmButton.setAttribute("id", "confirmButton")
+        showConfirmButton.addEventListener("click", setEvent)
+        showConfirmButton.innerHTML = "Confirm"
+
+        let showRollVal = document.createElement("span")
+        showRollVal.setAttribute("class", "inGameText")
+        showRollVal.setAttribute("id", "rollVal")
+        showRollVal.innerHTML = "Player 1 rolled " + moveDist + "!"
+
+        let testDiv = document.createElement("div")
+        testDiv.setAttribute("class", "tempDiv")
+        testDiv.setAttribute("id", "temp")
+
+        testDiv.appendChild(showRollVal)
+        testDiv.appendChild(showConfirmButton)
+        document.getElementById("eventScreen").append(testDiv)
+      },
+      rollDie: ({G, random, ctx}, id) => {
+        //rolling dice
+        const die1 = Math.floor(Math.random() * 6) + 1
+        const die2 = Math.floor(Math.random() * 6) + 1
+        let moveDist = die1 + die2;
+
+        //moveing players in array
+        G.cells[G.upwards.players[ctx.currentPlayer].position] = null;
+
+        // Check if the player lands on an event cell
+        const eventCell = G.upwards.board[G.upwards.players[ctx.currentPlayer].position + moveDist];
+        if (eventCell.event === 'advance') {
+          moveDist += eventCell.steps;
+        } else if (eventCell.event === 'reverse') {
+          moveDist = -moveDist;
+        } else if (eventCell.event === 'win') {
+          // End the game if a player has won.
+          ctx.events.endGame({ winner: ctx.currentPlayer });
+          return;
+        } else if (eventCell.event === 'go-to-start') {
+          moveDist = -G.upwards.players[ctx.currentPlayer].position;
         }
 
+        G.upwards.players[ctx.currentPlayer].position += moveDist;
+        G.cells[G.upwards.players[ctx.currentPlayer].position] = id;
+      },
+    },
+  turn: {
+    order: TurnOrder.ONCE,
+    minMoves: 1,
+    maxMoves: 1,
+  },
+};
 
-    }
-}
+
