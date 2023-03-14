@@ -25,11 +25,6 @@ export function UpwardMobilityBoard({ctx, G, moves}){
                 </rect>
             </svg>
 
-            <div className="Inventory">
-                <rect id="Inventory" rx="0" ry="0" x="0" y="0">
-                </rect>
-            </div>
-
             <div className="ChatAndLogo">
                 <rect id="ChatAndLogo" rx="0" ry="0" x="0" y="0"></rect>
                 <div id="chatSection"></div>
@@ -40,8 +35,6 @@ export function UpwardMobilityBoard({ctx, G, moves}){
 
             {/*Player List*/}
             <svg className="GamePlayerBackground">
-                <rect id="GamePlayerBackground" rx="0" ry="0" x="0" y="0" width="996" height="146">
-                </rect>
             </svg>
             <img id="NoPath_-_Copy_10" src="NoPath_-_Copy_10.png" srcSet="NoPath_-_Copy_10.png 1x, NoPath_-_Copy_10@2x.png 2x"/>
 
@@ -73,13 +66,17 @@ export function UpwardMobilityBoard({ctx, G, moves}){
 
 
             {/*Inventory List*/}
+            <div className="Inventory">
+                <rect id="Inventory" rx="0" ry="0" x="0" y="0">
+                </rect>
+            </div>
             <svg className="InventoryLabel">
                 <rect id="InventoryLabel" rx="0" ry="0" x="0" y="0">
                 </rect>
             </svg>
 
             <div id="Inventory_Label_Word">
-                <span>Inventory</span><br/>
+                Inventory
             </div>
             {/*Inventory List*/}
 
