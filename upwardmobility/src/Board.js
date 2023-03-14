@@ -39,11 +39,6 @@ export function UpwardMobilityBoard({ctx, G, moves}){
             <img id="ProgresionImage" src="src/Templates/assets/StartFinishScale.png" srcSet="NoPath_-_Copy_6.png 1x, NoPath_-_Copy_6@2x.png 2x"/>
 
 
-            <svg className="Rectangle_46">
-                <rect id="Rectangle_46" rx="0" ry="0" x="0" y="0" width="996" height="146">
-                </rect>
-            </svg>
-
             {/*Player List*/}
             <svg className="GamePlayerBackground">
                 <rect id="GamePlayerBackground" rx="0" ry="0" x="0" y="0" width="996" height="146">

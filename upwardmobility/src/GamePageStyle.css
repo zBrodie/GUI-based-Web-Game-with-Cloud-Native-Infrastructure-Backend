@@ -159,6 +159,7 @@
     font-size: 1vw;
     color: rgba(255,255,255,1);
 }
+/*Game List*/
 
 
 /*Player List*/
@@ -292,6 +293,7 @@
     left: 68.614046%;
     top: 2.209945%;
 }
+/*Player List*/
 
 
 /*Inventory List*/
@@ -334,6 +336,7 @@
     font-size: 1vw;
     color: rgba(255,255,255,1);
 }
+/*Inventory List*/
 
 
 /*Chat List*/
@@ -364,6 +367,7 @@
     left: 81.47918%;
     top: 95.138122%;
 }
+/*Chat List*/
 
 
 #GamePageIcon {
