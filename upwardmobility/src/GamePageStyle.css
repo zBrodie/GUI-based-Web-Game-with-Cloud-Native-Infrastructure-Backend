@@ -58,18 +58,7 @@
     top: 0px;
 }
 
-#GamePageIcon {
-    fill: rgba(41,43,47,1);
-}
-.GamePageIcon {
-    position: absolute;
-    overflow: visible;
-    background-color: #292B2F;
-    width: 19.018024%;
-    height: 18.563536%;
-    left: 80.981976%;
-    top: 0px;
-}
+
 #Upward_Mobility_big_Game_Page {
     filter: drop-shadow(0px 10px 16px rgba(0, 0, 0, 1));
     content: url("./Upward_Mobility_big.png");
@@ -441,14 +430,102 @@
 }
 /*Chat List*/
 
-
-#Upward_Mobility_big_Game_Page {
-    filter: drop-shadow(0px 10px 16px rgba(0, 0, 0, 1));
-    content: url("./Upward_Mobility_big.png");
-    position: absolute;
-    width: 15.537601%;
-    height: 15.027624%;
-    left: 82.722188%;
-    top: 1.10497238%;
-    overflow: visible;
+/*Player Stat List*/
+#PlayerStatsBackground {
+    fill: rgba(41,43,47,1);
 }
+.PlayerStatsBackground {
+    position: absolute;
+    overflow: visible;
+    background-color: #292B2F;
+    width: 19.018024%;
+    height: 28.563536%;
+    left: 80.981976%;
+    top: 0px;
+}
+
+#PlayerName {
+    left: 81.903356%;
+    top: 2.883425%;
+    position: absolute;
+    overflow: visible;
+    width: 500px;
+    height: 116px;
+    text-align: left;
+    font-family: Common Pixel;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1vw;
+    color: rgba(255,255,255,1);
+}
+
+#PlayerJobTitle {
+    left: 81.903356%;
+    top: 6.883425%;
+    position: absolute;
+    overflow: visible;
+    width: 500px;
+    height: 116px;
+    text-align: left;
+    font-family: Common Pixel;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1vw;
+    color: rgba(255,255,255,1);
+}
+
+#PlayerBuffsIcon {
+    left: 81.903356%;
+    top: 10.883425%;
+    position: absolute;
+    overflow: visible;
+    width: 35px;
+    height: 35px;
+    color: rgba(255,255,255,1);
+    content: url("./BuffIcon.png");
+    filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 1));
+
+}
+
+#PlayerDebuffsIcon {
+    left: 81.903356%;
+    top: 14.883425%;
+    position: absolute;
+    overflow: visible;
+    width: 35px;
+    height: 35px;
+    content: url("./DebuffIcon.png");
+    color: rgba(255,255,255,1);
+}
+
+#PlayerCurrency {
+    left: 81.903356%;
+    top: 18.883425%;
+    position: absolute;
+    overflow: visible;
+    width: 500px;
+    height: 116px;
+    text-align: left;
+    font-family: Common Pixel;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1vw;
+    color: rgba(255,255,255,1);
+}
+#PlayerIncome {
+    left: 81.903356%;
+    top: 22.883425%;
+    position: absolute;
+    overflow: visible;
+    width: 500px;
+    height: 116px;
+    text-align: left;
+    font-family: Common Pixel;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1vw;
+    color: rgba(255,255,255,1);
+}
+
+/*Player Stat List*/
+

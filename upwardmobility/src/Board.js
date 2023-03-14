@@ -70,6 +70,7 @@ export function UpwardMobilityBoard({ctx, G, moves}){
                 <ellipse id="GamePlayer_6" rx="53" ry="53" cx="53" cy="53">
                 </ellipse>
             </svg>
+            {/*Player List*/}
 
             {/*Inventory List*/}
             <svg className="InventoryLabel">
@@ -80,6 +81,8 @@ export function UpwardMobilityBoard({ctx, G, moves}){
             <div id="Inventory_Label_Word">
                 <span>Inventory</span><br/>
             </div>
+            {/*Inventory List*/}
+
 
             {/*Chat List*/}
             <input className="chatBox" type="text" placeholder="Type here to chat" id="chatBox" rx="7" ry="7" x="0" y="0" width="290" height="33"/>
@@ -87,11 +90,29 @@ export function UpwardMobilityBoard({ctx, G, moves}){
             <div id="Type_here_to_chat">
                 <span>Type here to chat...</span>
             </div>
+            {/*Chat List*/}
 
-            <svg className="GamePageIcon">
-                <rect id="GamePageIcon" rx="0" ry="0" x="0" y="0"></rect>
+            {/*Player Stat List*/}
+            <svg className="PlayerStatsBackground">
+                <rect id="PlayerStatsBackground" rx="0" ry="0" x="0" y="0">
+                </rect>
+
             </svg>
-            <img id="Upward_Mobility_big_Game_Page" src="Upward_Mobility_big.png" srcSet="Upward_Mobility_big.png 1x, Upward_Mobility_big@2x.png 2x"/>
+            <div className="PlayerName" id="PlayerName">
+                TempName
+            </div>
+            <div className="PlayerJobTitle" id="PlayerJobTitle">
+                TempJobTitle
+            </div>
+            <img className="PlayerBuffsIcon" id="PlayerBuffsIcon" src="BuffIcon.png" srcSet="BuffIcon.png 1x, BuffIcon.png.png 2x"/>
+            <img className="PlayerDebuffsIcon" id="PlayerDebuffsIcon" src="DebuffIcon.png" srcSet="DebuffIcon.png 1x, DebuffIcon.png.png 2x"/>
+            <div className="PlayerCurrency" id="PlayerCurrency">
+                $12345
+            </div>
+            <div className="PlayerIncome" id="PlayerIncome">
+                +$2000 in 2 turns
+            </div>
+            {/*Player Stat List*/}
 
         </div>
 
