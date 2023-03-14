@@ -106,10 +106,10 @@
 }
 #DiceButton {
     fill: rgba(47,49,54,1);
-    width: 31.634556%;
-    height: 37.237569%;
-    left: 35.114978%;
-    top: 27.734807%;
+    width: 45.634556%;
+    height: 52.237569%;
+    left: 27.114978%;
+    top: 16.734807%;
 }
 .DiceButton {
     filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 1));
@@ -128,10 +128,10 @@
     content: url("./GameDieBigpng.png");
     filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 1));
     position: absolute;
-    width: 23.430702%;
-    height: 28.287293%;
-    left: 39.284649%;
-    top: 30.497238%;
+    width: 33.430702%;
+    height: 40.287293%;
+    left: 32.284649%;
+    top: 22.497238%;
     overflow: visible;
 }
 .DiceImage{
@@ -146,8 +146,8 @@
     cursor: pointer;
 }
 #A_pair_of_strange_dice_lay_bef {
-    left: 39.903356%;
-    top: 66.883425%;
+    left: 28.903356%;
+    top: 72.883425%;
     position: absolute;
     overflow: visible;
     width: 500px;
@@ -370,18 +370,6 @@
 /*Chat List*/
 
 
-#GamePageIcon {
-    fill: rgba(41,43,47,1);
-}
-.GamePageIcon {
-    position: absolute;
-    overflow: visible;
-    background-color: #292B2F;
-    width: 19.018024%;
-    height: 18.563536%;
-    left: 80.981976%;
-    top: 0px;
-}
 #Upward_Mobility_big_Game_Page {
     filter: drop-shadow(0px 10px 16px rgba(0, 0, 0, 1));
     content: url("./Upward_Mobility_big.png");
