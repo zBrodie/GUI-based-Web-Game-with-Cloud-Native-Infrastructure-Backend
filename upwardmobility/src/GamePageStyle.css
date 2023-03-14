@@ -362,6 +362,26 @@
     margin-top: 8%;
 }
 
+.answerButton {
+    border: solid white 3px;
+    -webkit-text-fill-color: white;
+    background-color: #36393F;
+    font-family: "Common Pixel";
+    font-size: .75vw;
+}
+
+.generalText {
+    -webkit-text-fill-color: white;
+    background-color: #36393F;
+    font-family: "Common Pixel";
+    font-size: 1vw;
+    text-align: center;
+}
+
+.answerButton:hover {
+    background-color: #6ECCFA;
+}
+
 .tempDiv{
     position: absolute;
     width: 90%;
