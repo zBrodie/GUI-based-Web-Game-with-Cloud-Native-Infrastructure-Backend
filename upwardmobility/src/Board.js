@@ -72,6 +72,7 @@ export function UpwardMobilityBoard({ctx, G, moves}){
             </svg>
             {/*Player List*/}
 
+
             {/*Inventory List*/}
             <svg className="InventoryLabel">
                 <rect id="InventoryLabel" rx="0" ry="0" x="0" y="0">
@@ -91,6 +92,7 @@ export function UpwardMobilityBoard({ctx, G, moves}){
                 <span>Type here to chat...</span>
             </div>
             {/*Chat List*/}
+
 
             {/*Player Stat List*/}
             <svg className="PlayerStatsBackground">

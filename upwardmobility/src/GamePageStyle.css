@@ -484,7 +484,6 @@
     color: rgba(255,255,255,1);
     content: url("./BuffIcon.png");
     filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 1));
-
 }
 
 #PlayerDebuffsIcon {
