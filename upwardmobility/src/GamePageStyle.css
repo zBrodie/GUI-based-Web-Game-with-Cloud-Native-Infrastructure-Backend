@@ -159,6 +159,78 @@
     font-size: 1vw;
     color: rgba(255,255,255,1);
 }
+
+.inGameText {
+    position: absolute;
+    overflow: visible;
+    width: 500px;
+    height: 30px;
+    text-align: center;
+    font-family: Common Pixel;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1vw;
+    margin-top: 5%;
+    color: rgba(255, 255, 255, 1);
+}
+
+.inGameButton{
+    position: absolute;
+    border: solid white 3px;
+    -webkit-text-fill-color: white;
+    background-color: #36393F;
+    font-family: "Common Pixel";
+    font-size: 1vw;
+    text-align: center;
+    height: 7.5%;
+    width: 25%;
+    margin-top: 8%;
+    cursor: pointer;
+}
+
+.tempDiv{
+    position: absolute;
+    width: 90%;
+    height: 100%;
+    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    margin: auto;
+}
+
+.gameImg{
+    position: absolute;
+    height: 40%;
+    width: 40%;
+    margin-top: 2%;
+}
+
+.eventButton{
+    position: absolute;
+    border: solid white 3px;
+    -webkit-text-fill-color: white;
+    background-color: #36393F;
+    font-family: "Common Pixel";
+    font-size: 1vw;
+    text-align: center;
+    height: 7.5%;
+    width: 25%;
+    margin-top: 52%;
+}
+
+.eventDesc{
+    position: absolute;
+    overflow: visible;
+    width: 500px;
+    height: 30px;
+    text-align: center;
+    font-family: Common Pixel;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1vw;
+    margin-top: 30%;
+    color: rgba(255, 255, 255, 1);
+}
 /*Game List*/
 
 
@@ -379,76 +451,4 @@
     left: 82.722188%;
     top: 1.10497238%;
     overflow: visible;
-}
-
-.inGameText {
-    position: absolute;
-    overflow: visible;
-    width: 500px;
-    height: 30px;
-    text-align: center;
-    font-family: Common Pixel;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 1vw;
-    margin-top: 5%;
-    color: rgba(255, 255, 255, 1);
-}
-
-.inGameButton{
-    position: absolute;
-    border: solid white 3px;
-    -webkit-text-fill-color: white;
-    background-color: #36393F;
-    font-family: "Common Pixel";
-    font-size: 1vw;
-    text-align: center;
-    height: 7.5%;
-    width: 25%;
-    margin-top: 8%;
-    cursor: pointer;
-}
-
-.tempDiv{
-    position: absolute;
-    width: 90%;
-    height: 100%;
-    text-align: center;
-    display: inline-flex;
-    justify-content: center;
-    margin: auto;
-}
-
-.gameImg{
-    position: absolute;
-    height: 40%;
-    width: 40%;
-    margin-top: 2%;
-}
-
-.eventButton{
-    position: absolute;
-    border: solid white 3px;
-    -webkit-text-fill-color: white;
-    background-color: #36393F;
-    font-family: "Common Pixel";
-    font-size: 1vw;
-    text-align: center;
-    height: 7.5%;
-    width: 25%;
-    margin-top: 52%;
-}
-
-.eventDesc{
-    position: absolute;
-    overflow: visible;
-    width: 500px;
-    height: 30px;
-    text-align: center;
-    font-family: Common Pixel;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 1vw;
-    margin-top: 30%;
-    color: rgba(255, 255, 255, 1);
 }
