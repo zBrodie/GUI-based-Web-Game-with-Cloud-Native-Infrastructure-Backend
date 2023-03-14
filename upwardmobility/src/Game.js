@@ -49,6 +49,7 @@ function showEndTurnButton(parentContainer, resultText, G, ctx) {
         parentContainer.innerHTML = "";
         // parentContainer.style.display = "none";
         ctx.events.endTurn();
+        console.log("HITS")
         showRollScreen();
     });
 
@@ -144,7 +145,7 @@ function getEvent(event, G, ctx) {
                 eventScreen.appendChild(resultText);
                 // eventScreen.appendChild(endTurnBtn);
                 // showEndTurnButton(eventScreen);
-                showEndTurnButton(eventScreen, resultText, ctx);
+                showEndTurnButton(eventScreen, resultText, G, ctx);
 
 
 
