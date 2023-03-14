@@ -1,5 +1,4 @@
-import { TurnOrder } from "boardgame.io/core";
-// import {clear} from "@testing-library/user-event/dist/clear";
+import { TurnOrder, ctx } from "boardgame.io/core";
 // import ctx from "boardgame.io/src/plugins/plugin-events";
 
 function clearElement(elementID) {
@@ -8,8 +7,6 @@ function clearElement(elementID) {
 
 function hideRollScreen() {
     console.log("hideRollScreen function");
-
-
     document.getElementById("rollVal").style.visibility = "hidden";
     document.getElementById("rollVal").setAttribute("disabled", "True");
 
@@ -30,7 +27,7 @@ function showRollScreen() {
     document.getElementById("temp").style.display = "none";
 }
 
-function showEndTurnButton(parentContainer, resultText, ctx) {
+function showEndTurnButton(parentContainer, resultText, G, ctx) {
     let container = document.createElement("div");
     container.style.display = "flex";
     container.style.flexDirection = "column";
@@ -51,8 +48,7 @@ function showEndTurnButton(parentContainer, resultText, ctx) {
     endTurnBtn.addEventListener("click", () => {
         parentContainer.innerHTML = "";
         // parentContainer.style.display = "none";
-        UpwardsMobility.moves.endTurn(ctx);
-        // ctx.moves.endTurn();
+        ctx.events.endTurn();
         showRollScreen();
     });
 
@@ -64,7 +60,7 @@ function showEndTurnButton(parentContainer, resultText, ctx) {
 }
 
 
-function getEvent(event, {G, ctx}) {
+function getEvent(event, G, ctx) {
     switch (event) {
         case "randomNumberGuessing":
             console.log("switch case function randomNumberGuessing");
@@ -219,7 +215,7 @@ export const UpwardsMobility = {
 
     // Define the moves for rolling the dice and updating the game state.
     moves: {
-      tempRoll: ({G, ctx}) => {
+      tempRoll: ({G,ctx}) => {
         const die1 = Math.floor(Math.random() * 6) + 1;
         const die2 = Math.floor(Math.random() * 6) + 1;
         // let moveDist = die1 + die2;
@@ -272,7 +268,7 @@ export const UpwardsMobility = {
         showProceedButton.setAttribute("class", "inGameButton");
         showProceedButton.setAttribute("id", "proceedButton");
         showProceedButton.addEventListener("click", function() {
-            getEvent(event, {G, ctx});
+            getEvent(event, G, ctx);
         });
         showProceedButton.innerHTML = "Show Event";
 
@@ -298,8 +294,8 @@ export const UpwardsMobility = {
         showProceedButton.style.width = "200px";
 
       },
-        endTurn: ({G, ctx}) => {
-            ctx.events.endTurn();
-        }
+
+
+
     },
 }
