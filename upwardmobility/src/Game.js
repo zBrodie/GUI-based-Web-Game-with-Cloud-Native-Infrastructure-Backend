@@ -1,9 +1,18 @@
-import { TurnOrder } from "boardgame.io/core";
+import { TurnOrder, ctx } from "boardgame.io/core";
+// import ctx from "boardgame.io/src/plugins/plugin-events";
 
 function clearElement(elementID) {
     document.getElementById(elementID).innerHTML = "";
 }
 
+function hideRollScreen() {
+    console.log("hideRollScreen function");
+    document.getElementById("rollVal").style.visibility = "hidden";
+    document.getElementById("rollVal").setAttribute("disabled", "True");
+
+    document.getElementById("proceedButton").style.visibility = "hidden";
+    document.getElementById("proceedButton").setAttribute("disabled", "True");
+}
 function showRollScreen() {
     console.log("showRollScreen function");
 
@@ -16,19 +25,17 @@ function showRollScreen() {
 
     // Hide the roll result and event buttons
     document.getElementById("temp").style.display = "none";
+}
 
-    }
-
-
-function showEndTurnButton(parentContainer, resultText) {
+function showEndTurnButton(parentContainer, resultText, G, ctx) {
     let container = document.createElement("div");
     container.style.display = "flex";
     container.style.flexDirection = "column";
     container.style.alignItems = "center";
     container.style.height = "50%"; // reduce height
     container.style.width = "100%";
-    container.style.bottom = "40%"; // move container to bottom
-    container.style.position = "absolute";
+    container.style.bottom = "70%"; // move container to bottom
+    // container.style.position = "absolute";
 
     // Append the result text to the container
     container.appendChild(resultText);
@@ -37,12 +44,12 @@ function showEndTurnButton(parentContainer, resultText) {
     endTurnBtn.setAttribute("class", "answerButton");
     endTurnBtn.innerHTML = "End Turn";
     endTurnBtn.id = "endTurnBtn";
-    endTurnBtn.style.position = "absolute";
+    // endTurnBtn.style.position = "absolute";
     endTurnBtn.addEventListener("click", () => {
         parentContainer.innerHTML = "";
-        parentContainer.style.display = "none";
+        // parentContainer.style.display = "none";
+        ctx.events.endTurn();
         showRollScreen();
-        // ctx.events.endTurn();
     });
 
     // Append the end turn button to the container
@@ -53,7 +60,7 @@ function showEndTurnButton(parentContainer, resultText) {
 }
 
 
-function getEvent(event) {
+function getEvent(event, G, ctx) {
     switch (event) {
         case "randomNumberGuessing":
             console.log("switch case function randomNumberGuessing");
@@ -124,12 +131,12 @@ function getEvent(event) {
                 resultText.innerHTML = "The wizard is dumbfound and spontaneously combusts into 100 coins which are " +
                     "added to your inventory!";
                 resultText.style.display = "flex";
-                resultText.style.flexDirection = "column";
+                // resultText.style.flexDirection = "column";
                 resultText.style.alignItems = "center";
                 resultText.style.height = "50%"; // reduce height
-                resultText.style.width = "100%";
-                resultText.style.bottom = "40%"; // move container to bottom
-                resultText.style.position = "absolute";
+                resultText.style.width = "80%";
+                resultText.style.bottom = "80%"; // move container to bottom
+                // resultText.style.position = "absolute";
                 resultText.setAttribute("class", "generalText");
 
 
@@ -137,7 +144,7 @@ function getEvent(event) {
                 eventScreen.appendChild(resultText);
                 // eventScreen.appendChild(endTurnBtn);
                 // showEndTurnButton(eventScreen);
-                showEndTurnButton(eventScreen, resultText);
+                showEndTurnButton(eventScreen, resultText, ctx);
 
 
 
@@ -162,16 +169,6 @@ function getEvent(event) {
     }
 }
 
-
-function hideRollScreen() {
-    console.log("hideRollScreen function");
-    document.getElementById("rollVal").style.visibility = "hidden";
-    document.getElementById("rollVal").setAttribute("disabled", "True");
-
-    document.getElementById("proceedButton").style.visibility = "hidden";
-    document.getElementById("proceedButton").setAttribute("disabled", "True");
-}
-
 export const UpwardsMobility = {
   setup: () => ({
     players: {
@@ -185,31 +182,31 @@ export const UpwardsMobility = {
       }
     },
     board: {
-        0: { event: 'start',    steps: 0 },
-        1: { event: 'advance',  steps: 2 },
-        2: { event: 'advance',  steps: 2 },
-        3: { event: 'reverse',  steps: -1 },
-        4: { event: 'advance',  steps: 3 },
-        5: { event: 'randomNumberGuessing',  steps: 0 },
-        6: { event: 'advance',  steps: 1 },
-        7: { event: 'none',     steps: 0 },
-        8: { event: 'none',     steps: 0 },
-        9: { event: 'reverse',  steps: -2 },
-        10: { event: 'none',    steps: 0 },
-        11: { event: 'none',    steps: 0 },
-        12: { event: 'advance', steps: 2 },
-        13: { event: 'advance', steps: 2 },
-        14: { event: 'reverse', steps: -1 },
-        15: { event: 'advance', steps: 3 },
-        16: { event: 'advance', steps: -2 },
-        17: { event: 'advance', steps: 1 },
-        18: { event: 'advance', steps: 2 },
-        19: { event: 'none',    steps: 0 },
-        20: { event: 'reverse', steps: -2 },
-        21: { event: 'advance', steps: 2 },
-        22: { event: 'reverse', steps: -2 },
-        23: { event: 'reverse', steps: -2 },
-        24: { event: 'win', steps: 0 },
+        0: { event: 'start',    currency: 0 },
+        1: { event: 'advance',  currency: 2 },
+        2: { event: 'advance',  currency: 2 },
+        3: { event: 'reverse',  currency: -1 },
+        4: { event: 'advance',  currency: 3 },
+        5: { event: 'randomNumberGuessing',  currency: 0 },
+        6: { event: 'advance',  currency: 1 },
+        7: { event: 'none',     currency: 0 },
+        8: { event: 'none',     currency: 0 },
+        9: { event: 'reverse',  currency: -2 },
+        10: { event: 'none',    currency: 0 },
+        11: { event: 'none',    currency: 0 },
+        12: { event: 'advance', currency: 2 },
+        13: { event: 'advance', currency: 2 },
+        14: { event: 'reverse', currency: -1 },
+        15: { event: 'advance', currency: 3 },
+        16: { event: 'advance', currency: -2 },
+        17: { event: 'advance', currency: 1 },
+        18: { event: 'advance', currency: 2 },
+        19: { event: 'none',    currency: 0 },
+        20: { event: 'reverse', currency: -2 },
+        21: { event: 'advance', currency: 2 },
+        22: { event: 'reverse', currency: -2 },
+        23: { event: 'reverse', currency: -2 },
+        24: { event: 'win', currency: 0 },
     },
   }),
     turn: {
@@ -233,10 +230,10 @@ export const UpwardsMobility = {
 
         switch (eventCell.event) {
             case 'advance':
-                moveDist += eventCell.steps;
+                moveDist += eventCell.currency;
                 break;
             case 'reverse':
-                moveDist -= eventCell.steps;
+                moveDist -= eventCell.currency;
                 break;
             // case 'randomNumberGuessing':
             //     console.log("randomNumberGuessing");
@@ -251,12 +248,12 @@ export const UpwardsMobility = {
 
         // Show all values of current player in console
 
-        console.log("This is board length: " + Object.keys(G.board).length);
-        console.log("This is move distance: " + moveDist);
-        console.log("This is eventCell.event value: " + eventCell.event);
-        console.log("This is eventCell.steps value: " + eventCell.steps);
-        console.log("This is current player: " + ctx.currentPlayer);
-        console.log("This is current player position: " + G.players[ctx.currentPlayer].position);
+        // console.log("This is board length: " + Object.keys(G.board).length);
+        // console.log("This is move distance: " + moveDist);
+        // console.log("This is eventCell.event value: " + eventCell.event);
+        // console.log("This is eventCell.steps value: " + eventCell.steps);
+        // console.log("This is current player: " + ctx.currentPlayer);
+        // console.log("This is current player position: " + G.players[ctx.currentPlayer].position);
 
         document.getElementById("A_pair_of_strange_dice_lay_bef").style.visibility = "hidden";
         document.getElementById("A_pair_of_strange_dice_lay_bef").setAttribute("disabled", "True");
@@ -271,7 +268,7 @@ export const UpwardsMobility = {
         showProceedButton.setAttribute("class", "inGameButton");
         showProceedButton.setAttribute("id", "proceedButton");
         showProceedButton.addEventListener("click", function() {
-            getEvent(event);
+            getEvent(event, G, ctx);
         });
         showProceedButton.innerHTML = "Show Event";
 
@@ -279,7 +276,7 @@ export const UpwardsMobility = {
         showRollVal.setAttribute("class", "inGameText");
         showRollVal.setAttribute("id", "rollVal");
         // showRollVal.innerHTML = "Player 1 rolled " + moveDist + "!"
-        showRollVal.innerHTML = "Player " + (ctx.currentPlayer) + " rolled " + moveDist + " with an added value of " + eventCell.steps + " from event cell: " + eventCell.event + "resulting in a total move space of: " + (moveDist + eventCell.steps) + " !";
+        showRollVal.innerHTML = "Player " + (ctx.currentPlayer) + " rolled " + moveDist + " with an added currency count of " + eventCell.currency + " from event cell: " + eventCell.event + "resulting in a total move space of: " + (moveDist + eventCell.currency) + " !";
 
         let testDiv = document.createElement("div");
         testDiv.setAttribute("class", "tempDiv");
@@ -297,13 +294,8 @@ export const UpwardsMobility = {
         showProceedButton.style.width = "200px";
 
       },
-        endTurn: ({ G, ctx }) => {
-            ctx.events.endTurn();
-        },
+
 
 
     },
 }
-
-
-
