@@ -25,11 +25,6 @@ export function UpwardMobilityBoard({ctx, G, moves}){
                 </rect>
             </svg>
 
-            <div className="ChatAndLogo">
-                <rect id="ChatAndLogo" rx="0" ry="0" x="0" y="0"></rect>
-                <div id="chatSection"></div>
-            </div>
-
             <img id="ProgresionImage" src="src/Templates/assets/StartFinishScale.png" srcSet="NoPath_-_Copy_6.png 1x, NoPath_-_Copy_6@2x.png 2x"/>
 
 
@@ -82,7 +77,11 @@ export function UpwardMobilityBoard({ctx, G, moves}){
 
 
             {/*Chat List*/}
-            <input className="chatBox" type="text" placeholder="Type here to chat" id="chatBox" rx="7" ry="7" x="0" y="0" width="290" height="33"/>
+            <div className="ChatAndLogo">
+                <rect id="ChatAndLogo" rx="0" ry="0" x="0" y="0"></rect>
+                <div id="chatSection"></div>
+            </div>
+            <input className="chatBox" type="text" placeholder="Type here to chat" id="chatBox" rx="7" ry="7" x="0" y="0" />
 
             <div id="Type_here_to_chat">
                 <span>Type here to chat...</span>
