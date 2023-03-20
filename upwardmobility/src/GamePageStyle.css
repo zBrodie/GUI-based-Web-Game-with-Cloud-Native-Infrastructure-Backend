@@ -163,6 +163,20 @@
     color: rgba(255, 255, 255, 1);
 }
 
+.questionText {
+    position: absolute;
+    overflow: visible;
+    width: 500px;
+    height: 50px;
+    text-align: center;
+    font-family: Common Pixel;
+    font-style: normal;
+    font-weight: normal;
+    font-size: .9vw;
+    margin-top: 5%;
+    color: rgba(255, 255, 255, 1);
+}
+
 .inGameButton{
     position: absolute;
     border: solid white 3px;
@@ -205,6 +219,23 @@
     height: 7.5%;
     width: 25%;
     margin-top: 52%;
+}
+
+.answerButton {
+    /*position: absolute;*/
+    border: solid white 3px;
+    -webkit-text-fill-color: white;
+    background-color: #36393F;
+    font-family: "Common Pixel";
+    font-size: .70vw;
+    width: 200px;
+    height: 50px;
+    margin: 10px;
+}
+
+.answerButton:hover {
+    background-color: #2F3136;
+    border: #61dafb 3px solid;
 }
 
 .eventDesc{
@@ -524,6 +555,24 @@
     font-weight: normal;
     font-size: 1vw;
     color: rgba(255,255,255,1);
+}
+
+
+#GameEndTurn{
+    visibility: hidden;
+    border: solid white 3px;
+    -webkit-text-fill-color: white;
+    background-color: #36393F;
+    font-family: "Common Pixel";
+    font-size: .70vw;
+    width: 200px;
+    height: 50px;
+    margin: 10px;
+}
+
+#GameEndTurn:hover {
+    background-color: #2F3136;
+    border: #61dafb 3px solid;
 }
 
 /*Player Stat List*/

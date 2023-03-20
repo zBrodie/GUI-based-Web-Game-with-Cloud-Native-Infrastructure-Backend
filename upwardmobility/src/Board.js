@@ -4,10 +4,27 @@ import playerList from './PlayerListBackground.png'
 import gamelogo from './Upward_Mobility_big.png'
 import {disMoveDist} from "./Game";
 
+function showRollScreen() {
+    console.log("showRollScreen function");
+    // Show the dice and roll button
+    document.getElementById("A_pair_of_strange_dice_lay_bef").style.visibility = "visible";
+    document.getElementById("A_pair_of_strange_dice_lay_bef").removeAttribute("disabled");
+
+    document.getElementById("DiceButton").style.visibility = "visible";
+    document.getElementById("DiceButton").removeAttribute("disabled");
+
+    // Hide the roll result and event buttons
+    document.getElementById("temp").style.display = "none";
+}
+
 export function UpwardMobilityBoard({ctx, G, moves}){
 
    const rollDice = () =>{
        moves.tempRoll();
+   }
+
+   const endTurn = () =>{
+       moves.endTurn();
    }
 
     return(
@@ -18,6 +35,9 @@ export function UpwardMobilityBoard({ctx, G, moves}){
                 <div id="A_pair_of_strange_dice_lay_bef">
                     A pair of strange dice lay before you...
                 </div>
+
+                <button onClick={() => endTurn()}  id="GameEndTurn" >End Turn</button>
+
             </div>
 
             <svg className="GameProgression">
@@ -110,8 +130,8 @@ export function UpwardMobilityBoard({ctx, G, moves}){
                 +$2000 in 2 turns
             </div>
             {/*Player Stat List*/}
-
         </div>
+
 
     )
 }
