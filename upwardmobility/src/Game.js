@@ -218,8 +218,18 @@ export const UpwardsMobility = {
             ctx.events.endGame({ winner: ctx.currentPlayer });
         }
         const eventCell = G.board[G.players[ctx.currentPlayer].position + moveDist];
+        console.log(ctx.currentPlayer)
 
-        let event = eventCell.event;
+        let currPlayerNum = parseInt(ctx.currentPlayer + 1)
+        let tokenID = "player" + currPlayerNum + "Token"
+          console.log(tokenID)
+          const element = document.getElementById(tokenID); // Replace "yourElementId" with the ID of your element
+          const calcStyle = getComputedStyle(element)
+          const currentTop = parseFloat(calcStyle.top); // Get the current value of the "top" property and convert it to a floating-point number
+          const newTop = currentTop - currentTop * 0.05; // Calculate 10% less than the current value
+          document.getElementById(tokenID).style.top = `${newTop}px`
+
+          let event = eventCell.event;
 
         switch (eventCell.event) {
             case 'advance':

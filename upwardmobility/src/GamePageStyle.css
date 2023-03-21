@@ -33,6 +33,7 @@
 #Rectangle_42 {
     fill: rgba(54,57,63,1);
 }
+
 .Rectangle_42 {
     position: absolute;
     overflow: hidden;
@@ -58,6 +59,13 @@
     top: 0px;
 }
 
+.ProgressionDiv{
+    position: absolute;
+    overflow: visible;
+    background-color: #2F3136;
+    width: 19.080174%;
+    height: 74.033149%;
+}
 
 #Upward_Mobility_big_Game_Page {
     filter: drop-shadow(0px 10px 16px rgba(0, 0, 0, 1));
@@ -87,8 +95,6 @@
 #ProgresionImage{
     position: absolute;
     content: url("./StartFinishScale.png");
-    width: 14.916097%;
-    height: 70.718232%;
     left: 7px;
     top: 15px;
     overflow: visible;
@@ -385,6 +391,25 @@
     left: 68.614046%;
     top: 2.209945%;
 }
+
+.GameProgressionToken{
+    position: absolute;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    left: 5%;
+    top: 88%;
+}
+
+#playerTokensDiv{
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    vertical-align: bottom;
+}
+
 /*Player List*/
 
 

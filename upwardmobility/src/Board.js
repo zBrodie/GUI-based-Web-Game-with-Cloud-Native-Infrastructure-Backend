@@ -4,6 +4,54 @@ import playerList from './PlayerListBackground.png'
 import gamelogo from './Upward_Mobility_big.png'
 import {disMoveDist} from "./Game";
 import {useContext, useRef, useState} from "react";
+import {useEffect} from "react";
+
+const numPlayers = 2;
+
+function loadPlayerProgTokens(){
+
+    document.getElementById("playerTokensDiv").innerHTML = " "
+
+    for(let i = 1; i<=numPlayers; i++){
+
+        let playerToken = document.createElement("div")
+        playerToken.setAttribute("class", "GameProgressionToken")
+
+        if(i == 1){
+            playerToken.style.backgroundColor = "rgba(234,0,217,1)"
+            let currId = "player" + i + "Token"
+            playerToken.setAttribute("id", currId)
+        }
+        if(i == 2){
+            playerToken.style.backgroundColor = "rgba(115,248,255,1)"
+            let currId = "player" + i + "Token"
+            playerToken.setAttribute("id", currId)
+        }
+        if(i == 3){
+            playerToken.style.backgroundColor = "rgba(0,201,60,1)"
+            let currId = "player" + i + "Token"
+            playerToken.setAttribute("id", currId)
+        }
+        if(i == 4){
+            playerToken.style.backgroundColor = "rgba(196,0,0,1)"
+            let currId = "player" + i + "Token"
+            playerToken.setAttribute("id", currId)
+        }
+        if(i == 5){
+            playerToken.style.backgroundColor = "rgba(105,0,225,1)"
+            let currId = "player" + i + "Token"
+            playerToken.setAttribute("id", currId)
+        }
+        if(i == 6){
+            playerToken.style.backgroundColor = "rgba(0,61,204,1)"
+            let currId = "player" + i + "Token"
+            playerToken.setAttribute("id", currId)
+        }
+        document.getElementById("playerTokensDiv").append(playerToken)
+    }
+
+
+}
 
 
 function showRollScreen() {
@@ -40,6 +88,12 @@ export function UpwardMobilityBoard({ctx, G, moves}){
 
    }
 
+   useEffect(() =>{
+       console.log("useEffect Ran")
+       loadPlayerProgTokens()
+   }, [])
+
+
     return(
         <div className="GamePage">
             <div className="Rectangle_42" id = "eventScreen">
@@ -58,7 +112,13 @@ export function UpwardMobilityBoard({ctx, G, moves}){
                 </rect>
             </svg>
 
-            <img id="ProgresionImage" src="src/Templates/assets/StartFinishScale.png" srcSet="NoPath_-_Copy_6.png 1x, NoPath_-_Copy_6@2x.png 2x"/>
+            <div id="progressionDiv"  class = "ProgressionDiv">
+                <img id="ProgresionImage" src="src/Templates/assets/StartFinishScale.png" srcSet="NoPath_-_Copy_6.png 1x, NoPath_-_Copy_6@2x.png 2x"/>
+                <div id = "playerTokensDiv">
+
+                </div>
+            </div>
+
 
 
             {/*Player List*/}
