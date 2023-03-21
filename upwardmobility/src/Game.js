@@ -23,6 +23,9 @@ export function showRollScreen() {
     document.getElementById("DiceButton").style.visibility = "visible";
     document.getElementById("DiceButton").removeAttribute("disabled");
 
+    document.getElementById("NoPath_-_Copy_8").style.visibility = "visible";
+    document.getElementById("NoPath_-_Copy_8").removeAttribute("disabled");
+
     // Hide the roll result and event buttons
     document.getElementById("temp").style.display = "none";
 }
@@ -262,7 +265,9 @@ export const UpwardsMobility = {
         showRollVal.setAttribute("class", "inGameText");
         showRollVal.setAttribute("id", "rollVal");
         // showRollVal.innerHTML = "Player 1 rolled " + moveDist + "!"
-        showRollVal.innerHTML = "Player " + (ctx.currentPlayer) + " rolled " + moveDist + " with an added currency count of " + eventCell.currency + " from event cell: " + eventCell.event + "resulting in a total move space of: " + (moveDist + eventCell.currency) + " !";
+        showRollVal.innerHTML = "Player " + (ctx.currentPlayer) + " rolled " + moveDist +
+            " with an added currency count of " + eventCell.currency + " from event cell: " + eventCell.event
+            + "resulting in a total move space of: " + (moveDist + eventCell.currency) + " !";
 
         let testDiv = document.createElement("div");
         testDiv.setAttribute("class", "tempDiv");
