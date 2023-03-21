@@ -158,13 +158,13 @@
 .inGameText {
     position: absolute;
     overflow: visible;
-    width: 500px;
+    width: 800px;
     height: 30px;
     text-align: center;
     font-family: Common Pixel;
     font-style: normal;
     font-weight: normal;
-    font-size: 1vw;
+    font-size: 1.5vw;
     margin-top: 5%;
     color: rgba(255, 255, 255, 1);
 }
@@ -191,7 +191,7 @@
     font-family: "Common Pixel";
     font-size: 1vw;
     text-align: center;
-    height: 7.5%;
+    height: 15%;
     width: 25%;
     margin-top: 8%;
     cursor: pointer;
@@ -233,10 +233,11 @@
     -webkit-text-fill-color: white;
     background-color: #36393F;
     font-family: "Common Pixel";
-    font-size: .70vw;
-    width: 200px;
-    height: 50px;
+    font-size: 1vw;
+    width: 300px;
+    height: 100px;
     margin: 10px;
+    cursor: pointer;
 }
 
 .answerButton:hover {
@@ -589,10 +590,11 @@
     -webkit-text-fill-color: white;
     background-color: #36393F;
     font-family: "Common Pixel";
-    font-size: .70vw;
-    width: 200px;
-    height: 50px;
+    font-size: 1vw;
+    width: 300px;
+    height: 100px;
     margin: 10px;
+    cursor: pointer;
 }
 
 #GameEndTurn:hover {

@@ -19,7 +19,7 @@ export function getEvent(event, G, ctx, events) {
             container.style.display = "flex";
             container.style.flexDirection = "column";
             container.style.alignItems = "center";
-            container.style.height = "50%"; // reduce height
+            container.style.height = "60%"; // reduce height
             container.style.width = "100%";
             container.style.bottom = "40%"; // move container to bottom
             container.style.position = "absolute";
