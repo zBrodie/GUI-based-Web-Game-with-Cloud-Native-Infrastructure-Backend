@@ -6,6 +6,12 @@ export function getEvent(event, G, ctx, events) {
     let btnContainer = document.createElement("div");
     let eventText;
     switch (event) {
+        case 'win':
+            document.getElementById("eventScreen").innerHTML = ""
+            let displayWin = document.createElement("h1")
+            displayWin.innerHTML = "CONGRATS YOU WIN!"
+            displayWin.setAttribute("class", "inGameText")
+            document.getElementById("eventScreen").append(displayWin)
         case "wizardEvent":
             console.log("switch case function wizardEvent");
 
@@ -67,7 +73,7 @@ export function getEvent(event, G, ctx, events) {
             container.appendChild(btnContainer);
 
             // Append container div element to eventScreen
-            temp.appendChild(container);
+            document.getElementById("temp").appendChild(container);
 
             ans1.addEventListener("click", function() {
                 let resultText = document.createElement("div");

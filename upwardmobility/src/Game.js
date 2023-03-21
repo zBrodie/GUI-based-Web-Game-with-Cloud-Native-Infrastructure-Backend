@@ -174,21 +174,22 @@ export const UpwardsMobility = {
         7: { event: 'none',     currency: 0 },
         8: { event: 'none',     currency: 0 },
         9: { event: 'reverse',  currency: -2 },
-        10: { event: 'none',    currency: 0 },
+        10: { event: 'wizardEvent',    currency: 0 },
         11: { event: 'none',    currency: 0 },
         12: { event: 'advance', currency: 2 },
         13: { event: 'advance', currency: 2 },
         14: { event: 'reverse', currency: -1 },
-        15: { event: 'advance', currency: 3 },
+        15: { event: 'wizardEvent', currency: 3 },
         16: { event: 'advance', currency: -2 },
         17: { event: 'advance', currency: 1 },
         18: { event: 'advance', currency: 2 },
         19: { event: 'none',    currency: 0 },
-        20: { event: 'reverse', currency: -2 },
+        20: { event: 'wizardEvent', currency: -2 },
         21: { event: 'advance', currency: 2 },
         22: { event: 'reverse', currency: -2 },
         23: { event: 'reverse', currency: -2 },
-        24: { event: 'win', currency: 0 },
+        24: { event: 'none', currency: 0 },
+        25: { event: 'win', currency: 0 },
     },
       // ctx: {
       //     currentPlayer: "0",
@@ -212,23 +213,30 @@ export const UpwardsMobility = {
           const die1 = Math.floor(Math.random() * 6) + 1;
         const die2 = Math.floor(Math.random() * 6) + 1;
         // let moveDist = die1 + die2;
-        // G.players[ctx.currentPlayer].position += moveDist;
         let moveDist = 5;
-        if (G.players[ctx.currentPlayer].position >= 25) {
-            ctx.events.endGame({ winner: ctx.currentPlayer });
-        }
-        const eventCell = G.board[G.players[ctx.currentPlayer].position + moveDist];
-        console.log(ctx.currentPlayer)
+        G.players[ctx.currentPlayer].position += moveDist;
+        console.log("Current player: " + ctx.currentPlayer +  "with current position: " + G.players[ctx.currentPlayer].position)
+        //if (G.players[ctx.currentPlayer].position >= 25) {
+            //ctx.events.endGame({ winner: ctx.currentPlayer });
+       // }
 
-        let currPlayerNum = parseInt(ctx.currentPlayer) + 1
-        let tokenID = "player" + currPlayerNum + "Token"
+          let currPlayerNum = parseInt(ctx.currentPlayer) + 1
+          let tokenID = "player" + currPlayerNum + "Token"
           console.log("Current Player is " + ctx.currentPlayer)
           console.log(tokenID)
           const element = document.getElementById(tokenID); // Replace "yourElementId" with the ID of your element
           const calcStyle = getComputedStyle(element, "")
           const currentTop = parseFloat(calcStyle.top); // Get the current value of the "top" property and convert it to a floating-point number
-          const newTop = currentTop - currentTop * (0.05 * moveDist); // Calculate 10% less than the current value
+          const newTop = currentTop - currentTop * (0.125 * moveDist); // Calculate 10% less than the current value
           document.getElementById(tokenID).style.top = `${newTop}px`
+
+        const eventCell = G.board[G.players[ctx.currentPlayer].position + moveDist];
+
+        if (G.players[ctx.currentPlayer].position >= 25) {
+            getEvent('win')
+        }
+
+
 
           let event = eventCell.event;
 
@@ -238,9 +246,6 @@ export const UpwardsMobility = {
                 break;
             case 'reverse':
                 moveDist -= eventCell.currency;
-                break;
-            case 'win':
-                ctx.events.endGame({ winner: ctx.currentPlayer });
                 break;
         }
 

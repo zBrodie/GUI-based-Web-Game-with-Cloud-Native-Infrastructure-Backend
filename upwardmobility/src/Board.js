@@ -71,6 +71,8 @@ function showRollScreen() {
 
     // Hide the roll result and event buttons
     document.getElementById("temp").style.display = "none";
+    document.getElementById("eventScreen").append(document.getElementById("GameEndTurn"))
+    document.getElementById("temp").remove()
 }
 
 export function UpwardMobilityBoard({ctx, G, moves}){
