@@ -220,13 +220,14 @@ export const UpwardsMobility = {
         const eventCell = G.board[G.players[ctx.currentPlayer].position + moveDist];
         console.log(ctx.currentPlayer)
 
-        let currPlayerNum = parseInt(ctx.currentPlayer + 1)
+        let currPlayerNum = parseInt(ctx.currentPlayer) + 1
         let tokenID = "player" + currPlayerNum + "Token"
+          console.log("Current Player is " + ctx.currentPlayer)
           console.log(tokenID)
           const element = document.getElementById(tokenID); // Replace "yourElementId" with the ID of your element
-          const calcStyle = getComputedStyle(element)
+          const calcStyle = getComputedStyle(element, "")
           const currentTop = parseFloat(calcStyle.top); // Get the current value of the "top" property and convert it to a floating-point number
-          const newTop = currentTop - currentTop * 0.05; // Calculate 10% less than the current value
+          const newTop = currentTop - currentTop * (0.05 * moveDist); // Calculate 10% less than the current value
           document.getElementById(tokenID).style.top = `${newTop}px`
 
           let event = eventCell.event;
