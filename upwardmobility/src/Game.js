@@ -253,7 +253,6 @@ export const UpwardsMobility = {
         document.getElementById("DiceButton").setAttribute("disabled", "True");
 
         document.getElementById("NoPath_-_Copy_8").style.visibility = "hidden";
-        document.getElementById("A_pair_of_strange_dice_lay_bef").style.top = "20%";
 
         let showProceedButton = document.createElement(`button`);
         showProceedButton.setAttribute("class", "inGameButton");
