@@ -1,11 +1,12 @@
-import { TurnOrder, ctx } from "boardgame.io/core";
-// import ctx from "boardgame.io/src/plugins/plugin-events";
+import { TurnOrder, Client, Server, Game } from "boardgame.io/core";
+import { getEvent} from "./eventsfile";
+import react from 'react';
+import { UpwardMobilityBoard } from "./Board";
 
 function clearElement(elementID) {
     document.getElementById(elementID).innerHTML = "";
 }
-
-function hideRollScreen() {
+export function hideRollScreen() {
     console.log("hideRollScreen function");
     document.getElementById("rollVal").style.visibility = "hidden";
     document.getElementById("rollVal").setAttribute("disabled", "True");
@@ -13,9 +14,8 @@ function hideRollScreen() {
     document.getElementById("proceedButton").style.visibility = "hidden";
     document.getElementById("proceedButton").setAttribute("disabled", "True");
 }
-function showRollScreen() {
+export function showRollScreen() {
     console.log("showRollScreen function");
-
     // Show the dice and roll button
     document.getElementById("A_pair_of_strange_dice_lay_bef").style.visibility = "visible";
     document.getElementById("A_pair_of_strange_dice_lay_bef").removeAttribute("disabled");
@@ -23,153 +23,134 @@ function showRollScreen() {
     document.getElementById("DiceButton").style.visibility = "visible";
     document.getElementById("DiceButton").removeAttribute("disabled");
 
+    document.getElementById("NoPath_-_Copy_8").style.visibility = "visible";
+    document.getElementById("NoPath_-_Copy_8").removeAttribute("disabled");
+
     // Hide the roll result and event buttons
     document.getElementById("temp").style.display = "none";
 }
 
-function showEndTurnButton(parentContainer, resultText, G, ctx) {
-    let container = document.createElement("div");
-    container.style.display = "flex";
-    container.style.flexDirection = "column";
-    container.style.alignItems = "center";
-    container.style.height = "50%"; // reduce height
-    container.style.width = "100%";
-    container.style.bottom = "70%"; // move container to bottom
-    // container.style.position = "absolute";
 
-    // Append the result text to the container
-    container.appendChild(resultText);
+// function showEndTurnButton(G, ctx) {
+//     let endTurnBtn = document.createElement("button");
+//     endTurnBtn.setAttribute("class", "answerButton");
+//     endTurnBtn.innerHTML = "End Turn";
+//     endTurnBtn.id = "endTurnBtn";
+//     let btnContainer = document.createElement("btnContainer");
+//     if (btnContainer != null) {
+//         btnContainer.appendChild(endTurnBtn);
+//     }
+//     endTurnBtn.addEventListener("click", () => {
+//         // clearElement("eventScreen");
+//         // ctx.events.endTurn();
+//         // showRollScreen({G, ctx});
+//     });
+// }
 
-    let endTurnBtn = document.createElement("button");
-    endTurnBtn.setAttribute("class", "answerButton");
-    endTurnBtn.innerHTML = "End Turn";
-    endTurnBtn.id = "endTurnBtn";
-    // endTurnBtn.style.position = "absolute";
-    endTurnBtn.addEventListener("click", () => {
-        parentContainer.innerHTML = "";
-        // parentContainer.style.display = "none";
-        ctx.events.endTurn();
-        console.log("HITS")
-        showRollScreen();
-    });
-
-    // Append the end turn button to the container
-    container.appendChild(endTurnBtn);
-
-    // Append the container to the parent container
-    parentContainer.appendChild(container);
-}
-
-
-function getEvent(event, G, ctx) {
-    switch (event) {
-        case "randomNumberGuessing":
-            console.log("switch case function randomNumberGuessing");
-
-            const eventScreen = document.getElementById("eventScreen");
-
-            hideRollScreen();
-
-            // let endTurnBtn = document.createElement("button");
-            // endTurnBtn.setAttribute("class", "answerButton");
-            // endTurnBtn.innerHTML = "End Turn";
-            // endTurnBtn.id = "endTurnBtn";
-
-            // document.getElementById("endTurnBtn").style.visibility = "hidden";
-            // document.getElementById("endTurnBtn").setAttribute("disabled", "True");
-
-            // Create container div element
-            const container = document.createElement("div");
-            container.style.display = "flex";
-            container.style.flexDirection = "column";
-            container.style.alignItems = "center";
-            container.style.height = "50%"; // reduce height
-            container.style.width = "100%";
-            container.style.bottom = "40%"; // move container to bottom
-            container.style.position = "absolute";
-
-            const btnContainer = document.createElement("div");
-            btnContainer.style.display = "flex";
-            btnContainer.style.justifyContent = "center";
-            btnContainer.style.alignItems = "center";
-            btnContainer.style.flexDirection = "row";
-            btnContainer.style.gap = "10px";
-            btnContainer.style.position = "absolute";
-            btnContainer.style.bottom = "10%"; // move buttons down
-            btnContainer.style.width = "100%";
-
-            let eventText = document.createElement("span");
-            eventText.innerHTML = "A mysterious raggedy wizard appears before you and asks the question... \"What is the airspeed velocity of an unladen swallow?\"";
-            eventText.setAttribute("class", "generalText");
-            eventText.style.width = "60%";
-
-            let eventImg = document.createElement("img");
-            let promptToAnswer = document.createElement("span");
-            promptToAnswer.setAttribute("class", "generalText");
-            promptToAnswer.innerHTML = "Choose your answer:";
-
-            eventImg.id = "montyPython";
-            eventImg.src = "explosion.jpeg";
-
-            let ans1 = document.createElement("button");
-            let ans2 = document.createElement("button");
-            let ans3 = document.createElement("button");
-
-            ans1.setAttribute("class", "answerButton");
-            ans2.setAttribute("class", "answerButton");
-            ans3.setAttribute("class", "answerButton");
-
-            ans1.innerHTML = "What do you mean? African or European swallow?";
-            ans1.addEventListener("click", function() {
-                // Remove all child elements from eventScreen
-                clearElement("eventScreen");
-                const eventScreen = document.getElementById("eventScreen");
-                while (eventScreen.firstChild) {
-                    eventScreen.removeChild(eventScreen.firstChild);
-                }
-                // Show text saying "The wizard spontaneously combusts into 100 coins!"
-                let resultText = document.createElement("div");
-                resultText.innerHTML = "The wizard is dumbfound and spontaneously combusts into 100 coins which are " +
-                    "added to your inventory!";
-                resultText.style.display = "flex";
-                // resultText.style.flexDirection = "column";
-                resultText.style.alignItems = "center";
-                resultText.style.height = "50%"; // reduce height
-                resultText.style.width = "80%";
-                resultText.style.bottom = "80%"; // move container to bottom
-                // resultText.style.position = "absolute";
-                resultText.setAttribute("class", "generalText");
-
-
-                // resultText.style.position = "absolute";
-                eventScreen.appendChild(resultText);
-                // eventScreen.appendChild(endTurnBtn);
-                // showEndTurnButton(eventScreen);
-                showEndTurnButton(eventScreen, resultText, G, ctx);
-
-
-
-            });
-
-            ans2.innerHTML = "I don't know that!";
-            ans3.innerHTML = "What is an unladen swallow?";
-
-            // Append child elements to container div element
-            container.appendChild(eventText);
-            container.appendChild(eventImg);
-            container.appendChild(promptToAnswer);
-            btnContainer.appendChild(ans1);
-            btnContainer.appendChild(ans2);
-            btnContainer.appendChild(ans3);
-            container.appendChild(btnContainer);
-
-            // Append container div element to eventScreen
-            eventScreen.appendChild(container);
-
-            break;
-    }
-}
-
+// function getEvent(event, G, ctx, events) {
+//     switch (event) {
+//         case "randomNumberGuessing":
+//             console.log("switch case function randomNumberGuessing");
+//
+//             const eventScreen = document.getElementById("eventScreen");
+//
+//             hideRollScreen();
+//
+//             // Create container div element
+//             const container = document.createElement("div");
+//             container.style.display = "flex";
+//             container.style.flexDirection = "column";
+//             container.style.alignItems = "center";
+//             container.style.height = "50%"; // reduce height
+//             container.style.width = "100%";
+//             container.style.bottom = "40%"; // move container to bottom
+//             container.style.position = "absolute";
+//
+//             const btnContainer = document.createElement("div");
+//             btnContainer.style.display = "flex";
+//             btnContainer.style.justifyContent = "center";
+//             btnContainer.style.alignItems = "center";
+//             btnContainer.style.flexDirection = "row";
+//             btnContainer.style.gap = "10px";
+//             btnContainer.style.position = "absolute";
+//             btnContainer.style.bottom = "0"; // move buttons down
+//             btnContainer.style.width = "100%";
+//
+//             let eventText = document.createElement("span");
+//             eventText.innerHTML = "A mysterious raggedy wizard appears before you and asks the question... \"What is the airspeed velocity of an unladen swallow?\"";
+//             eventText.setAttribute("class", "inGameText");
+//             eventText.style.width = "60%";
+//
+//             // let eventImg = document.createElement("img");
+//             // let promptToAnswer = document.createElement("span");
+//             // promptToAnswer.setAttribute("class", "questionText");
+//             // promptToAnswer.innerHTML = "Choose your answer:";
+//
+//             // eventImg.id = "montyPython";
+//             // eventImg.src = "explosion.jpeg";
+//
+//             let ans1 = document.createElement("button");
+//             let ans2 = document.createElement("button");
+//             let ans3 = document.createElement("button");
+//
+//             ans1.setAttribute("class", "answerButton");
+//             ans2.setAttribute("class", "answerButton");
+//             ans3.setAttribute("class", "answerButton");
+//
+//             ans1.innerHTML = "What do you mean? African or European swallow?";
+//             ans2.innerHTML = "I don't know that!";
+//             ans3.innerHTML = "What is an unladen swallow?";
+//
+//             // Append child elements to container div element
+//             container.appendChild(eventText);
+//             // container.appendChild(eventImg);
+//             // container.appendChild(promptToAnswer);
+//             btnContainer.appendChild(ans1);
+//             btnContainer.appendChild(ans2);
+//             btnContainer.appendChild(ans3);
+//             container.appendChild(btnContainer);
+//
+//             // Append container div element to eventScreen
+//             eventScreen.appendChild(container);
+//
+//             ans1.addEventListener("click", function() {
+//                 let resultText = document.createElement("div");
+//                 btnContainer.removeChild(ans1);
+//                 btnContainer.removeChild(ans2);
+//                 btnContainer.removeChild(ans3);
+//                 // showEndTurnButton({ G, ctx });
+//
+//                 // let endTurnBtn = document.createElement("endTurnBtn");
+//                 let endTurnBtn = document.getElementById("GameEndTurn");
+//                 // endTurnBtn.setAttribute("class", "answerButton");
+//                 btnContainer.appendChild(endTurnBtn);
+//
+//                 endTurnBtn.style.visibility = "visible";
+//                 // endTurnBtn.removeAttribute("disabled");
+//
+//                 // endTurnBtn.style.display = "flex";
+//                 // endTurnBtn.style.justifyContent = "center";
+//                 // endTurnBtn.style.alignItems = "center";
+//
+//                 // endTurnBtn.innerHTML = "End Turn";
+//                 eventText.innerHTML = "The wizard is dumbfound and spontaneously combusts into 100 coins which are " +
+//                     "added to your wallet!";
+//
+//                 // endTurnBtn.addEventListener("click", ({G, ctx, events}) => {
+//                 //     eventText.innerHTML = "";
+//                 //     btnContainer.removeChild(endTurnBtn);
+//                 //     console.log("This is events: ", events);
+//                 //     // console.log("Logged event endturn function function: ", events);
+//                 //     // UpwardsMobility.moves.endTurn(G, ctx, events);
+//                 //     console.log("This is current Player from getEvent function", ctx.currentPlayer)
+//                 //     showRollScreen();
+//
+//                 // });
+//             });
+//
+//             break;
+//     }
+// }
 export const UpwardsMobility = {
   setup: () => ({
     players: {
@@ -188,7 +169,7 @@ export const UpwardsMobility = {
         2: { event: 'advance',  currency: 2 },
         3: { event: 'reverse',  currency: -1 },
         4: { event: 'advance',  currency: 3 },
-        5: { event: 'randomNumberGuessing',  currency: 0 },
+        5: { event: 'wizardEvent',  currency: 0, item: 'moMoney', },
         6: { event: 'advance',  currency: 1 },
         7: { event: 'none',     currency: 0 },
         8: { event: 'none',     currency: 0 },
@@ -209,15 +190,26 @@ export const UpwardsMobility = {
         23: { event: 'reverse', currency: -2 },
         24: { event: 'win', currency: 0 },
     },
+      // ctx: {
+      //     currentPlayer: "0",
+      //     phase: 0,
+      //     numPlayers: 2,
+      // },
   }),
+    // movesPerTurn: 1,
     turn: {
-        order: TurnOrder.DEFAULT,
+        order: TurnOrder.ONCE,
+        // moveLimit: 1,
+        // minMoves: 1,
+        // maxMoves: 1,
     },
 
     // Define the moves for rolling the dice and updating the game state.
     moves: {
-      tempRoll: ({G,ctx}) => {
-        const die1 = Math.floor(Math.random() * 6) + 1;
+      tempRoll: ({G ,ctx, events}) => {
+
+
+          const die1 = Math.floor(Math.random() * 6) + 1;
         const die2 = Math.floor(Math.random() * 6) + 1;
         // let moveDist = die1 + die2;
         // G.players[ctx.currentPlayer].position += moveDist;
@@ -226,8 +218,18 @@ export const UpwardsMobility = {
             ctx.events.endGame({ winner: ctx.currentPlayer });
         }
         const eventCell = G.board[G.players[ctx.currentPlayer].position + moveDist];
+        console.log(ctx.currentPlayer)
 
-        let event = eventCell.event;
+        let currPlayerNum = parseInt(ctx.currentPlayer + 1)
+        let tokenID = "player" + currPlayerNum + "Token"
+          console.log(tokenID)
+          const element = document.getElementById(tokenID); // Replace "yourElementId" with the ID of your element
+          const calcStyle = getComputedStyle(element)
+          const currentTop = parseFloat(calcStyle.top); // Get the current value of the "top" property and convert it to a floating-point number
+          const newTop = currentTop - currentTop * 0.05; // Calculate 10% less than the current value
+          document.getElementById(tokenID).style.top = `${newTop}px`
+
+          let event = eventCell.event;
 
         switch (eventCell.event) {
             case 'advance':
@@ -236,25 +238,12 @@ export const UpwardsMobility = {
             case 'reverse':
                 moveDist -= eventCell.currency;
                 break;
-            // case 'randomNumberGuessing':
-            //     console.log("randomNumberGuessing");
-            //     hideRollScreen();
-            //     break;
             case 'win':
                 ctx.events.endGame({ winner: ctx.currentPlayer });
                 break;
         }
 
         G.players[ctx.currentPlayer].position += moveDist;
-
-        // Show all values of current player in console
-
-        // console.log("This is board length: " + Object.keys(G.board).length);
-        // console.log("This is move distance: " + moveDist);
-        // console.log("This is eventCell.event value: " + eventCell.event);
-        // console.log("This is eventCell.steps value: " + eventCell.steps);
-        // console.log("This is current player: " + ctx.currentPlayer);
-        // console.log("This is current player position: " + G.players[ctx.currentPlayer].position);
 
         document.getElementById("A_pair_of_strange_dice_lay_bef").style.visibility = "hidden";
         document.getElementById("A_pair_of_strange_dice_lay_bef").setAttribute("disabled", "True");
@@ -269,15 +258,26 @@ export const UpwardsMobility = {
         showProceedButton.setAttribute("class", "inGameButton");
         showProceedButton.setAttribute("id", "proceedButton");
         showProceedButton.addEventListener("click", function() {
-            getEvent(event, G, ctx);
+            getEvent(event, G, ctx, events);
         });
         showProceedButton.innerHTML = "Show Event";
+
+        // let showPassEventButton = document.createElement(`button`);
+        // showProceedButton.setAttribute("class", "inGameButton");
+        // showProceedButton.setAttribute("id", "proceedButton");
+        // showProceedButton.addEventListener("click", function() {
+        //     // ctx.events.endTurn();
+        //     // ctx.events.endPhase();
+        // });
+        // showProceedButton.innerHTML = "Pass Event";
 
         let showRollVal = document.createElement("span");
         showRollVal.setAttribute("class", "inGameText");
         showRollVal.setAttribute("id", "rollVal");
         // showRollVal.innerHTML = "Player 1 rolled " + moveDist + "!"
-        showRollVal.innerHTML = "Player " + (ctx.currentPlayer) + " rolled " + moveDist + " with an added currency count of " + eventCell.currency + " from event cell: " + eventCell.event + "resulting in a total move space of: " + (moveDist + eventCell.currency) + " !";
+        showRollVal.innerHTML = "Player " + (ctx.currentPlayer) + " rolled " + moveDist +
+            " with an added currency count of " + eventCell.currency + " from event cell: " + eventCell.event
+            + "resulting in a total move space of: " + (moveDist + eventCell.currency) + " !";
 
         let testDiv = document.createElement("div");
         testDiv.setAttribute("class", "tempDiv");
@@ -285,7 +285,7 @@ export const UpwardsMobility = {
 
         testDiv.appendChild(showRollVal);
         testDiv.appendChild(showProceedButton);
-        // testDiv.appendChild(showPassButton);
+        // testDiv.appendChild(showPassEventButton);
         document.getElementById("eventScreen").append(testDiv);
 
         showProceedButton.style.position = "absolute";
@@ -294,9 +294,24 @@ export const UpwardsMobility = {
         showProceedButton.style.transform = "translate(-50%, -50%)";
         showProceedButton.style.width = "200px";
 
-      },
+        // if (turnFlag == true) {
+        //     console.log("hello from turn flag")
+        //     events.endTurn();
+        // }
 
+        // showPassEventButton.style.position = "absolute";
+        // showPassEventButton.style.left = "50%";
+        // showPassEventButton.style.top = "50%";
+        // showPassEventButton.style.transform = "translate(-50%, -50%)";
+        // showPassEventButton.style.width = "200px";
 
+          // events.endTurn();
+
+        },
+
+        endTurn({G, ctx, events}) {
+            events.endTurn();
+        }
 
     },
 }

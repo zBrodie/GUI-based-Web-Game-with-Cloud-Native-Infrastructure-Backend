@@ -10,7 +10,6 @@ import './GamePageStyle.css'
 
 import {gameInfo} from "./Game";
 
-
 const App = Client({
     game: UpwardsMobility,
     board: UpwardMobilityBoard
