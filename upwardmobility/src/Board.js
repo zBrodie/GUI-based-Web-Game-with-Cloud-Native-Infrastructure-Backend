@@ -69,14 +69,11 @@ function showRollScreen() {
     document.getElementById("GameEndTurn").style.visibility="hidden";
     document.getElementById("GameEndTurn").removeAttribute("disabled");
 
-
     // Hide the roll result and event buttons
     document.getElementById("temp").style.display = "none";
-
 }
 
 export function UpwardMobilityBoard({ctx, G, moves}){
-
 
     const rollDice = () =>{
        moves.tempRoll();
@@ -85,7 +82,6 @@ export function UpwardMobilityBoard({ctx, G, moves}){
    const endTurn = () =>{
        moves.endTurn();
        showRollScreen();
-
    }
 
    useEffect(() =>{

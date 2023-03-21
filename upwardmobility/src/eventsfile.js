@@ -1,6 +1,7 @@
 import { hideRollScreen, showRollScreen} from "./Game";
 export function getEvent(event, G, ctx, events) {
     let eventScreen = document.getElementById("eventScreen");
+    let temp = document.getElementById("temp");
     let container = document.createElement("div");
     let btnContainer = document.createElement("div");
     let eventText;
@@ -9,6 +10,7 @@ export function getEvent(event, G, ctx, events) {
             console.log("switch case function wizardEvent");
 
             eventScreen = document.getElementById("eventScreen");
+            temp = document.getElementById("temp");
 
             hideRollScreen();
 
@@ -65,7 +67,7 @@ export function getEvent(event, G, ctx, events) {
             container.appendChild(btnContainer);
 
             // Append container div element to eventScreen
-            eventScreen.appendChild(container);
+            temp.appendChild(container);
 
             ans1.addEventListener("click", function() {
                 let resultText = document.createElement("div");
