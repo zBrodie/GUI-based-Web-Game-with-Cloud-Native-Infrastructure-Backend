@@ -3,6 +3,8 @@ import dice from './GameDieBigpng.png'
 import playerList from './PlayerListBackground.png'
 import gamelogo from './Upward_Mobility_big.png'
 import {disMoveDist} from "./Game";
+import {useContext, useRef, useState} from "react";
+
 
 function showRollScreen() {
     console.log("showRollScreen function");
@@ -13,18 +15,29 @@ function showRollScreen() {
     document.getElementById("DiceButton").style.visibility = "visible";
     document.getElementById("DiceButton").removeAttribute("disabled");
 
+    document.getElementById("NoPath_-_Copy_8").style.visibility = "visible";
+    document.getElementById("NoPath_-_Copy_8").removeAttribute("disabled");
+
+    document.getElementById("GameEndTurn").style.visibility="hidden";
+    document.getElementById("GameEndTurn").removeAttribute("disabled");
+
+
     // Hide the roll result and event buttons
     document.getElementById("temp").style.display = "none";
+
 }
 
 export function UpwardMobilityBoard({ctx, G, moves}){
 
-   const rollDice = () =>{
+
+    const rollDice = () =>{
        moves.tempRoll();
    }
 
    const endTurn = () =>{
        moves.endTurn();
+       showRollScreen();
+
    }
 
     return(
