@@ -602,5 +602,80 @@
     border: #61dafb 3px solid;
 }
 
+#GamePickUpItem{
+    visibility: hidden;
+    border: solid white 3px;
+    -webkit-text-fill-color: white;
+    background-color: #36393F;
+    font-family: "Common Pixel";
+    font-size: .70vw;
+    width: 200px;
+    height: 50px;
+    margin: 10px;
+}
+
+#GamePickUpItem:hover {
+    background-color: #2F3136;
+    border: #61dafb 3px solid;
+}
+
+.eventContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50%;
+    width: 100%;
+    bottom: 40%;
+    position: absolute;
+}
+
+.eventBtnContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#inventoryDropdown {
+    background-color: #f2f2f2;
+    display: inline;
+    border: none;
+    width: 100px;
+    height: 100px;
+    border-radius: 4px;
+    color: #000;
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.useItemDropdown {
+    position: absolute;
+    left: 50%;
+    bottom: 33%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+}
+
+#use-item-button {
+    position: absolute;
+    display: inline;
+    border: solid white 3px;
+    -webkit-text-fill-color: white;
+    background-color: #36393F;
+    font-family: "Common Pixel";
+    font-size: 1vw;
+    text-align: center;
+    height: 7.5%;
+    width: 25%;
+    margin-top: 8%;
+    cursor: pointer;
+}
+
 /*Player Stat List*/
 

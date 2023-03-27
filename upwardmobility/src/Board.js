@@ -92,16 +92,29 @@ export function UpwardMobilityBoard({ctx, G, moves}){
    }, [])
 
 
+   const pickUpItem = () =>{
+       moves.pickUpItem();
+   }
+
+   const moveWithoutEvent = () =>{
+       moves.moveNoEvent();
+   }
+
+
     return(
         <div className="GamePage">
             <div className="Rectangle_42" id = "eventScreen">
                 <button onClick = {() => rollDice()}  className="DiceButton" id="DiceButton"></button>
+
                 <img  onClick = {() => rollDice()} className="DiceImage" id="NoPath_-_Copy_8" src="NoPath_-_Copy_8.png" srcSet="NoPath_-_Copy_8.png 1x, NoPath_-_Copy_8@2x.png 2x"/>
                 <div id="A_pair_of_strange_dice_lay_bef">
                     A pair of strange dice lay before you...
                 </div>
 
                 <button onClick={() => endTurn()}  id="GameEndTurn" >End Turn</button>
+                <button onClick={() => pickUpItem()}  id="GamePickUpItem" >Pick Up Item</button>
+                {/*<button onClick={() => moveWithoutEvent()}>move no event button</button>*/}
+
 
             </div>
 
