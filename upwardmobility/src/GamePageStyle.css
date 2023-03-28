@@ -154,6 +154,21 @@
     overflow: visible;
     width: 500px;
     height: 30px;
+    left: 200px;
+    text-align: center;
+    font-family: Common Pixel;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1vw;
+    margin-top: 5%;
+    color: rgba(255, 255, 255, 1);
+}
+
+.eventText {
+    position: absolute;
+    overflow: visible;
+    width: 500px;
+    height: 30px;
     text-align: center;
     font-family: Common Pixel;
     font-style: normal;
@@ -190,6 +205,18 @@
     margin-top: 8%;
     cursor: pointer;
 }
+
+.event-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
 
 .tempDiv{
     position: absolute;
@@ -571,6 +598,111 @@
 }
 
 #GameEndTurn:hover {
+    background-color: #2F3136;
+    border: #61dafb 3px solid;
+}
+
+#GamePickUpItem{
+    visibility: hidden;
+    border: solid white 3px;
+    -webkit-text-fill-color: white;
+    background-color: #36393F;
+    font-family: "Common Pixel";
+    font-size: .70vw;
+    width: 200px;
+    height: 50px;
+    margin: 10px;
+}
+
+#GamePickUpItem:hover {
+    background-color: #2F3136;
+    border: #61dafb 3px solid;
+}
+
+.eventContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50%;
+    width: 100%;
+    bottom: 40%;
+    position: absolute;
+}
+
+.eventBtnContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#inventoryDropdown {
+    background-color: #f2f2f2;
+    display: inline;
+    border: none;
+    width: 100px;
+    height: 100px;
+    border-radius: 4px;
+    color: #000;
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.useItemDropdown {
+    position: absolute;
+    left: 50%;
+    bottom: 33%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+}
+
+#use-item-button {
+    position: absolute;
+    border: solid white 3px;
+    -webkit-text-fill-color: white;
+    background-color: #36393F;
+    font-family: "Common Pixel";
+    font-size: 1vw;
+    text-align: center;
+    height: 7.5%;
+    margin-top: 8%;
+    cursor: pointer;
+    left: 75%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+}
+
+#use-item-button:hover {
+    background-color: #2F3136;
+    border: #61dafb 3px solid;
+}
+
+#showEventButton{
+    position: absolute;
+    border: solid white 3px;
+    -webkit-text-fill-color: white;
+    background-color: #36393F;
+    font-family: "Common Pixel";
+    font-size: 1vw;
+    text-align: center;
+    height: 7.5%;
+    /*width: 25%;*/
+    margin-top: 8%;
+    cursor: pointer;
+    left: 25%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+}
+
+#showEventButton:hover {
     background-color: #2F3136;
     border: #61dafb 3px solid;
 }
