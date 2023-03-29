@@ -1,57 +1,24 @@
-import React from 'react'
+import React, {Component} from 'react'
 import dice from './GameDieBigpng.png'
 import playerList from './PlayerListBackground.png'
 import gamelogo from './Upward_Mobility_big.png'
 import { moveDist } from "./Game";
+import { eventsArray} from "./eventsfile";
 
+// console.log("Events array: " + eventsArray)
 
-function showRollScreen() {
-    console.log("showRollScreen function");
-    // Show the dice and roll button
-    document.getElementById("A_pair_of_strange_dice_lay_bef").style.visibility = "visible";
-    document.getElementById("A_pair_of_strange_dice_lay_bef").removeAttribute("disabled");
+export function UpwardMobilityBoard ({ctx, G, moves, events}){
 
-    document.getElementById("DiceButton").style.visibility = "visible";
-    document.getElementById("DiceButton").removeAttribute("disabled");
+    console.log("This is the current phase: " + ctx.phase)
+    console.log("Current player : " + ctx.currentPlayer + " at position " + G.players[ctx.currentPlayer].position)
 
-    // Hide the roll result and event buttons
-    document.getElementById("temp").style.display = "none";
-}
-
-export function UpwardMobilityBoard({ctx, G, moves, events}){
-    function endTurnAndSetPhase() {
-        events.setPhase("rollScreen");
-        events.endTurn();
-    }
+    // console.log("This is the current event: " + G.currentEvent)
 
     const { moveDist } = G;
 
-    console.log("This is moveDist: " + moveDist)
-
     let eventScreenContents = "";
 
-    console.log(ctx.phase)
-
     // <button onClick = {() => events.setPhase("eventOrItemScreen")}  className="DiceButton" id="DiceButton"></button>
-
-
-    // if (ctx.phase === "rollScreen") {
-    //     eventScreenContents = (
-    //         <div>
-    //             <button onClick = {() => moves.rollDice()}  className="DiceButton" id="DiceButton"></button>
-    //             <img  onClick = {() => moves.rollDice()} className="DiceImage" id="NoPath_-_Copy_8" src="NoPath_-_Copy_8.png" srcSet="NoPath_-_Copy_8.png 1x, NoPath_-_Copy_8@2x.png 2x"/>
-    //             <div id="A_pair_of_strange_dice_lay_bef">
-    //                 A pair of strange dice lay before you...
-    //             </div>
-    //         </div>
-    //     )
-    // }
-    //
-    // if (ctx.phase === "eventOrItemScreen") {
-    //     eventScreenContents = (
-    //         <button onClick = {() => moves.moveNoEvent()} className="DiceButton" id="GameMoveWithoutEvent">Move</button>
-    //     )
-    // }
 
     switch (ctx.phase) {
         case "rollScreen":
@@ -64,6 +31,10 @@ export function UpwardMobilityBoard({ctx, G, moves, events}){
                     </div>
                 </div>
             )
+            if (G.players[ctx.currentPlayer].position === 25) {
+                ctx.phase = "winningGameScreen";
+                G.winningPlayer = ctx.currentPlayer;
+            }
             break;
         case "eventOrItemScreen":
             eventScreenContents = (
@@ -75,33 +46,51 @@ export function UpwardMobilityBoard({ctx, G, moves, events}){
         )
             break;
         case "eventScreen":
+            // const currentEvent = eventsArray[1];
+            let randInt = Math.floor(Math.random() * eventsArray.length);
+            const currentEvent = eventsArray[randInt];
+            moves.setCurrentEvent({G, ctx}, currentEvent);
+            // G.currentEvent = currentEvent;
+            // console.log("This is current event state: " + G.currentEvent)
+            // eventsArray.pop(eventsArray[randInt]);
             eventScreenContents = (
                 <div>
                     <div>
-                        <span className="inGameText">A mysterious raggedy wizard appears before you and asks the question... "What is the airspeed velocity of an unladen swallow?"</span>
+                        <span className="inGameText">{currentEvent.description}</span>
                     </div>
                     <div className="event-button-container">
-                        <button onClick={() => events.setPhase("correctAnswerScreen")} className="answerButton">What do you mean? African or European swallow?</button>
-                        <button onClick={() => events.setPhase("wrongAnswerScreen")} className="answerButton">I don't know that!</button>
-                        <button onClick={() => events.setPhase("wrongAnswerScreen")} className="answerButton">What is an unladen swallow?</button>
+                        {currentEvent.options.map((option, index) => (
+                            <button key={index} onClick={() => {
+                                if (index === currentEvent.correctAnswer) {
+                                    // if the answer is correct, update the game state accordingly
+                                    moves.addCurrency(2);
+                                    events.setPhase("pickUpItemScreen");
+                                    // {console.log("Current event: " + G.currentEvent)}
+                                } else {
+                                    // if the answer is incorrect, update the game state accordingly
+                                    moves.moveBackward(3);
+                                    events.setPhase("wrongAnswerScreen");
+                                }
+                            }} className="answerButton">{option}</button>
+                        ))}
                     </div>
                 </div>
             )
             break;
+
         case "useItemScreen":
             eventScreenContents = (
                 <div>
-                    use item screen
+                    {currentEvent}
                 </div>
             )
             break;
         case "correctAnswerScreen":
             eventScreenContents = (
                 <div>
-                    <span className="inGameText">The wizard is dumbfound and spontaneously combusts into 2 coins which are added to your wallet! He also drops his "Staff of MoMoney"
-                    </span>
+                    <span className="inGameText">Correct Answer Screen</span>
                     <div className="event-button-container">
-                        <button onClick={() => moves.pickUpItem()} className="answerButton">Pick Up Item</button>
+                        <button onClick={() => events.setPhase("pickUpItemScreen")} className="answerButton">Pick Up Item</button>
                     </div>
                 </div>
             )
@@ -110,11 +99,10 @@ export function UpwardMobilityBoard({ctx, G, moves, events}){
         case "pickUpItemScreen":
             eventScreenContents = (
                 <div>
-                    <span className="inGameText">You have picked up the wizards staff which </span>
+                    <span className="inGameText">Pick Up Item Screen</span>
                     <div className="event-button-container">
-                        <button onClick={() => endTurnAndSetPhase()} className="answerButton">End Turn</button>
+                        <button onClick={() => { events.setPhase("endTurnScreen") }} className="answerButton">Proceed</button>
                     </div>
-
                 </div>
             )
             break;
@@ -122,9 +110,28 @@ export function UpwardMobilityBoard({ctx, G, moves, events}){
         case "wrongAnswerScreen":
             eventScreenContents = (
                 <div>
-                    <span className="inGameText">The wizard slaps you and you move back 3 spaces</span>
+                    <span className="inGameText">Wrong Answer Screen</span>
                     <div className="event-button-container">
-                        <button onClick={() => endTurnAndSetPhase()} className="answerButton">End Turn</button>
+                        <button onClick={() => events.setPhase("endTurnScreen")} className="answerButton">End Turn</button>
+                    </div>
+                </div>
+            )
+            break;
+
+            case "winningGameScreen":
+            eventScreenContents = (
+                <div>
+                    <span className="winningGameText">Player {ctx.currentPlayer} has won the game.</span>
+                </div>
+            )
+            break;
+        case "endTurnScreen":
+            eventScreenContents = (
+                <div>
+                    <span className="inGameText">Your turn is over!</span>
+                    <div className="event-button-container">
+                        <button onClick={() => { events.endTurn(); events.setPhase("rollScreen"); }} className="answerButton">End Turn</button>
+
                     </div>
 
                 </div>
@@ -132,23 +139,12 @@ export function UpwardMobilityBoard({ctx, G, moves, events}){
             break;
 
 
-
     }
 
     return(
         <div className="GamePage">
             <div className="Rectangle_42" id = "eventScreen">
-                {/*<button onClick = {() => moves.tempRoll()}  className="DiceButton" id="DiceButton"></button>*/}
                 {eventScreenContents}
-                {/*<img  onClick = {() => moves.tempRoll()} className="DiceImage" id="NoPath_-_Copy_8" src="NoPath_-_Copy_8.png" srcSet="NoPath_-_Copy_8.png 1x, NoPath_-_Copy_8@2x.png 2x"/>*/}
-                {/*<div id="A_pair_of_strange_dice_lay_bef">*/}
-                {/*    A pair of strange dice lay before you...*/}
-                {/*</div>*/}
-
-                {/*<button onClick={() => endTurn()}  id="GameEndTurn" >End Turn</button>*/}
-                {/*<button onClick={() => pickUpItem()}  id="GamePickUpItem" >Pick Up Item</button>*/}
-                {/*/!*<button onClick={() => moveWithoutEvent()}>move no event button</button>*!/*/}
-
             </div>
 
             <svg className="GameProgression">
@@ -242,7 +238,5 @@ export function UpwardMobilityBoard({ctx, G, moves, events}){
             </div>
             {/*Player Stat List*/}
         </div>
-
-
     )
 }

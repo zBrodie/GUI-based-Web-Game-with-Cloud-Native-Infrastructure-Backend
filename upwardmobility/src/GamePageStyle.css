@@ -164,6 +164,21 @@
     color: rgba(255, 255, 255, 1);
 }
 
+.winningGameText {
+    position: absolute;
+    overflow: visible;
+    width: 500px;
+    height: 10px;
+    left: 200px;
+    text-align: center;
+    font-family: Common Pixel;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1vw;
+    margin-top: 5%;
+    color: rgba(255, 255, 255, 1);
+}
+
 .eventText {
     position: absolute;
     overflow: visible;
