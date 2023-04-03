@@ -16,7 +16,7 @@ export const eventsArray = [
         eventReward: {
             type: "item",
             description: "The wizard has dropped his staff of Mo Money which you pick up and is added to your inventory.",
-            item: { name: "Staff of MoMoney", description: "staff of mo money description" }
+            item: { name: "Staff of MoMoney", image: "", description: "staff of mo money description" }
         }
     },
     {
@@ -34,7 +34,7 @@ export const eventsArray = [
         eventReward: {
             type: "buff",
             description: "You gain the buff of mo money where you gain 2 currency for your next 3 rolls.",
-            buff: { name: "Buff of Mo Money", description: "buff of mo money description", duration: 3 }
+            buff: { name: "Buff of Mo Money", image: "", description: "buff of mo money description", duration: 3 }
         }
     },
     {

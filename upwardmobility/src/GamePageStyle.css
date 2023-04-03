@@ -1,3 +1,4 @@
+
 @font-face {
     font-family: 'Common Pixel';
     src:url("./undertale-deltarune-text-font-extended.ttf") format('truetype')
@@ -694,6 +695,45 @@
     width: 200px;
 }
 
+#use-item-button-fromscreen {
+    position: absolute;
+    border: solid white 3px;
+    -webkit-text-fill-color: white;
+    background-color: #36393F;
+    font-family: "Common Pixel";
+    font-size: 1vw;
+    text-align: center;
+    height: 7.5%;
+    margin-top: 8%;
+    cursor: pointer;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+}
+
+#cancel-item-button {
+    position: absolute;
+    border: solid white 3px;
+    -webkit-text-fill-color: white;
+    background-color: #36393F;
+    font-family: "Common Pixel";
+    font-size: 1vw;
+    text-align: center;
+    height: 7.5%;
+    margin-top: 8%;
+    cursor: pointer;
+    left: 75%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+}
+
+#cancel-item-button:hover {
+    background-color: #2F3136;
+    border: #61dafb 3px solid;
+}
+
 #use-item-button:hover {
     background-color: #2F3136;
     border: #61dafb 3px solid;
@@ -721,6 +761,50 @@
     background-color: #2F3136;
     border: #61dafb 3px solid;
 }
+
+/*.dropdown-containter {*/
+/*    position: absolute;*/
+/*    border: solid white 3px;*/
+/*    -webkit-text-fill-color: white;*/
+/*    background-color: #36393F;*/
+/*    font-family: "Common Pixel";*/
+/*    font-size: 1vw;*/
+/*    text-align: center;*/
+/*    height: 7.5%;*/
+/*    !*width: 25%;*!*/
+/*    margin-top: 8%;*/
+/*    cursor: pointer;*/
+/*    left: 25%;*/
+/*    top: 50%;*/
+/*    transform: translate(-50%, -50%);*/
+/*    width: 200px;*/
+/*}*/
+
+.dropdown-container {
+    position: absolute;
+    /*border: solid white 3px;*/
+    /*-webkit-text-fill-color: white;*/
+    background-color: ;
+    font-family: "Common Pixel";
+    font-size: 1vw;
+    text-align: center;
+    height: 7.5%;
+    -webkit-text-fill-color: #ffffff; /* or any other color */
+    /*width: 25%;*/
+    margin-top: 8%;
+    cursor: pointer;
+    left: 25%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+}
+
+.dropdown-menu {
+    color: white;
+    background-color: grey;
+    border-color: grey;
+}
+
 
 /*Player Stat List*/
 

@@ -24,13 +24,21 @@ export const UpwardsMobility = {
         players: {
             0: {
                 position: 0,
-                inventory: ["item 1", "item 2", "item 3"],
+                inventory: [
+                    { name: "item 1", image: "", description: "item 1 description" },
+                    { name: "item 2", image: "", description: "item 2 description" },
+                    { name: "item 3", image: "", description: "item 3 description" }
+                ],
                 buffs: [],
                 currency: 0,
             },
             1: {
                 position: 0,
-                inventory: ["item 1", "item 2", "item 3"],
+                inventory: [
+                    { name: "item 4", image: "", description: "item 4 description" },
+                    { name: "item 5", image: "", description: "item 5 description" },
+                    { name: "item 6", image: "", description: "item 6 description" }
+                ],
                 buffs: [],
                 currency: 0,
             },

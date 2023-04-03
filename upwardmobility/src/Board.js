@@ -1,4 +1,7 @@
 import React, {Component, useEffect, useState} from 'react'
+import { Dropdown } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 import dice from './GameDieBigpng.png'
 import playerList from './PlayerListBackground.png'
@@ -8,29 +11,15 @@ import { eventsArray} from "./eventsfile";
 
 // console.log("Events array: " + eventsArray)
 
-export function UpwardMobilityBoard ({ctx, G, moves, events}){
+export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
 
     useEffect(() => {
         console.log("testing useEffect")
     }, );
 
-    const toggleDropdown = () => {
-        console.log('showDropdown:', !showDropdown);
-        setShowDropdown(!showDropdown);
-    };
-
-    const handleItemSelect = (itemId) => {
-        // Implement your logic for handling item selection here
-        console.log(`Selected item: ${itemId}`);
-
-        // Close the dropdown after selecting an item
-        setShowDropdown(false);
-    };
-
-
     const { moveDist } = G;
 
-    const [showDropdown, setShowDropdown] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null);
 
     let eventScreenContents = "";
 
@@ -70,7 +59,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events}){
                         <span className="inGameText">{G.currentEvent.description}</span>
                     </div>
                     <div className="event-button-container">
-                        {G.currentEvent.options.map((option, index) => (
+                        {G.currentEvent.options && G.currentEvent.options.map((option, index) => (
                             <button key={index} onClick={() => {
                                 if (index === G.currentEvent.correctAnswer) {
                                     moves.addCurrency(2);
@@ -90,20 +79,33 @@ export function UpwardMobilityBoard ({ctx, G, moves, events}){
         case "useItemScreen":
             eventScreenContents = (
                 <div>
-                    <div className="dropdown-container" onClick={toggleDropdown}>
-                        <span>Click to select an item</span>
-                        <div className={`dropdown-menu${showDropdown ? '' : ' hidden'}`}>
-                            {G.players[ctx.currentPlayer].inventory.map((item, index) => (
-                                <div
-                                    key={index}
-                                    className="dropdown-item"
-                                    onClick={() => handleItemSelect(item.id)}
-                                >
-                                    {item.name}
-                                </div>
-                            ))}
-                        </div>
+                    <span className="inGameText">This is the use item screen</span>
+                    <div className="dropdown-container">
+                        <Dropdown onSelect={(key) => setSelectedItem(G.players[ctx.currentPlayer].inventory[key])}>
+                            <Dropdown.Toggle variant="success">
+                                {selectedItem ? selectedItem.name : "Select Item"}
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                {G.players[ctx.currentPlayer].inventory && G.players[ctx.currentPlayer].inventory.map((item, index) => (
+                                    <Dropdown.Item key={index} eventKey={index}>
+                                        {item.name}
+                                    </Dropdown.Item>
+                                ))}
+                            </Dropdown.Menu>
+                        </Dropdown>
+
                     </div>
+                    <button
+                        className="inGameButton" id="use-item-button-fromscreen"
+                        onClick={() => {
+                            if (selectedItem) {
+                                moves.useItem(selectedItem.name);
+                            }
+                            events.setPhase("eventOrItemScreen");
+                        }}
+                    >
+                        Use Item
+                    </button>
 
                     <button
                         className="inGameButton" id="cancel-item-button"
@@ -114,6 +116,8 @@ export function UpwardMobilityBoard ({ctx, G, moves, events}){
                 </div>
             );
             break;
+
+
 
 
         case "correctAnswerScreen":
