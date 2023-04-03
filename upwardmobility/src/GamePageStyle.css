@@ -326,6 +326,17 @@
     overflow: visible;
 }
 
+.playerToken{
+    position: absolute;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-color: green;
+    border-radius: 50%;
+    left: 4%;
+    top: 93%;
+}
+
 #GamePlayer_1 {
     fill: rgba(54,57,63,1);
     stroke: rgba(234,0,217,1);
@@ -784,7 +795,6 @@
     position: absolute;
     /*border: solid white 3px;*/
     /*-webkit-text-fill-color: white;*/
-    background-color: ;
     font-family: "Common Pixel";
     font-size: 1vw;
     text-align: center;
