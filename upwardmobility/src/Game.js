@@ -1,7 +1,7 @@
 import { TurnOrder, Client, Server, Game } from "boardgame.io/core";
-// import { getEvent} from "./eventsfile";
 import react from 'react';
 import { UpwardMobilityBoard } from "./Board";
+import {eventsArray, itemsArray, buffsArray} from "./eventsfile";
 export const UpwardsMobility = {
 
     // Turn phase flow
@@ -20,85 +20,109 @@ export const UpwardsMobility = {
     // wrongAnswerScreen
     // endTurnScreen
 
-  setup: () => ({
-    players: {
-      0: {
-        position: 0,
-        inventory: ['Staff of MoMoney', 'Staff of NoMoney', 'Orb of Steal Yo Buffs'],
-          buffs: [],
-          currency: 0,
-      },
-      1: {
-        position: 0,
-        inventory: ['Orb of MoMoney', 'Orb of NoMoney', 'Orb of Steal Yo Buffs'],
-          buffs: [],
-          currency: 0,
-      },
-        moveDist: 0,
-    },
-      currentEvent: null,
+    setup: () => ({
+        players: {
+            0: {
+                position: 0,
+                inventory: ["item 1", "item 2", "item 3"],
+                buffs: [],
+                currency: 0,
+            },
+            1: {
+                position: 0,
+                inventory: ["item 1", "item 2", "item 3"],
+                buffs: [],
+                currency: 0,
+            },
+            moveDist: 0,
+        },
 
-      board: {
-        0: { event: 'start',    currency: 0 },
-        1: { event: 'advance',  currency: 2 },
-        2: { event: 'advance',  currency: 2 },
-        3: { event: 'reverse',  currency: -1 },
-        4: { event: 'advance',  currency: 3 },
-        5: { event: 'wizardEvent',  currency: 5, item: 'Staff of MoMoney'},
-        6: { event: 'advance',  currency: 1 },
-        7: { event: 'none',     currency: 0 },
-        8: { event: 'none',     currency: 0 },
-        9: { event: 'reverse',  currency: -2 },
-        10: { event: 'wizardEvent',    currency: 0 },
-        11: { event: 'none',    currency: 0 },
-        12: { event: 'advance', currency: 2 },
-        13: { event: 'advance', currency: 2 },
-        14: { event: 'reverse', currency: -1 },
-        15: { event: 'wizardEvent', currency: 3 },
-        16: { event: 'advance', currency: -2 },
-        17: { event: 'advance', currency: 1 },
-        18: { event: 'advance', currency: 2 },
-        19: { event: 'none',    currency: 0 },
-        20: { event: 'wizardEvent', currency: -2 },
-        21: { event: 'advance', currency: 2 },
-        22: { event: 'reverse', currency: -2 },
-        23: { event: 'reverse', currency: -2 },
-        24: { event: 'none', currency: 0 },
-        25: { event: 'win', currency: 0 },
-    },
+        currentEvent: null,
 
-  }),
+        board: {
+            0: { currency: 0 },
+            1: { currency: 2 },
+            2: { currency: 2 },
+            3: { currency: -1 },
+            4: { currency: 3 },
+            5: { currency: 5, },
+            6: { currency: 1 },
+            7: { currency: 0 },
+            8: { currency: 0 },
+            9: { currency: -2 },
+            10: { currency: 0 },
+            11: { currency: 0 },
+            12: { currency: 2 },
+            13: { currency: 2 },
+            14: { currency: -1 },
+            15: { currency: 3 },
+            16: { currency: -2 },
+            17: { currency: 1 },
+            18: { currency: 2 },
+            19: { currency: 0 },
+            20: { currency: -2 },
+            21: { currency: 2 },
+            22: { currency: -2 },
+            23: { currency: -2 },
+            24: { currency: 0 },
+            25: { currency: 0 },
+        },
+
+
+    }),
     turn: {
         order: TurnOrder.CONTINUE,
     },
 
     // Define the moves for rolling the dice and updating the game state.
     moves: {
-      rollDice: ({G, ctx, events}) => {
-          const die1 = Math.floor(Math.random() * 6) + 1;
-          const die2 = Math.floor(Math.random() * 6) + 1;
-          let moveDist = die1 + die2;
-          // let moveDist = 5;
-          G.moveDist = moveDist;
-          G.players[ctx.currentPlayer].position += moveDist;
+        rollDice: ({G, ctx, events}) => {
+            const die1 = Math.floor(Math.random() * 6) + 1;
+            const die2 = Math.floor(Math.random() * 6) + 1;
+            let moveDist = die1 + die2;
+            G.moveDist = moveDist;
+            G.players[ctx.currentPlayer].position += moveDist;
 
-          // G.currentEvent = G.board[G.players[ctx.currentPlayer].position].event;
-          // Check for players active buffs
-          G.players[ctx.currentPlayer].buffs.forEach((buff) => {
-              if (buff.type === "moMoneyBuff") {
-                  moveDist += 1;
-                  buff.duration--;
-                  if (buff.duration === 0) {
-                      G.players[ctx.currentPlayer].buffs.splice(
-                          G.players[ctx.currentPlayer].buffs.indexOf(buff),
-                          1
-                      );
-                  }
-              }
-          });
+            // Check for players active buffs
+            // G.players[ctx.currentPlayer].buffs.forEach((buff) => {
+            //     if (buff.type === "moMoneyBuff") {
+            //         moveDist += 1;
+            //         buff.duration--;
+            //         if (buff.duration === 0) {
+            //             G.players[ctx.currentPlayer].buffs.splice(
+            //                 G.players[ctx.currentPlayer].buffs.indexOf(buff),
+            //                 1
+            //             );
+            //         }
+            //     }
+            // });
 
-          events.setPhase("eventOrItemScreen");
-      },
+            G.players[ctx.currentPlayer].buffs.forEach((buff, index) => {
+                switch (buff.name) {
+                    case "Buff of Mo Money":
+                        G.players[ctx.currentPlayer].currency += 2;
+                        buff.duration--;
+
+                        if (buff.duration === 0) {
+                            G.players[ctx.currentPlayer].buffs.splice(index, 1);
+                        }
+                        break;
+                }
+            });
+
+            G.currentEvent = eventsArray[Math.floor(Math.random() * eventsArray.length)];
+
+            console.log("current event reward type: ", G.currentEvent.eventReward.type)
+
+            if (G.currentEvent.eventReward.type === "item") {
+                G.players[ctx.currentPlayer].inventory.push(G.currentEvent.eventReward.item.name);
+            }
+            if (G.currentEvent.eventReward.type === "buff") {
+                G.players[ctx.currentPlayer].buffs.push(G.currentEvent.eventReward.buff);
+            }
+
+            events.setPhase("eventOrItemScreen");
+        },
 
         addCurrency: ({G, ctx, events}, currency) => {
             G.players[ctx.currentPlayer].currency += currency;
@@ -116,36 +140,35 @@ export const UpwardsMobility = {
             G.players[ctx.currentPlayer].position -= moveDist;
         },
 
-        pickUpItem: ({G, ctx, events}) => {
-            const itemCell = G.board[G.players[ctx.currentPlayer].position];
-            const itemRef = itemCell.item;
+        // pickUpItem: ({G, ctx, events}, id) => {
+        //     // const itemCell = G.board[G.players[ctx.currentPlayer].position];
+        //     // const itemRef = itemCell.item;
+        //
+        //     G.players[ctx.currentPlayer].inventory.push(itemsArray[id]);
+        //
+        // },
 
-            G.players[ctx.currentPlayer].inventory.push(itemRef);
-
-            events.setPhase("endTurnScreen");
-        },
+        // use item function
 
         useItem: ({G, ctx, events}, item) => {
 
-          console.log("use item function");
+            console.log("use item function");
 
-          const itemIndex = G.players[ctx.currentPlayer].inventory.indexOf(item);
-          G.players[ctx.currentPlayer].inventory.splice(itemIndex, 1);
+            switch (item) {
+                case "Staff of MoMoney":
+                    G.players[ctx.currentPlayer].currency += Math.random() * 5;
+                    break;
+            }
+
+            const itemIndex = G.players[ctx.currentPlayer].inventory.indexOf(item);
+            G.players[ctx.currentPlayer].inventory.splice(itemIndex, 1);
 
         },
+
+        // apply buff function
 
         applyBuff: ({ G, ctx }, playerId, buffType, duration) => {
-            G.players[playerId].buffs.push({ type: buffType, duration: duration });
-        },
-
-        moveNoEvent: ({ G, ctx }) => {
-          let moveDist = 5;
-          G.players[ctx.currentPlayer].position += moveDist;
-
-        },
-
-        setCurrentEvent: ({G, ctx}, currentEvent) => {
-            G.currentEvent = currentEvent;
+            G.players[ctx.currentPlayer].buffs.push({ type: buffType, duration: duration });
         },
 
     },
@@ -156,7 +179,7 @@ export const UpwardsMobility = {
         eventOrItemScreen: {
 
         },
-        itemScreen: {
+        useItemScreen: {
 
         },
         eventScreen: {
