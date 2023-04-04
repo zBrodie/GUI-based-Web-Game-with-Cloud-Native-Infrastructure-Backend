@@ -52,6 +52,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
     const [selectedItem, setSelectedItem] = useState(null);
 
     let eventScreenContents = "";
+    let inventoryScreenContents = "";
 
     switch (ctx.phase) {
         case "rollScreen":
@@ -178,6 +179,12 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                     </div>
                 </div>
             )
+            inventoryScreenContents = (
+                <div id="inventory-item-container" className="inventory-item-container">
+                    <img className="InventoryImage" id="inventoryItem" src={G.currentEvent.eventReward.item.image}/>
+                    {G.currentEvent.eventReward.image}
+                </div>
+            )
             break;
 
         case "wrongAnswerScreen":
@@ -262,6 +269,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             <div className="Inventory">
                 <rect id="Inventory" rx="0" ry="0" x="0" y="0">
                 </rect>
+                {inventoryScreenContents}
             </div>
             <svg className="InventoryLabel">
                 <rect id="InventoryLabel" rx="0" ry="0" x="0" y="0">
@@ -271,6 +279,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             <div id="Inventory_Label_Word">
                 Inventory
             </div>
+
             {/*Inventory List*/}
 
 
