@@ -1,4 +1,5 @@
 import { UpwardsMobility } from "./Game";
+import montyPythonImage from "./monypython.png";
 export const eventsArray = [
     {
         id: 1,
@@ -11,7 +12,7 @@ export const eventsArray = [
         onCorrect: "The wizard is dumbfounded and spontaneously combusts into 2 coins which are added to your wallet!",
         onIncorrect: "The wizard slaps you and you move back 3 spaces",
         correctAnswer: 0,
-        image: "",
+        image: montyPythonImage,
         // item: { name: "Staff of MoMoney", description: "staff of mo money description" }
         eventReward: {
             type: "item",
