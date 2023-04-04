@@ -31,6 +31,8 @@ export const UpwardsMobility = {
                 ],
                 buffs: [],
                 currency: 0,
+                jobTitle: {name: "job title 1", description: "description for job title 1"},
+
             },
             1: {
                 position: 0,
@@ -41,11 +43,11 @@ export const UpwardsMobility = {
                 ],
                 buffs: [],
                 currency: 0,
+                jobTitle: {name: "job title 1", description: "description for job title 1"},
+
             },
             moveDist: 0,
         },
-
-        playerJobTitle: {name: "job title 1", description: "description for job title 1"},
 
         jobTitles: [
             {name: "job title 1", description: "description for job title 1"},
@@ -108,7 +110,22 @@ export const UpwardsMobility = {
             disCalc = disCalc + "%"
             document.getElementById(getId).style.top = disCalc
 
-
+            if (G.players[ctx.currentPlayer].position >= 10 && G.players[ctx.currentPlayer].position % 10 === 0) {
+                const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
+                G.players[ctx.currentPlayer].jobTitle = G.jobTitles[randomIndex];
+            }
+            if (G.players[ctx.currentPlayer].position >= 20 && G.players[ctx.currentPlayer].position % 20 === 0) {
+                const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
+                G.players[ctx.currentPlayer].jobTitle = G.jobTitles[randomIndex];
+            }
+            if (G.players[ctx.currentPlayer].position >= 30 && G.players[ctx.currentPlayer].position % 30 === 0) {
+                const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
+                G.players[ctx.currentPlayer].jobTitle = G.jobTitles[randomIndex];
+            }
+            if (G.players[ctx.currentPlayer].position >= 40 && G.players[ctx.currentPlayer].position % 40 === 0) {
+                const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
+                G.players[ctx.currentPlayer].jobTitle = G.jobTitles[randomIndex];
+            }
 
             // Check for players active buffs
             // G.players[ctx.currentPlayer].buffs.forEach((buff) => {
@@ -124,10 +141,6 @@ export const UpwardsMobility = {
             //     }
             // });
 
-            if (G.players[ctx.currentPlayer].position % 10 === 0) {
-                const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
-                G.playerJobTitle = G.jobTitles[randomIndex];
-            }
 
             G.players[ctx.currentPlayer].buffs.forEach((buff, index) => {
                 switch (buff.name) {
@@ -145,13 +158,6 @@ export const UpwardsMobility = {
             G.currentEvent = eventsArray[Math.floor(Math.random() * eventsArray.length)];
 
             console.log("current event reward type: ", G.currentEvent.eventReward.type)
-
-            // if (G.currentEvent.eventReward.type === "item") {
-            //     G.players[ctx.currentPlayer].inventory.push(G.currentEvent.eventReward.item);
-            // }
-            // if (G.currentEvent.eventReward.type === "buff") {
-            //     G.players[ctx.currentPlayer].buffs.push(G.currentEvent.eventReward.buff);
-            // }
 
             events.setPhase("eventOrItemScreen");
         },
@@ -249,5 +255,8 @@ export const UpwardsMobility = {
         useItemOnPlayerScreen: {
 
         },
+        winngingScreen: {
+
+        }
     },
 }
