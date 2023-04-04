@@ -28,28 +28,28 @@ export const eventsArray = [
             item: { name: "Staff of MoMoney", image: "", description: "staff of mo money description", onUse: "You use the staff of Mo Money and randomly generate between 0 and 10 currency"}
         }
     },
-    {
-        id: 2,
-        description: "You stumble upon a treasure chest buried in the ground.",
-        options: [
-            "Open the chest",
-            "Leave the chest alone",
-            "Kick the chest"
-        ],
-        image: buriedTreasure,
-        // onCorrect: "You find a 20 currency and add it to your wallet!",
-        results: [
-            "You have opened the chest and find some money",
-            "You have left the chest alone. Bad idea. You die.  ",
-            "You break your foot. You skip your next 3 turns. ",
-            ],
-        correctAnswer: 0,
-        eventReward: {
-            type: "buff",
-            description: "You gain the buff of mo money where you gain 2 currency for your next 3 rolls.",
-            buff: { name: "Buff of Mo Money", image: "", description: "buff of mo money description", duration: 3 }
-        }
-    },
+    // {
+    //     id: 2,
+    //     description: "You stumble upon a treasure chest buried in the ground.",
+    //     options: [
+    //         "Open the chest",
+    //         "Leave the chest alone",
+    //         "Kick the chest"
+    //     ],
+    //     image: buriedTreasure,
+    //     // onCorrect: "You find a 20 currency and add it to your wallet!",
+    //     results: [
+    //         "You have opened the chest and find some money",
+    //         "You have left the chest alone. Bad idea. You die.  ",
+    //         "You break your foot. You skip your next 3 turns. ",
+    //         ],
+    //     correctAnswer: 0,
+    //     eventReward: {
+    //         type: "buff",
+    //         description: "You gain the buff of mo money where you gain 2 currency for your next 3 rolls.",
+    //         buff: { name: "Buff of Mo Money", image: "", description: "buff of mo money description", duration: 3 }
+    //     }
+    // },
     // {
     //     id: 3,
     //     description: "Event 3",
