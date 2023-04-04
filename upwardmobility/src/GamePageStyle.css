@@ -713,7 +713,7 @@
     font-family: "Common Pixel";
     font-size: 1vw;
     text-align: center;
-    height: 7.5%;
+    height: 15%;
     margin-top: 8%;
     cursor: pointer;
     left: 50%;
@@ -730,7 +730,7 @@
     font-family: "Common Pixel";
     font-size: 1vw;
     text-align: center;
-    height: 7.5%;
+    height: 15%;
     margin-top: 8%;
     cursor: pointer;
     left: 75%;
@@ -816,4 +816,16 @@
 
 
 /*Player Stat List*/
+
+
+.EventImage{
+    content: url("./monypython.png");
+    filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 1));
+    position: absolute;
+    width: 23.430702%;
+    height: 28.287293%;
+    left: 39.284649%;
+    top: 34.497238%;
+    overflow: visible;
+}
 
