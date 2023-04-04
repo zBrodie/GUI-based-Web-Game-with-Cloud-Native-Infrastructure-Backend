@@ -25,9 +25,9 @@ export const UpwardsMobility = {
             0: {
                 position: 0,
                 inventory: [
-                    { name: "item 1", image: "", description: "item 1 description" },
-                    { name: "item 2", image: "", description: "item 2 description" },
-                    { name: "item 3", image: "", description: "item 3 description" }
+                    // { name: "Staff of MoMoney", image: "", description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
+                    // { name: "Staff of NoMoney", image: "", description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
+                    // { name: "Orb of MoMoney", image: "", description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
                 ],
                 buffs: [],
                 currency: 0,
@@ -35,15 +35,24 @@ export const UpwardsMobility = {
             1: {
                 position: 0,
                 inventory: [
-                    { name: "item 4", image: "", description: "item 4 description" },
-                    { name: "item 5", image: "", description: "item 5 description" },
-                    { name: "item 6", image: "", description: "item 6 description" }
+                    // { name: "Staff of MoMoney", image: "", description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
+                    // { name: "Staff of NoMoney", image: "", description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
+                    // { name: "Orb of MoMoney", image: "", description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
                 ],
                 buffs: [],
                 currency: 0,
             },
             moveDist: 0,
         },
+
+        playerJobTitle: {name: "job title 1", description: "description for job title 1"},
+
+        jobTitles: [
+            {name: "job title 1", description: "description for job title 1"},
+            {name: "job title 2", description: "description for job title 2"},
+            {name: "job title 3", description: "description for job title 3"},
+            {name: "job title 4", description: "description for job title 4"},
+    ],
 
         currentEvent: null,
 
@@ -105,6 +114,11 @@ export const UpwardsMobility = {
             //     }
             // });
 
+            if (G.players[ctx.currentPlayer].position % 10 === 0) {
+                const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
+                G.playerJobTitle = G.jobTitles[randomIndex];
+            }
+
             G.players[ctx.currentPlayer].buffs.forEach((buff, index) => {
                 switch (buff.name) {
                     case "Buff of Mo Money":
@@ -122,12 +136,12 @@ export const UpwardsMobility = {
 
             console.log("current event reward type: ", G.currentEvent.eventReward.type)
 
-            if (G.currentEvent.eventReward.type === "item") {
-                G.players[ctx.currentPlayer].inventory.push(G.currentEvent.eventReward.item.name);
-            }
-            if (G.currentEvent.eventReward.type === "buff") {
-                G.players[ctx.currentPlayer].buffs.push(G.currentEvent.eventReward.buff);
-            }
+            // if (G.currentEvent.eventReward.type === "item") {
+            //     G.players[ctx.currentPlayer].inventory.push(G.currentEvent.eventReward.item);
+            // }
+            // if (G.currentEvent.eventReward.type === "buff") {
+            //     G.players[ctx.currentPlayer].buffs.push(G.currentEvent.eventReward.buff);
+            // }
 
             events.setPhase("eventOrItemScreen");
         },
@@ -148,13 +162,20 @@ export const UpwardsMobility = {
             G.players[ctx.currentPlayer].position -= moveDist;
         },
 
-        // pickUpItem: ({G, ctx, events}, id) => {
-        //     // const itemCell = G.board[G.players[ctx.currentPlayer].position];
-        //     // const itemRef = itemCell.item;
-        //
-        //     G.players[ctx.currentPlayer].inventory.push(itemsArray[id]);
-        //
-        // },
+        pickUpItem: ({G, ctx, events}, name) => {
+            // const itemCell = G.board[G.players[ctx.currentPlayer].position];
+            // const itemRef = itemCell.item;
+
+            // G.players[ctx.currentPlayer].inventory.push(itemsArray[id]);
+
+            if (G.currentEvent.eventReward.type === "item") {
+                G.players[ctx.currentPlayer].inventory.push(G.currentEvent.eventReward.item.name);
+            }
+            if (G.currentEvent.eventReward.type === "buff") {
+                G.players[ctx.currentPlayer].buffs.push(G.currentEvent.eventReward.buff);
+            }
+
+        },
 
         // use item function
 
@@ -166,7 +187,14 @@ export const UpwardsMobility = {
                 case "Staff of MoMoney":
                     G.players[ctx.currentPlayer].currency += Math.random() * 5;
                     break;
+                case "Staff of NoMoney":
+                    G.players[ctx.currentPlayer].currency -= Math.random() * 5;
+                    break;
+                case "Orb of MoMoney":
+                    G.players[ctx.currentPlayer].buffs.push({name: "Buff of Mo Money", duration: 3});
+                    break;
             }
+
 
             const itemIndex = G.players[ctx.currentPlayer].inventory.indexOf(item);
             G.players[ctx.currentPlayer].inventory.splice(itemIndex, 1);
@@ -204,6 +232,12 @@ export const UpwardsMobility = {
         },
         pickUpItemScreen: {
 
-        }
+        },
+        itemEffectResultScreen: {
+
+        },
+        useItemOnPlayerScreen: {
+
+        },
     },
 }

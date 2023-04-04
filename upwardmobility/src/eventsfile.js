@@ -16,7 +16,7 @@ export const eventsArray = [
         eventReward: {
             type: "item",
             description: "The wizard has dropped his staff of Mo Money which you pick up and is added to your inventory.",
-            item: { name: "Staff of MoMoney", image: "", description: "staff of mo money description" }
+            item: { name: "Staff of MoMoney", image: "", description: "staff of mo money description", onUse: "You use the staff of Mo Money and randomly generate between 0 and 10 currency"}
         }
     },
     {
@@ -60,8 +60,8 @@ export const eventsArray = [
         description: "You find a cat.",
         options: [
             "Pet the cat",
-            "Kick the cat",
-            "Feed the cat"
+            "you do something",
+            "you do something else"
         ],
         image: "",
         onCorrect: "The cat is happy and gives you 2 coins",
@@ -73,22 +73,4 @@ export const eventsArray = [
             item: { name: "Cat item", description: "description for cat item" }
         }
     },
-];
-
-export const itemsArray = [
-    {
-        id: 1,
-        name: "Staff of MoMoney",
-        description: "Randomly generate currency between 0 and 10",
-    }
-];
-
-export const buffsArray = [
-    {
-        id: 1,
-        name: "Buff of MoMoney",
-        description: "For your next 3 turns, you will gain 2 currency per turn.",
-        effect: "",
-        duration: 5,
-    }
 ];
