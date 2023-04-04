@@ -45,10 +45,11 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
         }
     })
 
+    const [timeRemaining, setTimeRemaining] = useState(15);
+
     if (G.players[ctx.currentPlayer].position === 50) {
         events.setPhase("winningGameScreen");
     }
-
     const handleAnswerSelect = (answerIndex) => {
         moves.selectAnswer(answerIndex);
     };

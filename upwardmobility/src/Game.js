@@ -25,9 +25,9 @@ export const UpwardsMobility = {
             0: {
                 position: 0,
                 inventory: [
-                    // { name: "Staff of MoMoney", image: "", description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
-                    // { name: "Staff of NoMoney", image: "", description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
-                    // { name: "Orb of MoMoney", image: "", description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
+                    { name: "Staff of MoMoney", image: "", description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
+                    { name: "Staff of NoMoney", image: "", description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
+                    { name: "Orb of MoMoney", image: "", description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
                 ],
                 buffs: [],
                 currency: 0,
@@ -39,9 +39,9 @@ export const UpwardsMobility = {
             1: {
                 position: 0,
                 inventory: [
-                    // { name: "Staff of MoMoney", image: "", description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
-                    // { name: "Staff of NoMoney", image: "", description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
-                    // { name: "Orb of MoMoney", image: "", description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
+                    { name: "Staff of MoMoney", image: "", description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
+                    { name: "Staff of NoMoney", image: "", description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
+                    { name: "Orb of MoMoney", image: "", description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
                 ],
                 buffs: [],
                 currency: 0,
@@ -226,7 +226,7 @@ export const UpwardsMobility = {
             });
 
             // G.currentEvent = eventsArray[Math.floor(Math.random() * eventsArray.length)];
-            G.currentEvent = eventsArray[0];
+            G.currentEvent = eventsArray[Math.floor(Math.random() * 2)];
 
             console.log("current event reward type: ", G.currentEvent.eventReward.type)
 
