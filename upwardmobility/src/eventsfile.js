@@ -1,5 +1,10 @@
 import { UpwardsMobility } from "./Game";
 import montyPythonImage from "./monypython.png";
+import pixelCat from "./pixelcat.png";
+import usbDrive from "./usbdriveonroad.png";
+import windowsError from "./windowserror.jpg";
+import alleyMan from "./alleyman.jpg";
+import buriedTreasure from "./buriedtreasure.avif";
 export const eventsArray = [
     {
         id: 1,
@@ -28,7 +33,7 @@ export const eventsArray = [
             "Leave the chest alone",
             "Kick the chest"
         ],
-        image: "",
+        image: buriedTreasure,
         onCorrect: "You find a 20 currency and add it to your wallet!",
         onIncorrect: "The chest is booby-trapped and you lose 3 coins",
         correctAnswer: 1,
@@ -64,7 +69,7 @@ export const eventsArray = [
             "you do something",
             "you do something else"
         ],
-        image: "",
+        image: pixelCat,
         onCorrect: "The cat is happy and gives you 2 coins",
         onIncorrect: "The cat becomes violently angry and attacks you, stealing 3 coins",
         correctAnswer: 0,
@@ -82,7 +87,7 @@ export const eventsArray = [
             "Buy item 2 ($y)",
             "Buy item 3 ($z)"
         ],
-        image: "concealed man in a trench coat",
+        image: alleyMan,
         onCorrect: "The cat is happy and gives you 2 coins",
         onIncorrect: "The cat becomes violently angry and attacks you, stealing 3 coins",
         correctAnswer: 0,
@@ -99,7 +104,7 @@ export const eventsArray = [
             "Buy License",
             "Cancel"
         ],
-        image: "windows error message",
+        image: windowsError,
         onCorrect: "I'm sure it'll be fine",
         onIncorrect: "You payed $x for a license, hopefully that's the end of it", //subract $x
         correctAnswer: 0,
@@ -114,7 +119,7 @@ export const eventsArray = [
             "Leave it",
             "Let's see what's inside"
         ],
-        image: "Crusty USB drive",
+        image: usbDrive,
         onCorrect: "Good idea, that's really unsafe",
         onIncorrect: "What did you think was going to happen?", //Idk man, just really fuck their shit up
         correctAnswer: 0,
@@ -129,7 +134,7 @@ export const eventsArray = [
             "Leave it",
             "Let's see what's inside"
         ],
-        image: "Crusty USB drive",
+        image: usbDrive,
         onCorrect: "Good idea, that's really unsafe",
         onIncorrect: "What did you think was going to happen?",
         correctAnswer: 0,
