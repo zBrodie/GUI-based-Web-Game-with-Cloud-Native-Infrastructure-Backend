@@ -76,7 +76,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
         case "eventOrItemScreen":
             eventScreenContents = (
                 <div>
-                    <span id="rollVal" className="inGameText"> Player {ctx.currentPlayer + 1} with job title: {G.playerJobTitle.name} rolls a {moveDist} landing on cell {G.players[ctx.currentPlayer].position}</span>
+                    <span id="rollVal" className="inGameText"> Player {ctx.currentPlayer + 1} with job title: rolls a {moveDist} landing on cell {G.players[ctx.currentPlayer].position}</span>
                     <button onClick={() => events.setPhase("eventScreen")} className="inGameButton" id="showEventButton">Show Event</button>
                     <button onClick={() => events.setPhase("useItemScreen")} className="inGameButton" id="use-item-button">Use Item</button>
                 </div>
