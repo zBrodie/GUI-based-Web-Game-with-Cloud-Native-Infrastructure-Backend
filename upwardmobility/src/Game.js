@@ -118,8 +118,6 @@ export const UpwardsMobility = {
 
             console.log("Player position: " + G.players[ctx.currentPlayer].position)
 
-
-
             const player = G.players[ctx.currentPlayer];
             if (player.position >= 10 && player.position <= 20) {
                 console.log("Inside of job title check 10 - 20. Player position: " + player.position)

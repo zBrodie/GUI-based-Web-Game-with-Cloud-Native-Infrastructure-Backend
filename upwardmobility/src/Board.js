@@ -1,7 +1,7 @@
 import React, {Component, useEffect, useState} from 'react'
 import { Dropdown } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Popup from 'reactjs-popup';
 
 import dice from './GameDieBigpng.png'
 import playerList from './PlayerListBackground.png'
@@ -17,11 +17,53 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
     const [disPlayerJob, setPlayerJob] = useState("")
     const [disPlayerCur, setPlayerCur] = useState("")
 
+    const [disPlay1Name, setPlay1Name] = useState("")
+    const [disPlay2Name, setPlay2Name] = useState("")
+    const [disPlay3Name, setPlay3Name] = useState("")
+    const [disPlay4Name, setPlay4Name] = useState("")
+    const [disPlay5Name, setPlay5Name] = useState("")
+    const [disPlay6Name, setPlay6Name] = useState("")
+
+    const [disPlay1Job, setPlay1Job] = useState("")
+    const [disPlay2Job, setPlay2Job] = useState("")
+    const [disPlay3Job, setPlay3Job] = useState("")
+    const [disPlay4Job, setPlay4Job] = useState("")
+    const [disPlay5Job, setPlay5Job] = useState("")
+    const [disPlay6Job, setPlay6Job] = useState("")
+
     useEffect(() =>{
-        setPlayerName("Player 0")
+        setPlayerName("Player 1")
         setPlayerJob("Job: " + G.players[0].jobTitle)
         setPlayerCur("$" + G.players[0].currency)
     })
+
+    useEffect(()=>{
+      if(G.players[0] !== undefined){
+          setPlay1Name("Player 1")
+          setPlay1Job(G.players[0].jobTitle)
+      }
+      if(G.players[1] !== undefined){
+          setPlay2Name("Player 2")
+          setPlay2Job(G.players[1].jobTitle)
+      }
+      if(G.players[2] !== undefined){
+          setPlay3Name("Player 3")
+          setPlay3Job(G.players[2].jobTitle)
+      }
+        if(G.players[3] !== undefined){
+            setPlay4Name("Player 4")
+            setPlay4Job(G.players[3].jobTitle)
+        }
+        if(G.players[4] !== undefined){
+            setPlay5Name("Player 5")
+            setPlay5Job(G.players[4].jobTitle)
+        }
+        if(G.players[5] !== undefined){
+            setPlay6Name("Player 6")
+            setPlay6Job(G.players[5].jobTitle)
+        }
+    })
+
 
     let alreadyGen = false;
     useEffect(() => {
@@ -263,30 +305,36 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             </svg>
             <img id="NoPath_-_Copy_10" src="NoPath_-_Copy_10.png" srcSet="NoPath_-_Copy_10.png 1x, NoPath_-_Copy_10@2x.png 2x"/>
 
-            <svg className="GamePlayer_1">
-                <ellipse id="GamePlayer_1" rx="53" ry="53" cx="53" cy="53">
-                </ellipse>
-            </svg>
-            <svg className="GamePlayer_2">
-                <ellipse id="GamePlayer_2" rx="53" ry="53" cx="53" cy="53">
-                </ellipse>
-            </svg>
-            <svg className="GamePlayer_3">
-                <ellipse id="GamePlayer_3" rx="53" ry="53" cx="53" cy="53">
-                </ellipse>
-            </svg>
-            <svg className="GamePlayer_4">
-                <ellipse id="GamePlayer_4" rx="53" ry="53" cx="53" cy="53">
-                </ellipse>
-            </svg>
-            <svg className="GamePlayer_5">
-                <ellipse id="GamePlayer_5" rx="53" ry="53" cx="53" cy="53">
-                </ellipse>
-            </svg>
-            <svg className="GamePlayer_6">
-                <ellipse id="GamePlayer_6" rx="53" ry="53" cx="53" cy="53">
-                </ellipse>
-            </svg>
+            <div className="GamePlayer_1" >
+                <span class = "playerNameDis">{disPlay1Name}</span>
+                <ellipse id="GamePlayer_1" ></ellipse>
+                <span className="playerJobTitleDis">{disPlay1Job}</span>
+            </div>
+            <div className="GamePlayer_2">
+                <span className="playerNameDis">{disPlay2Name}</span>
+                <ellipse id="GamePlayer_2" rx="53" ry="53" cx="53" cy="53"></ellipse>
+                <span className="playerJobTitleDis">{disPlay2Job}</span>
+            </div>
+            <div className="GamePlayer_3">
+                <span className="playerNameDis">{disPlay3Name}</span>
+                <ellipse id="GamePlayer_3" rx="53" ry="53" cx="53" cy="53"></ellipse>
+                <span className="playerJobTitleDis">{disPlay3Job}</span>
+            </div>
+            <div className="GamePlayer_4">
+                <span className="playerNameDis">{disPlay4Name}</span>
+                <ellipse id="GamePlayer_4" rx="53" ry="53" cx="53" cy="53"></ellipse>
+                <span className="playerJobTitleDis">{disPlay4Job}</span>
+            </div>
+            <div className="GamePlayer_5">
+                <span className="playerNameDis">{disPlay5Name}</span>
+                <ellipse id="GamePlayer_5" rx="53" ry="53" cx="53" cy="53"></ellipse>
+                <span className="playerJobTitleDis">{disPlay5Job}</span>
+            </div>
+            <div className="GamePlayer_6">
+                <span className="playerNameDis">{disPlay6Name}</span>
+                <ellipse id="GamePlayer_6" rx="53" ry="53" cx="53" cy="53"></ellipse>
+                <span className="playerJobTitleDis">{disPlay6Job}</span>
+            </div>
             {/*Player List*/}
 
 
