@@ -100,6 +100,16 @@ export const UpwardsMobility = {
             G.moveDist = moveDist;
             G.players[ctx.currentPlayer].position += moveDist;
 
+            let getId = "playerToken" + ctx.currentPlayer
+            let currPlayToken = document.getElementById(getId)
+            console.log(document.getElementById("playerToken" + ctx.currentPlayer).style.top)
+            let calc = (parseInt(document.getElementById(getId).style.top.toString().substring(0,2)))
+            let disCalc = calc - (calc * (.025 * moveDist))
+            disCalc = disCalc + "%"
+            document.getElementById(getId).style.top = disCalc
+
+
+
             // Check for players active buffs
             // G.players[ctx.currentPlayer].buffs.forEach((buff) => {
             //     if (buff.type === "moMoneyBuff") {

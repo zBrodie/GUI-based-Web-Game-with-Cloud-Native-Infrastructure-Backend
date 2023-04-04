@@ -12,10 +12,40 @@ import { eventsArray} from "./eventsfile";
 // console.log("Events array: " + eventsArray)
 
 export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
-
+    let alreadyGen = false;
     useEffect(() => {
         // console.log("testing useEffect")
     }, );
+
+
+    useEffect(() => {
+        if(alreadyGen === false){
+            for(let i = 0; i< 2; i++){
+                if(G.players[i] !== undefined){
+                    let playerToken = document.createElement("div")
+                    playerToken.setAttribute("id", "playerToken" + i);
+                    playerToken.setAttribute("class", "playerToken")
+                    playerToken.style.top = "93%"
+                    if(i ==0)
+                        playerToken.style.backgroundColor = "rgba(234,0,217,1)"
+                    if(i ==1)
+                        playerToken.style.backgroundColor = "rgba(115,248,255,1)"
+                    if(i == 2)
+                        playerToken.style.backgroundColor = "rgba(0,201,60,1)"
+                    if(i == 3)
+                        playerToken.style.backgroundColor = "rgba(196,0,0,1)"
+                    if(i == 4)
+                        playerToken.style.backgroundColor = "rgba(105,0,225,1)"
+                    if(i == 5)
+                        playerToken.style.backgroundColor = "rgba(0,61,204,1)"
+
+                    document.getElementById("progressionDiv").append(playerToken)
+                }
+            }
+            alreadyGen = true;
+        }
+    })
+
 
     const { moveDist } = G;
 
@@ -187,10 +217,10 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                 {eventScreenContents}
             </div>
 
-            <svg className="GameProgression">
+            <div className="GameProgression" id = "progressionDiv">
                 <rect id="GameProgressionMenu" rx="0" ry="0" x="0" y="0">
                 </rect>
-            </svg>
+            </div>
 
             <img id="ProgresionImage" src="src/Templates/assets/StartFinishScale.png" srcSet="NoPath_-_Copy_6.png 1x, NoPath_-_Copy_6@2x.png 2x"/>
 
