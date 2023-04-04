@@ -229,11 +229,7 @@ export const UpwardsMobility = {
             G.players[ctx.currentPlayer].selectedOption = answerIndex;
         },
 
-        pickUpItem: ({G, ctx, events}, name) => {
-            // const itemCell = G.board[G.players[ctx.currentPlayer].position];
-            // const itemRef = itemCell.item;
-
-            // G.players[ctx.currentPlayer].inventory.push(itemsArray[id]);
+        pickUpItem: ({G, ctx}) => {
 
             if (G.currentEvent.eventReward.type === "item") {
                 G.players[ctx.currentPlayer].inventory.push(G.currentEvent.eventReward.item.name);
@@ -306,7 +302,7 @@ export const UpwardsMobility = {
         useItemOnPlayerScreen: {
 
         },
-        winngingScreen: {
+        winningGameScreen: {
 
         }
     },
