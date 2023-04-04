@@ -12,6 +12,17 @@ import { eventsArray} from "./eventsfile";
 // console.log("Events array: " + eventsArray)
 
 export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
+
+    const [disPlayerName, setPlayerName] = useState("")
+    const [disPlayerJob, setPlayerJob] = useState("")
+    const [disPlayerCur, setPlayerCur] = useState("")
+
+    useEffect(() =>{
+        setPlayerName("Player 0")
+        setPlayerJob("Job: " + G.players[0].jobTitle)
+        setPlayerCur("$" + G.players[0].currency)
+    })
+
     let alreadyGen = false;
     useEffect(() => {
         // console.log("testing useEffect")
@@ -306,18 +317,18 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
 
             </svg>
             <div className="PlayerName" id="PlayerName">
-                TempName
+                {disPlayerName}
             </div>
             <div className="PlayerJobTitle" id="PlayerJobTitle">
-                TempJobTitle
+                {disPlayerJob}
             </div>
             <img className="PlayerBuffsIcon" id="PlayerBuffsIcon" src="BuffIcon.png" srcSet="BuffIcon.png 1x, BuffIcon.png.png 2x"/>
             <img className="PlayerDebuffsIcon" id="PlayerDebuffsIcon" src="DebuffIcon.png" srcSet="DebuffIcon.png 1x, DebuffIcon.png.png 2x"/>
             <div className="PlayerCurrency" id="PlayerCurrency">
-                $12345
+                {disPlayerCur}
             </div>
             <div className="PlayerIncome" id="PlayerIncome">
-                +$2000 in 2 turns
+
             </div>
             {/*Player Stat List*/}
         </div>
