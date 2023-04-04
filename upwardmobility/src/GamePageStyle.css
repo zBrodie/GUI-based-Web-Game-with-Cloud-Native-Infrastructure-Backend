@@ -337,13 +337,17 @@
 }
 
 #GamePlayer_1 {
-    fill: rgba(54,57,63,1);
-    stroke: rgba(234,0,217,1);
     stroke-width: 5px;
     stroke-linejoin: miter;
     stroke-linecap: butt;
     stroke-miterlimit: 4;
     shape-rendering: auto;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(54,57,63,1);
+    border: 5px solid rgba(234,0,217,1);
+    border-radius: 50%;
+    display: block;
 }
 .GamePlayer_1 {
     position: absolute;
@@ -351,16 +355,19 @@
     width: 6.587943%;
     height: 11.712707%;
     left: 24.798011%;
-    top: 2.209945%;
 }
 #GamePlayer_2 {
-    fill: rgba(54,57,63,1);
-    stroke: rgba(115,248,255,1);
     stroke-width: 5px;
     stroke-linejoin: miter;
     stroke-linecap: butt;
     stroke-miterlimit: 4;
     shape-rendering: auto;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(54,57,63,1);
+    border: 5px solid rgba(115,248,255,1);;
+    border-radius: 50%;
+    display: block;
 }
 .GamePlayer_2 {
     position: absolute;
@@ -368,16 +375,19 @@
     width: 6.587943%;
     height: 11.712707%;
     left: 33.561218%;
-    top: 2.209945%;
 }
 #GamePlayer_3 {
-    fill: rgba(54,57,63,1);
-    stroke: rgba(0,201,60,1);
     stroke-width: 5px;
     stroke-linejoin: miter;
     stroke-linecap: butt;
     stroke-miterlimit: 4;
     shape-rendering: auto;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(54,57,63,1);
+    border: 5px solid rgba(0,201,60,1);
+    border-radius: 50%;
+    display: block;
 }
 .GamePlayer_3 {
     position: absolute;
@@ -385,16 +395,19 @@
     width: 6.587943%;
     height: 11.712707%;
     left: 42.324425%;
-    top: 2.209945%;
 }
 #GamePlayer_4 {
-    fill: rgba(54,57,63,1);
-    stroke: rgba(196,0,0,1);
     stroke-width: 5px;
     stroke-linejoin: miter;
     stroke-linecap: butt;
     stroke-miterlimit: 4;
     shape-rendering: auto;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(54,57,63,1);
+    border: 5px solid rgba(196,0,0,1);
+    border-radius: 50%;
+    display: block;
 }
 .GamePlayer_4 {
     position: absolute;
@@ -402,16 +415,19 @@
     width: 6.587943%;
     height: 11.712707%;
     left:51.087632%;
-    top: 2.209945%;
 }
 #GamePlayer_5 {
-    fill: rgba(54,57,63,1);
-    stroke: rgba(105,0,225,1);
     stroke-width: 5px;
     stroke-linejoin: miter;
     stroke-linecap: butt;
     stroke-miterlimit: 4;
     shape-rendering: auto;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(54,57,63,1);
+    border: 5px solid rgba(105,0,225,1);
+    border-radius: 50%;
+    display: block;
 }
 .GamePlayer_5 {
     position: absolute;
@@ -419,16 +435,19 @@
     width: 6.587943%;
     height: 11.712707%;
     left: 59.850839%;
-    top: 2.209945%;
 }
 #GamePlayer_6 {
-    fill: rgba(54,57,63,1);
-    stroke: rgba(0,61,204,1);
     stroke-width: 5px;
     stroke-linejoin: miter;
     stroke-linecap: butt;
     stroke-miterlimit: 4;
     shape-rendering: auto;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(54,57,63,1);
+    border: 5px solid rgba(0,61,204,1);
+    border-radius: 50%;
+    display: block;
 }
 .GamePlayer_6 {
     position: absolute;
@@ -436,7 +455,6 @@
     width: 6.587943%;
     height: 11.712707%;
     left: 68.614046%;
-    top: 2.209945%;
 }
 /*Player List*/
 
@@ -849,3 +867,20 @@
     overflow: visible;
 }
 
+.playerJobTitleDis{
+    display: block;
+    -webkit-text-fill-color: white;
+    font-size: .5vw;
+    font-family: "Common Pixel";
+    text-align: center;
+    margin-top: 10px;
+}
+
+.playerNameDis{
+    margin-top: 10px;
+    display: block;
+    -webkit-text-fill-color: white;
+    font-size: .5vw;
+    font-family: "Common Pixel";
+    text-align: center;
+}
