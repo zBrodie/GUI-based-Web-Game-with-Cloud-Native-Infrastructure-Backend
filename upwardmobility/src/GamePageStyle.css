@@ -337,17 +337,13 @@
 }
 
 #GamePlayer_1 {
-    display: block;
-    background-color: rgba(54,57,63,1);
-    border: 5px solid rgba(234,0,217,1);
-    border-radius: 60%;
+    fill: rgba(54,57,63,1);
+    stroke: rgba(234,0,217,1);
     stroke-width: 5px;
     stroke-linejoin: miter;
     stroke-linecap: butt;
     stroke-miterlimit: 4;
     shape-rendering: auto;
-    width: 100%;
-    height: 100%;
 }
 .GamePlayer_1 {
     position: absolute;
@@ -355,20 +351,16 @@
     width: 6.587943%;
     height: 11.712707%;
     left: 24.798011%;
+    top: 2.209945%;
 }
 #GamePlayer_2 {
-    display: block;
     fill: rgba(54,57,63,1);
-    background-color: rgba(54,57,63,1);
-    border: 5px solid rgba(115,248,255,1);
-    border-radius: 60%;
+    stroke: rgba(115,248,255,1);
     stroke-width: 5px;
     stroke-linejoin: miter;
     stroke-linecap: butt;
     stroke-miterlimit: 4;
     shape-rendering: auto;
-    width: 100%;
-    height: 100%;
 }
 .GamePlayer_2 {
     position: absolute;
@@ -376,20 +368,16 @@
     width: 6.587943%;
     height: 11.712707%;
     left: 33.561218%;
-
+    top: 2.209945%;
 }
 #GamePlayer_3 {
-    display: block;
-    background-color: rgba(54,57,63,1);
-    border: 5px solid rgba(0,201,60,1);
-    border-radius: 60%;
+    fill: rgba(54,57,63,1);
+    stroke: rgba(0,201,60,1);
     stroke-width: 5px;
     stroke-linejoin: miter;
     stroke-linecap: butt;
     stroke-miterlimit: 4;
     shape-rendering: auto;
-    width: 100%;
-    height: 100%;
 }
 .GamePlayer_3 {
     position: absolute;
@@ -397,19 +385,16 @@
     width: 6.587943%;
     height: 11.712707%;
     left: 42.324425%;
+    top: 2.209945%;
 }
 #GamePlayer_4 {
-    display: block;
-    background-color: rgba(54,57,63,1);
-    border: 5px solid rgba(196,0,0,1);
-    border-radius: 60%;
+    fill: rgba(54,57,63,1);
+    stroke: rgba(196,0,0,1);
     stroke-width: 5px;
     stroke-linejoin: miter;
     stroke-linecap: butt;
     stroke-miterlimit: 4;
     shape-rendering: auto;
-    width: 100%;
-    height: 100%;
 }
 .GamePlayer_4 {
     position: absolute;
@@ -417,19 +402,16 @@
     width: 6.587943%;
     height: 11.712707%;
     left:51.087632%;
+    top: 2.209945%;
 }
 #GamePlayer_5 {
-    display: block;
-    background-color: rgba(54,57,63,1);
-    border: 5px solid rgba(105,0,225,1);
-    border-radius: 60%;
+    fill: rgba(54,57,63,1);
+    stroke: rgba(105,0,225,1);
     stroke-width: 5px;
     stroke-linejoin: miter;
     stroke-linecap: butt;
     stroke-miterlimit: 4;
     shape-rendering: auto;
-    width: 100%;
-    height: 100%;
 }
 .GamePlayer_5 {
     position: absolute;
@@ -437,19 +419,16 @@
     width: 6.587943%;
     height: 11.712707%;
     left: 59.850839%;
+    top: 2.209945%;
 }
 #GamePlayer_6 {
-    display: block;
-    background-color: rgba(54,57,63,1);
-    border: 5px solid rgba(0,61,204,1);
-    border-radius: 60%;
+    fill: rgba(54,57,63,1);
+    stroke: rgba(0,61,204,1);
     stroke-width: 5px;
     stroke-linejoin: miter;
     stroke-linecap: butt;
     stroke-miterlimit: 4;
     shape-rendering: auto;
-    width: 100%;
-    height: 100%;
 }
 .GamePlayer_6 {
     position: absolute;
@@ -457,6 +436,7 @@
     width: 6.587943%;
     height: 11.712707%;
     left: 68.614046%;
+    top: 2.209945%;
 }
 /*Player List*/
 
@@ -849,22 +829,23 @@
     overflow: visible;
 }
 
-
-.playerJobTitleDis{
-    display: block;
-    margin-top: 5px;
-    -webkit-text-fill-color: white;
-    font-size: .5vw;
-    font-family: "Common Pixel";
-    text-align: center;
+.inventory-item-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    height: 100%
 }
-
-.playerNameDis{
-    display: block;
-    margin-bottom: 5px;
-    -webkit-text-fill-color: white;
-    font-size: .5vw;
-    font-family: "Common Pixel";
-    text-align: center;
+.InventoryImage{
+    /*content: url(G);*/
+    filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 1));
+    position: absolute;
+    width: 13.430702%;
+    height: 60.287293%;
+    left: 39.284649%;
+    top: 15.497238%;
+    overflow: visible;
 }
 
