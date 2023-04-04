@@ -87,7 +87,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                 <div>
                     <div>
                         <span className="inGameText">{G.currentEvent.description}</span>
-                        <img className="EventImage" id="EventImage" src="monypython.png" />
+                        <img className="EventImage" id="EventImage" src={G.currentEvent.image} />
                     </div>
                     <div className="event-button-container">
                         {G.currentEvent.options && G.currentEvent.options.map((option, index) => (
