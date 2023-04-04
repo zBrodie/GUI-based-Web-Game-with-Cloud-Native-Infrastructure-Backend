@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "boardgame.io": "^0.50.2"
+    "boardgame.io": "^0.50.2",
+    "react-bootstrap": "^2.7.2"
   }
 }

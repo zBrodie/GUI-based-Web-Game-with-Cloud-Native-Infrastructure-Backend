@@ -153,14 +153,14 @@
 .inGameText {
     position: absolute;
     overflow: visible;
-    width: 500px;
-    height: 30px;
-    left: 200px;
+    width: 1000px;
+    height: 150px;
+    left: 90px;
     text-align: center;
     font-family: Common Pixel;
     font-style: normal;
     font-weight: normal;
-    font-size: 1vw;
+    font-size: 1.25vw;
     margin-top: 5%;
     color: rgba(255, 255, 255, 1);
 }
@@ -168,15 +168,15 @@
 .winningGameText {
     position: absolute;
     overflow: visible;
-    width: 500px;
-    height: 10px;
-    left: 200px;
+    width: 750px;
+    height: 150px;
+    left: 225px;
     text-align: center;
     font-family: Common Pixel;
     font-style: normal;
     font-weight: normal;
-    font-size: 1vw;
-    margin-top: 5%;
+    font-size: 3vw;
+    margin-top: 15%;
     color: rgba(255, 255, 255, 1);
 }
 
@@ -229,10 +229,9 @@
     flex-direction: row;
     gap: 10px;
     position: absolute;
-    bottom: 0;
+    top: 70%;
     width: 100%;
 }
-
 
 .tempDiv{
     position: absolute;
@@ -270,9 +269,9 @@
     -webkit-text-fill-color: white;
     background-color: #36393F;
     font-family: "Common Pixel";
-    font-size: .70vw;
-    width: 200px;
-    height: 50px;
+    font-size: 1vw;
+    width: 300px;
+    height: 100px;
     margin: 10px;
 }
 
@@ -697,7 +696,7 @@
     font-family: "Common Pixel";
     font-size: 1vw;
     text-align: center;
-    height: 7.5%;
+    height: 15%;
     margin-top: 8%;
     cursor: pointer;
     left: 75%;
@@ -714,7 +713,7 @@
     font-family: "Common Pixel";
     font-size: 1vw;
     text-align: center;
-    height: 7.5%;
+    height: 15%;
     margin-top: 8%;
     cursor: pointer;
     left: 50%;
@@ -731,7 +730,7 @@
     font-family: "Common Pixel";
     font-size: 1vw;
     text-align: center;
-    height: 7.5%;
+    height: 15%;
     margin-top: 8%;
     cursor: pointer;
     left: 75%;
@@ -758,7 +757,7 @@
     font-family: "Common Pixel";
     font-size: 1vw;
     text-align: center;
-    height: 7.5%;
+    height: 15%;
     /*width: 25%;*/
     margin-top: 8%;
     cursor: pointer;
@@ -817,4 +816,16 @@
 
 
 /*Player Stat List*/
+
+
+.EventImage{
+    /*content: url(G);*/
+    filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 1));
+    position: absolute;
+    width: 23.430702%;
+    height: 28.287293%;
+    left: 39.284649%;
+    top: 34.497238%;
+    overflow: visible;
+}
 

@@ -25,25 +25,40 @@ export const UpwardsMobility = {
             0: {
                 position: 0,
                 inventory: [
-                    { name: "item 1", image: "", description: "item 1 description" },
-                    { name: "item 2", image: "", description: "item 2 description" },
-                    { name: "item 3", image: "", description: "item 3 description" }
+                    { name: "Staff of MoMoney", image: "", description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
+                    { name: "Staff of NoMoney", image: "", description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
+                    { name: "Orb of MoMoney", image: "", description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
                 ],
                 buffs: [],
                 currency: 0,
+                jobTitle: "Starting job title",
+                jobTitleDescription: "Starting job description",
+                selectedOption: -1,
+
             },
             1: {
                 position: 0,
                 inventory: [
-                    { name: "item 4", image: "", description: "item 4 description" },
-                    { name: "item 5", image: "", description: "item 5 description" },
-                    { name: "item 6", image: "", description: "item 6 description" }
+                    { name: "Staff of MoMoney", image: "", description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
+                    { name: "Staff of NoMoney", image: "", description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
+                    { name: "Orb of MoMoney", image: "", description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
                 ],
                 buffs: [],
                 currency: 0,
+                jobTitle: "Starting job title",
+                jobTitleDescription: "Starting job title description",
+                selectedOption: -1,
+
             },
             moveDist: 0,
         },
+
+        jobTitles: [
+            {name: "job title 1", description: "description for job title 1", previouslyHeldBy: []},
+            {name: "job title 2", description: "description for job title 2", previouslyHeldBy: []},
+            {name: "job title 3", description: "description for job title 3", previouslyHeldBy: []},
+            {name: "job title 4", description: "description for job title 4", previouslyHeldBy: []},
+    ],
 
         currentEvent: null,
 
@@ -93,13 +108,94 @@ export const UpwardsMobility = {
 
             let getId = "playerToken" + ctx.currentPlayer
             let currPlayToken = document.getElementById(getId)
-            console.log(document.getElementById("playerToken" + ctx.currentPlayer).style.top)
+            // console.log(document.getElementById("playerToken" + ctx.currentPlayer).style.top)
             let calc = (parseInt(document.getElementById(getId).style.top.toString().substring(0,2)))
             let disCalc = calc - (calc * (.025 * moveDist))
             disCalc = disCalc + "%"
             document.getElementById(getId).style.top = disCalc
 
+            console.log("Player position: " + G.players[ctx.currentPlayer].position)
 
+            // if (G.players[ctx.currentPlayer].position >= 10 && G.players[ctx.currentPlayer].position % 10 == 0) {
+            //     console.log("greater than 10")
+            //     const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
+            //     G.players[ctx.currentPlayer].jobTitle = G.jobTitles[randomIndex].name;
+            //     G.players[ctx.currentPlayer].jobTitleDescription = G.jobTitles[randomIndex].description;
+            // }
+            // if (G.players[ctx.currentPlayer].position >= 20 && G.players[ctx.currentPlayer].position % 20 === 0) {
+            //     console.log("greater than 20")
+            //
+            //     const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
+            //     G.players[ctx.currentPlayer].jobTitle = G.jobTitles[randomIndex].name;
+            //     G.players[ctx.currentPlayer].jobTitleDescription = G.jobTitles[randomIndex].description;
+            // }
+            // if (G.players[ctx.currentPlayer].position >= 30 && G.players[ctx.currentPlayer].position % 30 === 0) {
+            //     console.log("greater than 30")
+            //     const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
+            //     G.players[ctx.currentPlayer].jobTitle = G.jobTitles[randomIndex].name;
+            //     G.players[ctx.currentPlayer].jobTitleDescription = G.jobTitles[randomIndex].description;
+            // }
+            // if (G.players[ctx.currentPlayer].position >= 40 && G.players[ctx.currentPlayer].position % 40 === 0) {
+            //     console.log("greater than 40")
+            //     const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
+            //     G.players[ctx.currentPlayer].jobTitle = G.jobTitles[randomIndex].name;
+            //     G.players[ctx.currentPlayer].jobTitleDescription = G.jobTitles[randomIndex].description;
+            // }
+
+
+
+            const player = G.players[ctx.currentPlayer];
+            if (player.position >= 10 && player.position <= 20) {
+                console.log("Inside of job title check 10 - 20. Player position: " + player.position)
+                // Choose a random job title from the list that the player has not held before
+                let availableJobTitles = G.jobTitles.filter((jobTitle) => !jobTitle.previouslyHeldBy.includes(ctx.currentPlayer));
+                if (availableJobTitles.length === 0) {
+                    availableJobTitles = G.jobTitles;
+                }
+                const jobTitleIndex = Math.floor(Math.random() * availableJobTitles.length);
+                const jobTitle = availableJobTitles[jobTitleIndex];
+                player.jobTitle = jobTitle.name;
+                player.jobTitleDescription = jobTitle.description;
+                jobTitle.previouslyHeldBy.push(ctx.currentPlayer);
+            }
+            if (player.position >= 20 && player.position <= 30) {
+                console.log("Inside of job title check 20 - 30. Player position: " + player.position)
+                let availableJobTitles = G.jobTitles.filter((jobTitle) => !jobTitle.previouslyHeldBy.includes(ctx.currentPlayer));
+                if (availableJobTitles.length === 0) {
+                    availableJobTitles = G.jobTitles;
+                }
+                const jobTitleIndex = Math.floor(Math.random() * availableJobTitles.length);
+                const jobTitle = availableJobTitles[jobTitleIndex];
+                player.jobTitle = jobTitle.name;
+                player.jobTitleDescription = jobTitle.description;
+                jobTitle.previouslyHeldBy.push(ctx.currentPlayer);
+            }
+            if (player.position >= 30 && player.position <= 40) {
+                console.log("Inside of job title check 30 - 40. Player position: " + player.position)
+                let availableJobTitles = G.jobTitles.filter((jobTitle) => !jobTitle.previouslyHeldBy.includes(ctx.currentPlayer));
+                if (availableJobTitles.length === 0) {
+                    availableJobTitles = G.jobTitles;
+                }
+                const jobTitleIndex = Math.floor(Math.random() * availableJobTitles.length);
+                const jobTitle = availableJobTitles[jobTitleIndex];
+                player.jobTitle = jobTitle.name;
+                player.jobTitleDescription = jobTitle.description;
+                jobTitle.previouslyHeldBy.push(ctx.currentPlayer);
+            }
+            if (player.position >= 40 && player.position <= 50) {
+                console.log("Inside of job title check 40 - 50. Player position: " + player.position)
+                let availableJobTitles = G.jobTitles.filter((jobTitle) => !jobTitle.previouslyHeldBy.includes(ctx.currentPlayer));
+                if (availableJobTitles.length === 0) {
+                    availableJobTitles = G.jobTitles;
+                }
+                const jobTitleIndex = Math.floor(Math.random() * availableJobTitles.length);
+                const jobTitle = availableJobTitles[jobTitleIndex];
+                player.jobTitle = jobTitle.name;
+                player.jobTitleDescription = jobTitle.description;
+                jobTitle.previouslyHeldBy.push(ctx.currentPlayer);
+            }
+
+            console.log("Current player job title : " + G.players[ctx.currentPlayer].jobTitle)
 
             // Check for players active buffs
             // G.players[ctx.currentPlayer].buffs.forEach((buff) => {
@@ -115,6 +211,7 @@ export const UpwardsMobility = {
             //     }
             // });
 
+
             G.players[ctx.currentPlayer].buffs.forEach((buff, index) => {
                 switch (buff.name) {
                     case "Buff of Mo Money":
@@ -128,16 +225,10 @@ export const UpwardsMobility = {
                 }
             });
 
-            G.currentEvent = eventsArray[Math.floor(Math.random() * eventsArray.length)];
+            // G.currentEvent = eventsArray[Math.floor(Math.random() * eventsArray.length)];
+            G.currentEvent = eventsArray[Math.floor(Math.random() * 2)];
 
             console.log("current event reward type: ", G.currentEvent.eventReward.type)
-
-            if (G.currentEvent.eventReward.type === "item") {
-                G.players[ctx.currentPlayer].inventory.push(G.currentEvent.eventReward.item.name);
-            }
-            if (G.currentEvent.eventReward.type === "buff") {
-                G.players[ctx.currentPlayer].buffs.push(G.currentEvent.eventReward.buff);
-            }
 
             events.setPhase("eventOrItemScreen");
         },
@@ -158,13 +249,24 @@ export const UpwardsMobility = {
             G.players[ctx.currentPlayer].position -= moveDist;
         },
 
-        // pickUpItem: ({G, ctx, events}, id) => {
-        //     // const itemCell = G.board[G.players[ctx.currentPlayer].position];
-        //     // const itemRef = itemCell.item;
-        //
-        //     G.players[ctx.currentPlayer].inventory.push(itemsArray[id]);
-        //
-        // },
+        selectAnswer({G, ctx}, answerIndex) {
+            G.players[ctx.currentPlayer].selectedOption = answerIndex;
+        },
+
+        pickUpItem: ({G, ctx, events}, name) => {
+            // const itemCell = G.board[G.players[ctx.currentPlayer].position];
+            // const itemRef = itemCell.item;
+
+            // G.players[ctx.currentPlayer].inventory.push(itemsArray[id]);
+
+            if (G.currentEvent.eventReward.type === "item") {
+                G.players[ctx.currentPlayer].inventory.push(G.currentEvent.eventReward.item.name);
+            }
+            if (G.currentEvent.eventReward.type === "buff") {
+                G.players[ctx.currentPlayer].buffs.push(G.currentEvent.eventReward.buff);
+            }
+
+        },
 
         // use item function
 
@@ -176,7 +278,14 @@ export const UpwardsMobility = {
                 case "Staff of MoMoney":
                     G.players[ctx.currentPlayer].currency += Math.random() * 5;
                     break;
+                case "Staff of NoMoney":
+                    G.players[ctx.currentPlayer].currency -= Math.random() * 5;
+                    break;
+                case "Orb of MoMoney":
+                    G.players[ctx.currentPlayer].buffs.push({name: "Buff of Mo Money", duration: 3});
+                    break;
             }
+
 
             const itemIndex = G.players[ctx.currentPlayer].inventory.indexOf(item);
             G.players[ctx.currentPlayer].inventory.splice(itemIndex, 1);
@@ -213,6 +322,15 @@ export const UpwardsMobility = {
 
         },
         pickUpItemScreen: {
+
+        },
+        itemEffectResultScreen: {
+
+        },
+        useItemOnPlayerScreen: {
+
+        },
+        winngingScreen: {
 
         }
     },
