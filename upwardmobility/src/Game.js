@@ -1,4 +1,6 @@
 import { TurnOrder, Client, Server, Game } from "boardgame.io/core";
+import montyPythonImage from "./monypython.png";
+
 import react from 'react';
 import { UpwardMobilityBoard } from "./Board";
 import {eventsArray, itemsArray, buffsArray} from "./eventsfile";
@@ -25,9 +27,9 @@ export const UpwardsMobility = {
             0: {
                 position: 0,
                 inventory: [
-                    { name: "Staff of MoMoney", image: "", description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
-                    { name: "Staff of NoMoney", image: "", description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
-                    { name: "Orb of MoMoney", image: "", description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
+                    { name: "Staff of MoMoney", image: montyPythonImage, description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
+                    { name: "Staff of NoMoney", image: montyPythonImage, description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
+                    { name: "Orb of MoMoney", image: montyPythonImage, description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
                 ],
                 buffs: [],
                 currency: 0,
@@ -39,9 +41,9 @@ export const UpwardsMobility = {
             1: {
                 position: 0,
                 inventory: [
-                    { name: "Staff of MoMoney", image: "", description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
-                    { name: "Staff of NoMoney", image: "", description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
-                    { name: "Orb of MoMoney", image: "", description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
+                    { name: "Staff of MoMoney", image: montyPythonImage, description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
+                    { name: "Staff of NoMoney", image: montyPythonImage, description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
+                    { name: "Orb of MoMoney", image: montyPythonImage, description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
                 ],
                 buffs: [],
                 currency: 0,
@@ -115,32 +117,6 @@ export const UpwardsMobility = {
             document.getElementById(getId).style.top = disCalc
 
             console.log("Player position: " + G.players[ctx.currentPlayer].position)
-
-            // if (G.players[ctx.currentPlayer].position >= 10 && G.players[ctx.currentPlayer].position % 10 == 0) {
-            //     console.log("greater than 10")
-            //     const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
-            //     G.players[ctx.currentPlayer].jobTitle = G.jobTitles[randomIndex].name;
-            //     G.players[ctx.currentPlayer].jobTitleDescription = G.jobTitles[randomIndex].description;
-            // }
-            // if (G.players[ctx.currentPlayer].position >= 20 && G.players[ctx.currentPlayer].position % 20 === 0) {
-            //     console.log("greater than 20")
-            //
-            //     const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
-            //     G.players[ctx.currentPlayer].jobTitle = G.jobTitles[randomIndex].name;
-            //     G.players[ctx.currentPlayer].jobTitleDescription = G.jobTitles[randomIndex].description;
-            // }
-            // if (G.players[ctx.currentPlayer].position >= 30 && G.players[ctx.currentPlayer].position % 30 === 0) {
-            //     console.log("greater than 30")
-            //     const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
-            //     G.players[ctx.currentPlayer].jobTitle = G.jobTitles[randomIndex].name;
-            //     G.players[ctx.currentPlayer].jobTitleDescription = G.jobTitles[randomIndex].description;
-            // }
-            // if (G.players[ctx.currentPlayer].position >= 40 && G.players[ctx.currentPlayer].position % 40 === 0) {
-            //     console.log("greater than 40")
-            //     const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
-            //     G.players[ctx.currentPlayer].jobTitle = G.jobTitles[randomIndex].name;
-            //     G.players[ctx.currentPlayer].jobTitleDescription = G.jobTitles[randomIndex].description;
-            // }
 
 
 

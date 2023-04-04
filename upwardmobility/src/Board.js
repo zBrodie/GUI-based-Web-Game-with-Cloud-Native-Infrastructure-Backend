@@ -60,6 +60,15 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
 
     let eventScreenContents = "";
 
+    let inventoryScreenContents = (
+        <div>
+            {G.players[ctx.currentPlayer].inventory && G.players[ctx.currentPlayer].inventory.map((item, index) => (
+                <img key={index} className="InventoryImage" id={`inventoryItem-${index}`} src={item.image}/>
+            ))}
+        </div>
+    )
+
+
     switch (ctx.phase) {
         case "rollScreen":
             eventScreenContents = (
@@ -273,6 +282,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             {/*Inventory List*/}
             <div className="Inventory">
                 <rect id="Inventory" rx="0" ry="0" x="0" y="0">
+                    {inventoryScreenContents}
                 </rect>
             </div>
             <svg className="InventoryLabel">
