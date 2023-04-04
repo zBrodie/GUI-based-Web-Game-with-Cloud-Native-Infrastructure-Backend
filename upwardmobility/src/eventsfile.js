@@ -73,6 +73,70 @@ export const eventsArray = [
             item: { name: "Cat item", description: "description for cat item" }
         }
     },
+    {
+        id: 5,
+        description: "You come across a shady looking man in a dark alley... \n \"You look like someone with a good eye, stranger. You lookin' to buy?\" ",
+        options: [
+            "Buy item 1 ($x)",
+            "Buy item 2 ($y)",
+            "Buy item 3 ($z)"
+        ],
+        image: "concealed man in a trench coat",
+        onCorrect: "The cat is happy and gives you 2 coins",
+        onIncorrect: "The cat becomes violently angry and attacks you, stealing 3 coins",
+        correctAnswer: 0,
+        eventReward: {
+            type: "The cat also gives you something cool",
+            description: "The cat also gives you something cool and you add it to your inventory.",
+            item: { name: "Cat item", description: "description for cat item" }
+        }
+    },
+    {
+        id: 6,
+        description: "Your free trial of \"LifeOS\" has ended.",
+        options: [
+            "Buy License",
+            "Cancel"
+        ],
+        image: "windows error message",
+        onCorrect: "I'm sure it'll be fine",
+        onIncorrect: "You payed $x for a license, hopefully that's the end of it", //subract $x
+        correctAnswer: 0,
+        eventReward: {
+
+        }
+    },
+    {
+        id: 7,
+        description: "You find an abandoned USB drive on the side of the road.",
+        options: [
+            "Leave it",
+            "Let's see what's inside"
+        ],
+        image: "Crusty USB drive",
+        onCorrect: "Good idea, that's really unsafe",
+        onIncorrect: "What did you think was going to happen?", //Idk man, just really fuck their shit up
+        correctAnswer: 0,
+        eventReward: {
+
+        }
+    },
+    {
+        id: 8,
+        description: "You find an abandoned USB drive on the side of the road.",
+        options: [
+            "Leave it",
+            "Let's see what's inside"
+        ],
+        image: "Crusty USB drive",
+        onCorrect: "Good idea, that's really unsafe",
+        onIncorrect: "What did you think was going to happen?",
+        correctAnswer: 0,
+        eventReward: {
+
+        }
+    },
+
 ];
 
 export const itemsArray = [
