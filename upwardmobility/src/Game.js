@@ -31,7 +31,8 @@ export const UpwardsMobility = {
                 ],
                 buffs: [],
                 currency: 0,
-                jobTitle: {name: "job title 1", description: "description for job title 1"},
+                jobTitle: "Starting job title",
+                jobTitleDescription: "Starting job description",
 
             },
             1: {
@@ -43,17 +44,18 @@ export const UpwardsMobility = {
                 ],
                 buffs: [],
                 currency: 0,
-                jobTitle: {name: "job title 1", description: "description for job title 1"},
+                jobTitle: "Starting job title",
+                jobTitleDescription: "Starting job title description",
 
             },
             moveDist: 0,
         },
 
         jobTitles: [
-            {name: "job title 1", description: "description for job title 1"},
-            {name: "job title 2", description: "description for job title 2"},
-            {name: "job title 3", description: "description for job title 3"},
-            {name: "job title 4", description: "description for job title 4"},
+            {name: "job title 1", description: "description for job title 1", previouslyHeldBy: []},
+            {name: "job title 2", description: "description for job title 2", previouslyHeldBy: []},
+            {name: "job title 3", description: "description for job title 3", previouslyHeldBy: []},
+            {name: "job title 4", description: "description for job title 4", previouslyHeldBy: []},
     ],
 
         currentEvent: null,
@@ -104,28 +106,94 @@ export const UpwardsMobility = {
 
             let getId = "playerToken" + ctx.currentPlayer
             let currPlayToken = document.getElementById(getId)
-            console.log(document.getElementById("playerToken" + ctx.currentPlayer).style.top)
+            // console.log(document.getElementById("playerToken" + ctx.currentPlayer).style.top)
             let calc = (parseInt(document.getElementById(getId).style.top.toString().substring(0,2)))
             let disCalc = calc - (calc * (.025 * moveDist))
             disCalc = disCalc + "%"
             document.getElementById(getId).style.top = disCalc
 
-            if (G.players[ctx.currentPlayer].position >= 10 && G.players[ctx.currentPlayer].position % 10 === 0) {
-                const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
-                G.players[ctx.currentPlayer].jobTitle = G.jobTitles[randomIndex];
+            console.log("Player position: " + G.players[ctx.currentPlayer].position)
+
+            // if (G.players[ctx.currentPlayer].position >= 10 && G.players[ctx.currentPlayer].position % 10 == 0) {
+            //     console.log("greater than 10")
+            //     const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
+            //     G.players[ctx.currentPlayer].jobTitle = G.jobTitles[randomIndex].name;
+            //     G.players[ctx.currentPlayer].jobTitleDescription = G.jobTitles[randomIndex].description;
+            // }
+            // if (G.players[ctx.currentPlayer].position >= 20 && G.players[ctx.currentPlayer].position % 20 === 0) {
+            //     console.log("greater than 20")
+            //
+            //     const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
+            //     G.players[ctx.currentPlayer].jobTitle = G.jobTitles[randomIndex].name;
+            //     G.players[ctx.currentPlayer].jobTitleDescription = G.jobTitles[randomIndex].description;
+            // }
+            // if (G.players[ctx.currentPlayer].position >= 30 && G.players[ctx.currentPlayer].position % 30 === 0) {
+            //     console.log("greater than 30")
+            //     const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
+            //     G.players[ctx.currentPlayer].jobTitle = G.jobTitles[randomIndex].name;
+            //     G.players[ctx.currentPlayer].jobTitleDescription = G.jobTitles[randomIndex].description;
+            // }
+            // if (G.players[ctx.currentPlayer].position >= 40 && G.players[ctx.currentPlayer].position % 40 === 0) {
+            //     console.log("greater than 40")
+            //     const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
+            //     G.players[ctx.currentPlayer].jobTitle = G.jobTitles[randomIndex].name;
+            //     G.players[ctx.currentPlayer].jobTitleDescription = G.jobTitles[randomIndex].description;
+            // }
+
+
+
+            const player = G.players[ctx.currentPlayer];
+            if (player.position >= 10 && player.position <= 20) {
+                console.log("Inside of job title check 10 - 20. Player position: " + player.position)
+                // Choose a random job title from the list that the player has not held before
+                let availableJobTitles = G.jobTitles.filter((jobTitle) => !jobTitle.previouslyHeldBy.includes(ctx.currentPlayer));
+                if (availableJobTitles.length === 0) {
+                    availableJobTitles = G.jobTitles;
+                }
+                const jobTitleIndex = Math.floor(Math.random() * availableJobTitles.length);
+                const jobTitle = availableJobTitles[jobTitleIndex];
+                player.jobTitle = jobTitle.name;
+                player.jobTitleDescription = jobTitle.description;
+                jobTitle.previouslyHeldBy.push(ctx.currentPlayer);
             }
-            if (G.players[ctx.currentPlayer].position >= 20 && G.players[ctx.currentPlayer].position % 20 === 0) {
-                const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
-                G.players[ctx.currentPlayer].jobTitle = G.jobTitles[randomIndex];
+            if (player.position >= 20 && player.position <= 30) {
+                console.log("Inside of job title check 20 - 30. Player position: " + player.position)
+                let availableJobTitles = G.jobTitles.filter((jobTitle) => !jobTitle.previouslyHeldBy.includes(ctx.currentPlayer));
+                if (availableJobTitles.length === 0) {
+                    availableJobTitles = G.jobTitles;
+                }
+                const jobTitleIndex = Math.floor(Math.random() * availableJobTitles.length);
+                const jobTitle = availableJobTitles[jobTitleIndex];
+                player.jobTitle = jobTitle.name;
+                player.jobTitleDescription = jobTitle.description;
+                jobTitle.previouslyHeldBy.push(ctx.currentPlayer);
             }
-            if (G.players[ctx.currentPlayer].position >= 30 && G.players[ctx.currentPlayer].position % 30 === 0) {
-                const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
-                G.players[ctx.currentPlayer].jobTitle = G.jobTitles[randomIndex];
+            if (player.position >= 30 && player.position <= 40) {
+                console.log("Inside of job title check 30 - 40. Player position: " + player.position)
+                let availableJobTitles = G.jobTitles.filter((jobTitle) => !jobTitle.previouslyHeldBy.includes(ctx.currentPlayer));
+                if (availableJobTitles.length === 0) {
+                    availableJobTitles = G.jobTitles;
+                }
+                const jobTitleIndex = Math.floor(Math.random() * availableJobTitles.length);
+                const jobTitle = availableJobTitles[jobTitleIndex];
+                player.jobTitle = jobTitle.name;
+                player.jobTitleDescription = jobTitle.description;
+                jobTitle.previouslyHeldBy.push(ctx.currentPlayer);
             }
-            if (G.players[ctx.currentPlayer].position >= 40 && G.players[ctx.currentPlayer].position % 40 === 0) {
-                const randomIndex = Math.floor(Math.random() * G.jobTitles.length);
-                G.players[ctx.currentPlayer].jobTitle = G.jobTitles[randomIndex];
+            if (player.position >= 40 && player.position <= 50) {
+                console.log("Inside of job title check 40 - 50. Player position: " + player.position)
+                let availableJobTitles = G.jobTitles.filter((jobTitle) => !jobTitle.previouslyHeldBy.includes(ctx.currentPlayer));
+                if (availableJobTitles.length === 0) {
+                    availableJobTitles = G.jobTitles;
+                }
+                const jobTitleIndex = Math.floor(Math.random() * availableJobTitles.length);
+                const jobTitle = availableJobTitles[jobTitleIndex];
+                player.jobTitle = jobTitle.name;
+                player.jobTitleDescription = jobTitle.description;
+                jobTitle.previouslyHeldBy.push(ctx.currentPlayer);
             }
+
+            console.log("Current player job title : " + G.players[ctx.currentPlayer].jobTitle)
 
             // Check for players active buffs
             // G.players[ctx.currentPlayer].buffs.forEach((buff) => {
@@ -155,7 +223,8 @@ export const UpwardsMobility = {
                 }
             });
 
-            G.currentEvent = eventsArray[Math.floor(Math.random() * eventsArray.length)];
+            // G.currentEvent = eventsArray[Math.floor(Math.random() * eventsArray.length)];
+            G.currentEvent = eventsArray[0];
 
             console.log("current event reward type: ", G.currentEvent.eventReward.type)
 
