@@ -33,6 +33,7 @@ export const UpwardsMobility = {
                 currency: 0,
                 jobTitle: "Starting job title",
                 jobTitleDescription: "Starting job description",
+                selectedOption: -1,
 
             },
             1: {
@@ -46,6 +47,7 @@ export const UpwardsMobility = {
                 currency: 0,
                 jobTitle: "Starting job title",
                 jobTitleDescription: "Starting job title description",
+                selectedOption: -1,
 
             },
             moveDist: 0,
@@ -245,6 +247,10 @@ export const UpwardsMobility = {
 
         moveBackward: ({G, ctx, events}, moveDist) => {
             G.players[ctx.currentPlayer].position -= moveDist;
+        },
+
+        selectAnswer({G, ctx}, answerIndex) {
+            G.players[ctx.currentPlayer].selectedOption = answerIndex;
         },
 
         pickUpItem: ({G, ctx, events}, name) => {

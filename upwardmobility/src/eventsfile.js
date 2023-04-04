@@ -14,8 +14,13 @@ export const eventsArray = [
             "I don't know that!",
             "What is an unladen swallow?"
         ],
-        onCorrect: "The wizard is dumbfounded and spontaneously combusts into 2 coins which are added to your wallet!",
-        onIncorrect: "The wizard slaps you and you move back 3 spaces",
+        // onCorrect: "The wizard is dumbfounded and spontaneously combusts into 2 coins which are added to your wallet!",
+        // onIncorrect: "The wizard slaps you and you move back 3 spaces",
+        results: [
+            "The wizard has dropped his staff of Mo Money which you pick up and is added to your inventory.",
+            "incorrect answer for option 2",
+            "incorrect answer for opetion 3",
+            ],
         correctAnswer: 0,
         image: montyPythonImage,
         // item: { name: "Staff of MoMoney", description: "staff of mo money description" }

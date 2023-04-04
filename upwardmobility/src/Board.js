@@ -17,7 +17,6 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
         // console.log("testing useEffect")
     }, );
 
-
     useEffect(() => {
         if(alreadyGen === false){
             for(let i = 0; i< 2; i++){
@@ -50,6 +49,9 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
         events.setPhase("winningGameScreen");
     }
 
+    const handleAnswerSelect = (answerIndex) => {
+        moves.selectAnswer(answerIndex);
+    };
 
     const { moveDist } = G;
 
@@ -102,6 +104,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                                     // {console.log("Current event: " + G.currentEvent)}
                                 } else {
                                     // moves.moveBackward(3);
+                                    moves.selectAnswer(index);
                                     events.setPhase("wrongAnswerScreen");
                                 }
                             }} className="answerButton">{option}</button>
@@ -185,15 +188,19 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             break;
 
         case "wrongAnswerScreen":
+            const incorrectIndex = G.players[ctx.currentPlayer].selectedOption;
+            console.log("This is index of users incorrect answer: "+ incorrectIndex)
+            const resultAnswer = G.currentEvent.results[incorrectIndex];
             eventScreenContents = (
                 <div>
-                    <span className="inGameText">{G.currentEvent.onIncorrect}</span>
+                    <span className="inGameText">{resultAnswer}</span>
                     <div className="event-button-container">
                         <button onClick={() => events.setPhase("endTurnScreen")} className="answerButton">End Turn</button>
                     </div>
                 </div>
             )
             break;
+
 
         case "winningGameScreen":
             eventScreenContents = (
