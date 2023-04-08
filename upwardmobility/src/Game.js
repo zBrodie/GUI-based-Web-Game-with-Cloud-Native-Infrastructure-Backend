@@ -118,8 +118,6 @@ export const UpwardsMobility = {
 
             console.log("Player position: " + G.players[ctx.currentPlayer].position)
 
-
-
             const player = G.players[ctx.currentPlayer];
             if (player.position >= 10 && player.position <= 20) {
                 console.log("Inside of job title check 10 - 20. Player position: " + player.position)
@@ -201,10 +199,10 @@ export const UpwardsMobility = {
                 }
             });
 
-            // G.currentEvent = eventsArray[Math.floor(Math.random() * eventsArray.length)];
-            G.currentEvent = eventsArray[Math.floor(Math.random() * 2)];
+            G.currentEvent = eventsArray[Math.floor(Math.random() * eventsArray.length)];
+            // G.currentEvent = eventsArray[Math.floor(Math.random() * 2)];
 
-            console.log("current event reward type: ", G.currentEvent.eventReward.type)
+            // console.log("current event reward type: ", G.currentEvent.eventReward.type)
 
             events.setPhase("eventOrItemScreen");
         },
