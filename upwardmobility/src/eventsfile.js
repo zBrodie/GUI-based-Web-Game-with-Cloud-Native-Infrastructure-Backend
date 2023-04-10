@@ -6,6 +6,30 @@ import windowsError from "./windowserror.jpg";
 import alleyMan from "./alleyman.jpg";
 import buriedTreasure from "./buriedtreasure.avif";
 export const eventsArray = [
+    // {
+    //     id: 1,
+    //     description: "A mysterious raggedy wizard appears before you and asks the question... 'What is the airspeed velocity of an unladen swallow?'",
+    //     options: [
+    //         "What do you mean? African or European swallow?",
+    //         "I don't know that!",
+    //         "What is an unladen swallow?"
+    //     ],
+    //     results: [
+    //         "The wizard has dropped his staff of Mo Money which you pick up and is added to your inventory.",
+    //         "incorrect answer for option 2",
+    //         "incorrect answer for opetion 3",
+    //         ],
+    //     correctAnswer: 0,
+    //     image: montyPythonImage,
+    //     // item: { name: "Staff of MoMoney", description: "staff of mo money description" }
+    //     eventReward: {
+    //         type: "item",
+    //         description: "The wizard has dropped his staff of Mo Money which you pick up and is added to your inventory.",
+    //         item: { name: "Staff of MoMoney", image: "", description: "staff of mo money description", onUse: "You use the staff of Mo Money and randomly generate between 0 and 10 currency"}
+    //     }
+    // },
+
+
     {
         id: 1,
         description: "A mysterious raggedy wizard appears before you and asks the question... 'What is the airspeed velocity of an unladen swallow?'",
@@ -15,19 +39,23 @@ export const eventsArray = [
             "What is an unladen swallow?"
         ],
         results: [
-            "The wizard has dropped his staff of Mo Money which you pick up and is added to your inventory.",
-            "incorrect answer for option 2",
-            "incorrect answer for opetion 3",
-            ],
+            { description: "Response description for index 0", effect: "effectResponse1" },
+            { description: "Response description for index 1", effect: "effectResponse2" },
+            { description: "Response description for index 2", effect: "effectResponse3" },
+        ],
         correctAnswer: 0,
         image: montyPythonImage,
-        // item: { name: "Staff of MoMoney", description: "staff of mo money description" }
         eventReward: {
             type: "item",
             description: "The wizard has dropped his staff of Mo Money which you pick up and is added to your inventory.",
             item: { name: "Staff of MoMoney", image: "", description: "staff of mo money description", onUse: "You use the staff of Mo Money and randomly generate between 0 and 10 currency"}
         }
     },
+
+
+
+
+
     // {
     //     id: 2,
     //     description: "You stumble upon a treasure chest buried in the ground.",

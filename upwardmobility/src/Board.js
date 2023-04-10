@@ -149,10 +149,6 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             )
             break;
         case "eventScreen":
-            // console.log("This is current event state description: " + currentEvent.description)
-            // let randInt = Math.floor(Math.random() * eventsArray.length);
-            // let currentEvent = eventsArray[randInt];
-
             eventScreenContents = (
                 <div>
                     <div>
@@ -162,20 +158,18 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                     <div className="event-button-container">
                         {G.currentEvent.options && G.currentEvent.options.map((option, index) => (
                             <button key={index} onClick={() => {
-                                if (index === G.currentEvent.correctAnswer) {
-                                    // moves.addCurrency(2);
-                                    events.setPhase("pickUpItemScreen");
-                                    // {console.log("Current event: " + G.currentEvent)}
-                                } else {
-                                    // moves.moveBackward(3);
-                                    moves.selectAnswer(index);
-                                    events.setPhase("wrongAnswerScreen");
-                                }
+                                moves.selectAnswer(index);
+                                console.log("This is event response: ", G.currentEvent.options[index].result)
+                                moves.eventResponse(G.currentEvent.options[index].result);
+                                events.setPhase("eventResponseScreen");
+
                             }} className="answerButton">{option}</button>
                         ))}
                     </div>
+
                 </div>
             )
+
             break;
 
         case "useItemScreen":
@@ -227,39 +221,57 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             );
             break;
 
-        case "correctAnswerScreen":
+        // case "correctAnswerScreen":
+        //     eventScreenContents = (
+        //         <div>
+        //             <span className="inGameText">Correct Answer Screen{G.currentEvent.onCorrect}</span>
+        //             <div className="event-button-container">
+        //                 <button onClick={() => events.setPhase("pickUpItemScreen")} className="answerButton">Pick Up Item</button>
+        //             </div>
+        //         </div>
+        //     )
+        //     break;
+
+        // case "pickUpItemScreen":
+        //     console.log("Current event from pick up item screen: " + G.currentEvent.eventReward)
+        //
+        //     eventScreenContents = (
+        //         <div>
+        //             <span className="inGameText">{G.currentEvent.eventReward.description}</span>
+        //             <div className="event-button-container">
+        //                 <button onClick={() => { events.setPhase("endTurnScreen"); moves.pickUpItem(G.currentEvent.eventReward) }} className="answerButton">Proceed</button>
+        //             </div>
+        //         </div>
+        //     )
+        //     break;
+
+        // case "wrongAnswerScreen":
+        //     const incorrectIndex = G.players[ctx.currentPlayer].selectedOption;
+        //     console.log("This is index of users incorrect answer: "+ incorrectIndex)
+        //     const resultAnswer = G.currentEvent.results[incorrectIndex];
+        //     eventScreenContents = (
+        //         <div>
+        //             <span className="inGameText">{resultAnswer}</span>
+        //             <div className="event-button-container">
+        //                 <button onClick={() => events.setPhase("endTurnScreen")} className="answerButton">End Turn</button>
+        //             </div>
+        //         </div>
+        //     )
+        //     break;
+
+
+            // event response screen
+
+        case "eventResponseScreen":
+            const answerIndex = G.players[ctx.currentPlayer].selectedOption;
+            const getEventResult = G.currentEvent.results[answerIndex].effect;
+            // console.log("This is index of users answer: "+ answerIndex)
+            // console.log("Event effect : " + getEventResult)
             eventScreenContents = (
                 <div>
-                    <span className="inGameText">Correct Answer Screen{G.currentEvent.onCorrect}</span>
+                    <span className="inGameText">Event Result Screen {G.currentEvent.results[answerIndex].description}</span>
                     <div className="event-button-container">
-                        <button onClick={() => events.setPhase("pickUpItemScreen")} className="answerButton">Pick Up Item</button>
-                    </div>
-                </div>
-            )
-            break;
-
-        case "pickUpItemScreen":
-            console.log("Current event from pick up item screen: " + G.currentEvent.eventReward)
-
-            eventScreenContents = (
-                <div>
-                    <span className="inGameText">{G.currentEvent.eventReward.description}</span>
-                    <div className="event-button-container">
-                        <button onClick={() => { events.setPhase("endTurnScreen"); moves.pickUpItem(G.currentEvent.eventReward) }} className="answerButton">Proceed</button>
-                    </div>
-                </div>
-            )
-            break;
-
-        case "wrongAnswerScreen":
-            const incorrectIndex = G.players[ctx.currentPlayer].selectedOption;
-            console.log("This is index of users incorrect answer: "+ incorrectIndex)
-            const resultAnswer = G.currentEvent.results[incorrectIndex];
-            eventScreenContents = (
-                <div>
-                    <span className="inGameText">{resultAnswer}</span>
-                    <div className="event-button-container">
-                        <button onClick={() => events.setPhase("endTurnScreen")} className="answerButton">End Turn</button>
+                        <button onClick={() => events.setPhase("endTurnScreen")} className="answerButton">Proceed</button>
                     </div>
                 </div>
             )

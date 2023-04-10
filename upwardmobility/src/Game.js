@@ -223,6 +223,9 @@ export const UpwardsMobility = {
             G.players[ctx.currentPlayer].position -= moveDist;
         },
 
+        // updated event response
+
+
         selectAnswer({G, ctx}, answerIndex) {
             G.players[ctx.currentPlayer].selectedOption = answerIndex;
         },
@@ -236,6 +239,26 @@ export const UpwardsMobility = {
                 G.players[ctx.currentPlayer].buffs.push(G.currentEvent.eventReward.buff);
             }
 
+        },
+
+        eventResponse: ({G, ctx}, eventEffect) => {
+
+            // console.log("Inside of eventResponse function. Effect: " + eventEffect)
+
+            switch (eventEffect) {
+                case "effectResponse1":
+                    G.players[ctx.currentPlayer].currency += 3;
+                    console.log("Inside of move switch case for response 1")
+                    break;
+                case "effectResponse2":
+                    G.players[ctx.currentPlayer].currency += 4;
+                    console.log("Inside of move switch case for response 2")
+                    break;
+                case "effectResponse3":
+                    G.players[ctx.currentPlayer].currency += 5;
+                    console.log("Inside of move switch case for response 3")
+                    break;
+            }
         },
 
         // use item function
@@ -301,6 +324,9 @@ export const UpwardsMobility = {
 
         },
         winningGameScreen: {
+
+        },
+        eventResponseScreen: {
 
         }
     },
