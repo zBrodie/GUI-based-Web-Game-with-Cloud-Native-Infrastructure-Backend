@@ -252,6 +252,8 @@ export const UpwardsMobility = {
                     break;
                 case "effectResponse2":
                     G.players[ctx.currentPlayer].currency += 4;
+                    const tempPosition = G.players[ctx.currentPlayer].position;
+
                     console.log("Inside of move switch case for response 2")
                     break;
                 case "effectResponse3":

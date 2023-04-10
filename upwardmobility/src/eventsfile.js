@@ -43,7 +43,7 @@ export const eventsArray = [
             { description: "Response description for index 1", effect: "effectResponse2" },
             { description: "Response description for index 2", effect: "effectResponse3" },
         ],
-        correctAnswer: 0,
+        // correctAnswer: 0,
         image: montyPythonImage,
         eventReward: {
             type: "item",
