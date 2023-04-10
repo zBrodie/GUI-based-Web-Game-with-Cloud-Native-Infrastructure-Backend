@@ -159,8 +159,9 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                         {G.currentEvent.options && G.currentEvent.options.map((option, index) => (
                             <button key={index} onClick={() => {
                                 moves.selectAnswer(index);
-                                console.log("This is event response: ", G.currentEvent.options[index].result)
-                                moves.eventResponse(G.currentEvent.options[index].result);
+                                console.log("This is index: ", index)
+                                console.log("This is event response: ", G.currentEvent.results[index].effect)
+                                moves.eventResponse(G.currentEvent.results[index].effect);
                                 events.setPhase("eventResponseScreen");
 
                             }} className="answerButton">{option}</button>
