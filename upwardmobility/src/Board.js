@@ -162,6 +162,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                                 console.log("This is index: ", index)
                                 console.log("This is event response: ", G.currentEvent.results[index].effect)
                                 moves.eventResponse(G.currentEvent.results[index].effect);
+                                moves.pickUpItem(G.currentEvent.results[index].item[0].name);
                                 events.setPhase("eventResponseScreen");
 
                             }} className="answerButton">{option}</button>
