@@ -117,9 +117,11 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
 
     let inventoryScreenContents = (
         <div>
-            {G.players[ctx.currentPlayer].inventory && G.players[ctx.currentPlayer].inventory.map((item, index) => (
-                <img key={index} className="InventoryImage" id={`inventoryItem-${index}`} src={item.image}/>
-            ))}
+            <div className="inventory-item-container">
+                {G.players[ctx.currentPlayer].inventory && G.players[ctx.currentPlayer].inventory.map((item, index) => (
+                    <img key={index} className="InventoryImage" id={`inventoryItem-${index}`} src={item.image}/>
+                ))}
+            </div>
         </div>
     )
 
