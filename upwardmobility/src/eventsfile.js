@@ -39,7 +39,8 @@ export const eventsArray = [
             "What is an unladen swallow?"
         ],
         results: [
-            { description: "Response description for index 0", effect: "effectResponse1", item: [
+            { description: "Response description for index 0", effect: "effectResponse1",
+                item: [
                     { name: "Staff of MoMoney", image: montyPythonImage, description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" }
                 ] },
             { description: "Response description for index 1", effect: "effectResponse2" },
