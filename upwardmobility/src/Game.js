@@ -233,7 +233,7 @@ export const UpwardsMobility = {
         pickUpItem: ({G, ctx}) => {
 
             if (G.currentEvent.eventReward.type === "item") {
-                G.players[ctx.currentPlayer].inventory.push(G.currentEvent.eventReward.item.name);
+                G.players[ctx.currentPlayer].inventory.push(G.currentEvent.eventReward.item);
             }
             if (G.currentEvent.eventReward.type === "buff") {
                 G.players[ctx.currentPlayer].buffs.push(G.currentEvent.eventReward.buff);
