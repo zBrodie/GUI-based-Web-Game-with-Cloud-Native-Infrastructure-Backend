@@ -34,6 +34,9 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
     const [mouseOverBuffs, setMouseOverBuffs] = useState(false)
     const [loadPlayerBuffs, setPlayerBuffs] = useState("")
 
+    const [mouseOverInventoryItem, setMouseOverInventoryItem] = useState(false)
+    const [loadInventoryItems, setInventoryItems] = useState("")
+
     function handleMouseOver(){
         setMouseOverBuffs(true)
         loadBuffString()
@@ -41,6 +44,13 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
 
     function handleMouseOut(){
         setMouseOverBuffs(false)
+    }
+    function handleMouseOverInventory(){
+        setMouseOverInventoryItem(true)
+        loadInventoryString()
+    }
+    function handleMouseOutInventory(){
+        setMouseOverInventoryItem(false)
     }
 
     function loadBuffString(){
@@ -56,11 +66,26 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                     buffs +=", "
                 }
             }
-
             buffs += "\n"
         }
         setPlayerBuffs(buffs)
         console.log(buffs)
+    }
+
+    function loadInventoryString(){
+        let items = " "
+        items = G.players[0].inventory[0].description
+        // for(let i = 0; i < 2; i++){
+        //     items += "Player " + (i+1) + ": "
+        //     for(let j = 0; j <G.players[i].inventory.length; j++){
+        //         items += G.players[i].inventory[j]
+        //         if(j==G.players[i].inventory.length-1) items += " "
+        //         else items += ", "
+        //     }
+        //     items += "\n"
+        // }
+        setInventoryItems(items)
+        console.log(items)
     }
 
     useEffect(() =>{
@@ -151,7 +176,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
         <div>
             <div className="inventory-item-container">
                 {G.players[ctx.currentPlayer].inventory && G.players[ctx.currentPlayer].inventory.map((item, index) => (
-                    <img key={index} className="InventoryImage" id={`inventoryItem-${index}`} src={item.image}/>
+                    <img onMouseOver={handleMouseOverInventory} key={index} className="InventoryImage" id={`inventoryItem-${index}`} src={item.image}/>
                 ))}
             </div>
         </div>
@@ -389,9 +414,27 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
 
             {/*Inventory List*/}
             <div className="Inventory">
-                <rect id="Inventory" rx="0" ry="0" x="0" y="0">
-                    {inventoryScreenContents}
-                </rect>
+                {mouseOverInventoryItem ? (
+                    <div className="showItemDescription">
+                        <p className="inventoryItemDescriptionText">
+                            {loadInventoryItems.split("\n").map((line, index) => (
+                                <React.Fragment key={index}>
+                                    {line}
+                                    {index !== loadInventoryItems.split("\n").length -1 && <br/>}
+                                </React.Fragment>
+                            ))}
+                        </p>
+                        <p className="inventoryItemDescriptionText" onMouseOver={handleMouseOutInventory} >
+                            Hover over this to go back
+                        </p>
+                    </div>
+                ) : (
+                    <div>
+                        <rect id="Inventory" rx="0" ry="0" x="0" y="0">
+                            {inventoryScreenContents}
+                        </rect>
+                    </div>
+                )}
             </div>
             <svg className="InventoryLabel">
                 <rect id="InventoryLabel" rx="0" ry="0" x="0" y="0">
