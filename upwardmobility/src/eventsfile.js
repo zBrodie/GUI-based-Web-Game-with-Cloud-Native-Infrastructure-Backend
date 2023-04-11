@@ -7,30 +7,6 @@ import alleyMan from "./alleyman.jpg";
 import buriedTreasure from "./buriedtreasure.avif";
 import momoney from "./moneystaff.jpg"
 export const eventsArray = [
-    // {
-    //     id: 1,
-    //     description: "A mysterious raggedy wizard appears before you and asks the question... 'What is the airspeed velocity of an unladen swallow?'",
-    //     options: [
-    //         "What do you mean? African or European swallow?",
-    //         "I don't know that!",
-    //         "What is an unladen swallow?"
-    //     ],
-    //     results: [
-    //         "The wizard has dropped his staff of Mo Money which you pick up and is added to your inventory.",
-    //         "incorrect answer for option 2",
-    //         "incorrect answer for opetion 3",
-    //         ],
-    //     correctAnswer: 0,
-    //     image: montyPythonImage,
-    //     // item: { name: "Staff of MoMoney", description: "staff of mo money description" }
-    //     eventReward: {
-    //         type: "item",
-    //         description: "The wizard has dropped his staff of Mo Money which you pick up and is added to your inventory.",
-    //         item: { name: "Staff of MoMoney", image: "", description: "staff of mo money description", onUse: "You use the staff of Mo Money and randomly generate between 0 and 10 currency"}
-    //     }
-    // },
-
-
     {
         id: 1,
         description: "A mysterious raggedy wizard appears before you and asks the question... 'What is the airspeed velocity of an unladen swallow?'",
@@ -40,48 +16,74 @@ export const eventsArray = [
             "What is an unladen swallow?"
         ],
         results: [
-            { description: "Response description for index 0", effect: "effectResponse1",
-                item: [
-                    { name: "Staff of MoMoney", image: montyPythonImage, description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" }
-                ] },
-            { description: "Response description for index 1", effect: "effectResponse2" },
-            { description: "Response description for index 2", effect: "effectResponse3" },
-        ],
-        // correctAnswer: 0,
+            "The wizard has dropped his staff of Mo Money which you pick up and is added to your inventory.",
+            "incorrect answer for option 2",
+            "incorrect answer for opetion 3",
+            ],
+        correctAnswer: 0,
         image: montyPythonImage,
+        // item: { name: "Staff of MoMoney", description: "staff of mo money description" }
         eventReward: {
             type: "item",
             description: "The wizard has dropped his staff of Mo Money which you pick up and is added to your inventory.",
-            item: { name: "Staff of MoMoney", image: momoney, description: "staff of mo money description", onUse: "You use the staff of Mo Money and randomly generate between 0 and 10 currency"}
+            item: { name: "Staff of MoMoney", image: montyPythonImage, description: "staff of mo money description", onUse: "You use the staff of Mo Money and randomly generate between 0 and 10 currency"}
         }
     },
 
 
-
-
-
     // {
-    //     id: 2,
-    //     description: "You stumble upon a treasure chest buried in the ground.",
+    //     id: 1,
+    //     description: "A mysterious raggedy wizard appears before you and asks the question... 'What is the airspeed velocity of an unladen swallow?'",
     //     options: [
-    //         "Open the chest",
-    //         "Leave the chest alone",
-    //         "Kick the chest"
+    //         "What do you mean? African or European swallow?",
+    //         "I don't know that!",
+    //         "What is an unladen swallow?"
     //     ],
-    //     image: buriedTreasure,
-    //     // onCorrect: "You find a 20 currency and add it to your wallet!",
     //     results: [
-    //         "You have opened the chest and find some money",
-    //         "You have left the chest alone. Bad idea. You die.  ",
-    //         "You break your foot. You skip your next 3 turns. ",
-    //         ],
-    //     correctAnswer: 0,
+    //         { description: "Response description for index 0", effect: "effectResponse1",
+    //             resultReward: {
+    //                 type: "buff",
+    //                 description: "You gain the buff or good things happening where good things happen for your next 5 rolls.",
+    //                 buff: { name: "Buff of Mo Money", description: "buff of mo money description", duration: 5 }
+    //             },
+    //         { description: "Response description for index 1", effect: "effectResponse2" },
+    //         { description: "Response description for index 2", effect: "effectResponse3" },
+    //     ],
+    //     // correctAnswer: 0,
+    //     image: montyPythonImage,
     //     eventReward: {
-    //         type: "buff",
-    //         description: "You gain the buff of mo money where you gain 2 currency for your next 3 rolls.",
-    //         buff: { name: "Buff of Mo Money", image: "", description: "buff of mo money description", duration: 3 }
+    //         type: "item",
+    //         description: "The wizard has dropped his staff of Mo Money which you pick up and is added to your inventory.",
+    //         item: { name: "Staff of MoMoney", image: momoney, description: "staff of mo money description", onUse: "You use the staff of Mo Money and randomly generate between 0 and 10 currency"}
     //     }
     // },
+
+
+
+
+
+     {
+        id: 2,
+        description: "You stumble upon a treasure chest buried in the ground.",
+        options: [
+            "Open the chest",
+            "Leave the chest alone",
+            "Kick the chest"
+        ],
+        image: buriedTreasure,
+        // onCorrect: "You find a 20 currency and add it to your wallet!",
+        results: [
+            "You have opened the chest and find some money",
+            "You have left the chest alone. Bad idea. You die.  ",
+            "You break your foot. You skip your next 3 turns. ",
+            ],
+        correctAnswer: 0,
+        eventReward: {
+            type: "buff",
+            description: "You gain the buff of mo money where you gain 2 currency for your next 3 rolls.",
+            buff: { name: "Buff of Mo Money", image: "", description: "buff of mo money description", duration: 3 }
+        }
+    },
     // {
     //     id: 3,
     //     description: "Event 3",
