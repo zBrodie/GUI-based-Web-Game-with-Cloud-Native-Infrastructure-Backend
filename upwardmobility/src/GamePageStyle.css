@@ -547,11 +547,10 @@
 }
 
 #PlayerName {
-    left: 81.903356%;
     top: 2.883425%;
     position: absolute;
     overflow: visible;
-    width: 17.645121%;
+    width: 45.645121%;
     height: 25px;
     text-align: left;
     font-family: Common Pixel;
@@ -562,11 +561,10 @@
 }
 
 #PlayerJobTitle {
-    left: 81.903356%;
-    top: 6.883425%;
+    top: 16.883425%;
     position: absolute;
     overflow: visible;
-    width: 17.645121%;
+    width: 85.645121%;
     height: 25px;
     text-align: left;
     font-family: Common Pixel;
@@ -577,8 +575,7 @@
 }
 
 #PlayerBuffsIcon {
-    left: 81.903356%;
-    top: 10.883425%;
+    top: 30.883425%;
     position: absolute;
     overflow: visible;
     width: 35px;
@@ -589,8 +586,7 @@
 }
 
 #PlayerDebuffsIcon {
-    left: 81.903356%;
-    top: 14.883425%;
+    top: 50.883425%;
     position: absolute;
     overflow: visible;
     width: 35px;
@@ -600,8 +596,7 @@
 }
 
 #PlayerCurrency {
-    left: 81.903356%;
-    top: 18.883425%;
+    top: 68.883425%;
     position: absolute;
     overflow: visible;
     width: 17.645121%;
@@ -614,7 +609,6 @@
     color: rgba(255,255,255,1);
 }
 #PlayerIncome {
-    left: 81.903356%;
     top: 22.883425%;
     position: absolute;
     overflow: visible;
@@ -885,4 +879,17 @@
     font-size: .5vw;
     font-family: "Common Pixel";
     text-align: center;
+}
+
+.showPlayerBuffs{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #292B2F;
+}
+
+.playerBuffText{
+    font-family: "Common Pixel";
+    -webkit-text-fill-color: white;
+    font-size: 1vw;
 }

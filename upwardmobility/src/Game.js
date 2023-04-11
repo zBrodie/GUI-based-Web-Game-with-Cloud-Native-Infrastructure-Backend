@@ -31,7 +31,7 @@ export const UpwardsMobility = {
                     { name: "Staff of NoMoney", image: montyPythonImage, description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
                     { name: "Orb of MoMoney", image: montyPythonImage, description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
                 ],
-                buffs: [],
+                buffs: ["this is a test", " this is a test"],
                 currency: 0,
                 jobTitle: "Starting job title",
                 jobTitleDescription: "Starting job description",
@@ -45,7 +45,7 @@ export const UpwardsMobility = {
                 //     { name: "Staff of NoMoney", image: montyPythonImage, description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
                 //     { name: "Orb of MoMoney", image: montyPythonImage, description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
                 ],
-                buffs: [],
+                buffs: ["this is a test", "this is a test"],
                 currency: 0,
                 jobTitle: "Starting job title",
                 jobTitleDescription: "Starting job title description",

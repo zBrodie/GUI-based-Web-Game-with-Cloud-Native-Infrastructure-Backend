@@ -31,6 +31,38 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
     const [disPlay5Job, setPlay5Job] = useState("")
     const [disPlay6Job, setPlay6Job] = useState("")
 
+    const [mouseOverBuffs, setMouseOverBuffs] = useState(false)
+    const [loadPlayerBuffs, setPlayerBuffs] = useState("")
+
+    function handleMouseOver(){
+        setMouseOverBuffs(true)
+        loadBuffString()
+    }
+
+    function handleMouseOut(){
+        setMouseOverBuffs(false)
+    }
+
+    function loadBuffString(){
+        let buffs = " "
+        for(let i = 0; i < 2; i++){
+            buffs += "Player " + (i + 1) + ": "
+            for(let j = 0; j<G.players[i].buffs.length; j++){
+                buffs += G.players[i].buffs[j]
+                if(j==G.players[i].buffs.length - 1){
+                    buffs +=" "
+                }
+                else{
+                    buffs +=", "
+                }
+            }
+
+            buffs += "\n"
+        }
+        setPlayerBuffs(buffs)
+        console.log(buffs)
+    }
+
     useEffect(() =>{
         setPlayerName("Player 1")
         setPlayerJob("Job: " + G.players[0].jobTitle)
@@ -386,25 +418,41 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
 
 
             {/*Player Stat List*/}
-            <svg className="PlayerStatsBackground">
-                <rect id="PlayerStatsBackground" rx="0" ry="0" x="0" y="0">
-                </rect>
+            <div className="PlayerStatsBackground">
+                {mouseOverBuffs ? (
+                    <div className="showPlayerBuffs">
+                        <p className ="playerBuffText">
+                            {loadPlayerBuffs.split("\n").map((line, index) => (
+                                <React.Fragment key={index}>
+                                    {line}
+                                    {index !== loadPlayerBuffs.split("\n").length - 1 && <br />}
+                                </React.Fragment>
+                            ))}
+                        </p>
+                        <p className="playerBuffText" onMouseOver={handleMouseOut}>Hover over this to go back</p>
+                    </div>
+                ) : (
+                    <div>
+                        <rect id="PlayerStatsBackground" rx="0" ry="0" x="0" y="0"> </rect>
+                        <div className="PlayerName" id="PlayerName">
+                            {disPlayerName}
+                        </div>
+                        <div className="PlayerJobTitle" id="PlayerJobTitle">
+                            {disPlayerJob}
+                        </div>
+                        <img onMouseOver={handleMouseOver} className="PlayerBuffsIcon" id="PlayerBuffsIcon" src="BuffIcon.png" srcSet="BuffIcon.png 1x, BuffIcon.png.png 2x"/>
+                        <img className="PlayerDebuffsIcon" id="PlayerDebuffsIcon" src="DebuffIcon.png" srcSet="DebuffIcon.png 1x, DebuffIcon.png.png 2x"/>
+                        <div className="PlayerCurrency" id="PlayerCurrency">
+                            {disPlayerCur}
+                        </div>
+                        <div className="PlayerIncome" id="PlayerIncome">
 
-            </svg>
-            <div className="PlayerName" id="PlayerName">
-                {disPlayerName}
-            </div>
-            <div className="PlayerJobTitle" id="PlayerJobTitle">
-                {disPlayerJob}
-            </div>
-            <img className="PlayerBuffsIcon" id="PlayerBuffsIcon" src="BuffIcon.png" srcSet="BuffIcon.png 1x, BuffIcon.png.png 2x"/>
-            <img className="PlayerDebuffsIcon" id="PlayerDebuffsIcon" src="DebuffIcon.png" srcSet="DebuffIcon.png 1x, DebuffIcon.png.png 2x"/>
-            <div className="PlayerCurrency" id="PlayerCurrency">
-                {disPlayerCur}
-            </div>
-            <div className="PlayerIncome" id="PlayerIncome">
+                        </div>
+                    </div>
+                )}
 
             </div>
+
             {/*Player Stat List*/}
         </div>
     )
