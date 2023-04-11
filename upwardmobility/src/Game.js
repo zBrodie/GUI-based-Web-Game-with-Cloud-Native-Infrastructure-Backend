@@ -27,11 +27,11 @@ export const UpwardsMobility = {
             0: {
                 position: 0,
                 inventory: [
-                    { name: "Staff of MoMoney", image: montyPythonImage, description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
-                    { name: "Staff of NoMoney", image: montyPythonImage, description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
-                    { name: "Orb of MoMoney", image: montyPythonImage, description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
+                    // { name: "Staff of MoMoney", image: montyPythonImage, description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
+                    // { name: "Staff of NoMoney", image: montyPythonImage, description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
+                    // { name: "Orb of MoMoney", image: montyPythonImage, description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
                 ],
-                buffs: [],
+                buffs: ["ironskin", "regeneration"],
                 currency: 0,
                 jobTitle: "Starting job title",
                 jobTitleDescription: "Starting job description",
@@ -45,7 +45,7 @@ export const UpwardsMobility = {
                 //     { name: "Staff of NoMoney", image: montyPythonImage, description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
                 //     { name: "Orb of MoMoney", image: montyPythonImage, description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
                 ],
-                buffs: [],
+                buffs: ["lifeforce", "mining"],
                 currency: 0,
                 jobTitle: "Starting job title",
                 jobTitleDescription: "Starting job title description",
@@ -233,7 +233,7 @@ export const UpwardsMobility = {
         pickUpItem: ({G, ctx}) => {
 
             if (G.currentEvent.eventReward.type === "item") {
-                G.players[ctx.currentPlayer].inventory.push(G.currentEvent.eventReward.item.name);
+                G.players[ctx.currentPlayer].inventory.push(G.currentEvent.eventReward.item);
             }
             if (G.currentEvent.eventReward.type === "buff") {
                 G.players[ctx.currentPlayer].buffs.push(G.currentEvent.eventReward.buff);

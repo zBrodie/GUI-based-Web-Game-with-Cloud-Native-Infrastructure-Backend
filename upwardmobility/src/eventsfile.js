@@ -5,6 +5,7 @@ import usbDrive from "./usbdriveonroad.png";
 import windowsError from "./windowserror.jpg";
 import alleyMan from "./alleyman.jpg";
 import buriedTreasure from "./buriedtreasure.avif";
+import momoney from "./moneystaff.jpg"
 export const eventsArray = [
     // {
     //     id: 1,
@@ -51,7 +52,7 @@ export const eventsArray = [
         eventReward: {
             type: "item",
             description: "The wizard has dropped his staff of Mo Money which you pick up and is added to your inventory.",
-            item: { name: "Staff of MoMoney", image: "", description: "staff of mo money description", onUse: "You use the staff of Mo Money and randomly generate between 0 and 10 currency"}
+            item: { name: "Staff of MoMoney", image: momoney, description: "staff of mo money description", onUse: "You use the staff of Mo Money and randomly generate between 0 and 10 currency"}
         }
     },
 
