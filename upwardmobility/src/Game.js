@@ -27,9 +27,9 @@ export const UpwardsMobility = {
             0: {
                 position: 0,
                 inventory: [
-                    // { name: "Staff of MoMoney", image: montyPythonImage, description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
-                    // { name: "Staff of NoMoney", image: montyPythonImage, description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
-                    // { name: "Orb of MoMoney", image: montyPythonImage, description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
+                    { name: "Staff of MoMoney", image: montyPythonImage, description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
+                    { name: "Staff of NoMoney", image: montyPythonImage, description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
+                    { name: "Orb of MoMoney", image: montyPythonImage, description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
                 ],
                 buffs: [],
                 currency: 0,
@@ -41,9 +41,9 @@ export const UpwardsMobility = {
             1: {
                 position: 0,
                 inventory: [
-                    // { name: "Staff of MoMoney", image: montyPythonImage, description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
-                    // { name: "Staff of NoMoney", image: montyPythonImage, description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
-                    // { name: "Orb of MoMoney", image: montyPythonImage, description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
+                //     { name: "Staff of MoMoney", image: montyPythonImage, description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
+                //     { name: "Staff of NoMoney", image: montyPythonImage, description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
+                //     { name: "Orb of MoMoney", image: montyPythonImage, description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
                 ],
                 buffs: [],
                 currency: 0,
@@ -199,10 +199,10 @@ export const UpwardsMobility = {
                 }
             });
 
-            // G.currentEvent = eventsArray[Math.floor(Math.random() * eventsArray.length)];
-            G.currentEvent = eventsArray[Math.floor(Math.random() * 2)];
+            G.currentEvent = eventsArray[Math.floor(Math.random() * eventsArray.length)];
+            // G.currentEvent = eventsArray[Math.floor(Math.random() * 2)];
 
-            console.log("current event reward type: ", G.currentEvent.eventReward.type)
+            // console.log("current event reward type: ", G.currentEvent.eventReward.type)
 
             events.setPhase("eventOrItemScreen");
         },
@@ -223,15 +223,14 @@ export const UpwardsMobility = {
             G.players[ctx.currentPlayer].position -= moveDist;
         },
 
+        // updated event response
+
+
         selectAnswer({G, ctx}, answerIndex) {
             G.players[ctx.currentPlayer].selectedOption = answerIndex;
         },
 
-        pickUpItem: ({G, ctx, events}, name) => {
-            // const itemCell = G.board[G.players[ctx.currentPlayer].position];
-            // const itemRef = itemCell.item;
-
-            // G.players[ctx.currentPlayer].inventory.push(itemsArray[id]);
+        pickUpItem: ({G, ctx}) => {
 
             if (G.currentEvent.eventReward.type === "item") {
                 G.players[ctx.currentPlayer].inventory.push(G.currentEvent.eventReward.item.name);
@@ -240,6 +239,28 @@ export const UpwardsMobility = {
                 G.players[ctx.currentPlayer].buffs.push(G.currentEvent.eventReward.buff);
             }
 
+        },
+
+        eventResponse: ({G, ctx}, eventEffect) => {
+
+            // console.log("Inside of eventResponse function. Effect: " + eventEffect)
+
+            switch (eventEffect) {
+                case "effectResponse1":
+                    G.players[ctx.currentPlayer].currency += 3;
+                    console.log("Inside of move switch case for response 1")
+                    break;
+                case "effectResponse2":
+                    G.players[ctx.currentPlayer].currency += 4;
+                    const tempPosition = G.players[ctx.currentPlayer].position;
+
+                    console.log("Inside of move switch case for response 2")
+                    break;
+                case "effectResponse3":
+                    G.players[ctx.currentPlayer].currency += 5;
+                    console.log("Inside of move switch case for response 3")
+                    break;
+            }
         },
 
         // use item function
@@ -304,7 +325,10 @@ export const UpwardsMobility = {
         useItemOnPlayerScreen: {
 
         },
-        winngingScreen: {
+        winningGameScreen: {
+
+        },
+        eventResponseScreen: {
 
         }
     },
