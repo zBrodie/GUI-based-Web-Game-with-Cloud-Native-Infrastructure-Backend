@@ -58,7 +58,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
         for(let i = 0; i < 2; i++){
             buffs += "Player " + (i + 1) + ": "
             for(let j = 0; j<G.players[i].buffs.length; j++){
-                buffs += G.players[i].buffs[j]
+                buffs += G.players[i].buffs[j].name
                 if(j==G.players[i].buffs.length - 1){
                     buffs +=" "
                 }
@@ -74,6 +74,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
 
     function loadInventoryString(){
         let items = " "
+        // items = G.players[ctx.currentPlayer].inventory
         items = G.players[0].inventory[0].description
         // for(let i = 0; i < 2; i++){
         //     items += "Player " + (i+1) + ": "
@@ -223,6 +224,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                                 moves.eventResponse(G.currentEvent.results[index].effect);
                                 moves.pickUpItem(G.currentEvent.results[index].item);
                                 events.setPhase("eventResponseScreen");
+                                moves.addCurrency(5);
 
                             }} className="answerButton">{option}</button>
                         ))}
@@ -351,7 +353,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                 <div>
                     <span className="inGameText">Your turn is over!</span>
                     <div className="event-button-container">
-                        <button onClick={() => { events.endTurn(); events.setPhase("rollScreen"); }} className="answerButton">End Turn</button>
+                        <button onClick={() => { events.endTurn(); events.setPhase("rollScreen"); setMouseOverBuffs(false); setMouseOverInventoryItem(false) }} className="answerButton">End Turn</button>
 
                     </div>
 
