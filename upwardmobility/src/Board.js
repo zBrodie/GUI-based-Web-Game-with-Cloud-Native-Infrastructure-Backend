@@ -69,7 +69,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             buffs += "\n"
         }
         setPlayerBuffs(buffs)
-        console.log(buffs)
+        // console.log(buffs)
     }
 
     function loadInventoryString(){
@@ -86,7 +86,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
         //     items += "\n"
         // }
         setInventoryItems(items)
-        console.log(items)
+        // console.log(items)
     }
 
     useEffect(() =>{
@@ -131,7 +131,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
 
     if (G.players[ctx.currentPlayer].position >= 50) {
         // events.setPhase("winningGameScreen");
-        console.log("if case for winningGameScreen")
+        // console.log("if case for winningGameScreen")
         ctx.phase = "winningGameScreen"
     }
 
@@ -219,13 +219,11 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                         {G.currentEvent.options && G.currentEvent.options.map((option, index) => (
                             <button key={index} onClick={() => {
                                 moves.selectAnswer(index);
-                                console.log("This is index: ", index)
-                                console.log("This is event response: ", G.currentEvent.results[index].effect)
+                                // console.log("This is index: ", index)
+                                // console.log("This is event response: ", G.currentEvent.results[index].effect)
                                 moves.eventResponse(G.currentEvent.results[index].effect);
-                                moves.pickUpItem(G.currentEvent.results[index].item);
+                                // moves.pickUpItem(G.currentEvent.results[index].resultReward);
                                 events.setPhase("eventResponseScreen");
-                                moves.addCurrency(5);
-
                             }} className="answerButton">{option}</button>
                         ))}
                     </div>
@@ -259,7 +257,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                         onClick={() => {
                             if (selectedItem) {
                                 moves.useItem(selectedItem.name);
-                                console.log("Selected item: " + selectedItem.name)
+                                // console.log("Selected item: " + selectedItem.name)
                             }
                             events.setPhase("itemEffectResultScreen");
                         }}>Use Item
@@ -284,17 +282,6 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             );
             break;
 
-        // case "correctAnswerScreen":
-        //     eventScreenContents = (
-        //         <div>
-        //             <span className="inGameText">Correct Answer Screen{G.currentEvent.onCorrect}</span>
-        //             <div className="event-button-container">
-        //                 <button onClick={() => events.setPhase("pickUpItemScreen")} className="answerButton">Pick Up Item</button>
-        //             </div>
-        //         </div>
-        //     )
-        //     break;
-
         // case "pickUpItemScreen":
         //     console.log("Current event from pick up item screen: " + G.currentEvent.eventReward)
         //
@@ -303,20 +290,6 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
         //             <span className="inGameText">{G.currentEvent.eventReward.description}</span>
         //             <div className="event-button-container">
         //                 <button onClick={() => { events.setPhase("endTurnScreen"); moves.pickUpItem(G.currentEvent.eventReward) }} className="answerButton">Proceed</button>
-        //             </div>
-        //         </div>
-        //     )
-        //     break;
-
-        // case "wrongAnswerScreen":
-        //     const incorrectIndex = G.players[ctx.currentPlayer].selectedOption;
-        //     console.log("This is index of users incorrect answer: "+ incorrectIndex)
-        //     const resultAnswer = G.currentEvent.results[incorrectIndex];
-        //     eventScreenContents = (
-        //         <div>
-        //             <span className="inGameText">{resultAnswer}</span>
-        //             <div className="event-button-container">
-        //                 <button onClick={() => events.setPhase("endTurnScreen")} className="answerButton">End Turn</button>
         //             </div>
         //         </div>
         //     )
@@ -334,7 +307,23 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                 <div>
                     <span className="inGameText">Event Result Screen {G.currentEvent.results[answerIndex].description}</span>
                     <div className="event-button-container">
-                        <button onClick={() => events.setPhase("endTurnScreen")} className="answerButton">Proceed</button>
+                        <button onClick={() => events.setPhase("eventResponseScreen2")} className="answerButton">Proceed</button>
+                    </div>
+                </div>
+            )
+            break;
+
+        case "eventResponseScreen2":
+            const answerInd = G.players[ctx.currentPlayer].selectedOption;
+            eventScreenContents = (
+                <div>
+                    <span className="inGameText">Event Result Screen {G.currentEvent.results[answerInd].resultReward.description}</span>
+                    <div className="event-button-container">
+                        <button onClick={() => {
+                            events.setPhase("endTurnScreen");
+                            console.log("Event response screen 2: result reward" + G.currentEvent.results[answerInd].resultReward)
+                            moves.pickUpItem(G.currentEvent.results[answerInd].resultReward);
+                        }} className="answerButton">Proceed</button>
                     </div>
                 </div>
             )

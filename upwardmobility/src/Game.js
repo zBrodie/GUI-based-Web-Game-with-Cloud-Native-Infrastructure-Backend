@@ -230,13 +230,22 @@ export const UpwardsMobility = {
             G.players[ctx.currentPlayer].selectedOption = answerIndex;
         },
 
-        pickUpItem: ({G, ctx}) => {
+        pickUpItem: ({G, ctx}, obj) => {
 
-            if (G.currentEvent.eventReward.type === "item") {
-                G.players[ctx.currentPlayer].inventory.push(G.currentEvent.eventReward.item);
+            // if (G.currentEvent.eventReward.type === "item") {
+            //     G.players[ctx.currentPlayer].inventory.push(G.currentEvent.eventReward.item);
+            // }
+            // if (G.currentEvent.eventReward.type === "buff") {
+            //     G.players[ctx.currentPlayer].buffs.push(G.currentEvent.eventReward.buff);
+            // }
+
+            console.log("Inside of pickUpItem function. Object: " + obj.type)
+
+            if (obj.type === "item") {
+                G.players[ctx.currentPlayer].inventory.push(obj.item);
             }
-            if (G.currentEvent.eventReward.type === "buff") {
-                G.players[ctx.currentPlayer].buffs.push(G.currentEvent.eventReward.buff);
+            if (obj.type === "buff") {
+                G.players[ctx.currentPlayer].buffs.push(obj.buff);
             }
 
         },
@@ -329,6 +338,9 @@ export const UpwardsMobility = {
 
         },
         eventResponseScreen: {
+
+        },
+        eventResponseScreen2: {
 
         }
     },
