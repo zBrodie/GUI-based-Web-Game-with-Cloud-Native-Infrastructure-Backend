@@ -242,6 +242,9 @@ export const UpwardsMobility = {
             if (obj.type === "buff") {
                 G.players[ctx.currentPlayer].buffs.push(obj.buff);
             }
+            if (obj.type === "nothing") {
+                console.log("Nothing happened")
+            }
 
         },
 
