@@ -1,9 +1,11 @@
-import { TurnOrder, Client, Server, Game } from "boardgame.io/core";
+import { TurnOrder } from "boardgame.io/core";
 import montyPythonImage from "./monypython.png";
-
-import react from 'react';
+import React from 'react';
 import { UpwardMobilityBoard } from "./Board";
-import {eventsArray, itemsArray, buffsArray} from "./eventsfile";
+import { eventsArray, itemsArray, buffsArray } from "./eventsfile";
+
+
+
 export const UpwardsMobility = {
 
     // Turn phase flow
@@ -232,13 +234,6 @@ export const UpwardsMobility = {
 
         pickUpItem: ({G, ctx}, obj) => {
 
-            // if (G.currentEvent.eventReward.type === "item") {
-            //     G.players[ctx.currentPlayer].inventory.push(G.currentEvent.eventReward.item);
-            // }
-            // if (G.currentEvent.eventReward.type === "buff") {
-            //     G.players[ctx.currentPlayer].buffs.push(G.currentEvent.eventReward.buff);
-            // }
-
             console.log("Inside of pickUpItem function. Object: " + obj.type)
 
             if (obj.type === "item") {
@@ -345,3 +340,5 @@ export const UpwardsMobility = {
         }
     },
 }
+
+// module.exports = { UpwardsMobility };

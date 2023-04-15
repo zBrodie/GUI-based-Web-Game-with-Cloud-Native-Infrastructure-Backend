@@ -371,7 +371,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             <img id="NoPath_-_Copy_10" src="NoPath_-_Copy_10.png" srcSet="NoPath_-_Copy_10.png 1x, NoPath_-_Copy_10@2x.png 2x"/>
 
             <div className="GamePlayer_1" >
-                <span class = "playerNameDis">{disPlay1Name}</span>
+                <span className = "playerNameDis">{disPlay1Name}</span>
                 <ellipse id="GamePlayer_1" ></ellipse>
                 <span className="playerJobTitleDis">{disPlay1Job}</span>
             </div>
