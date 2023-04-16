@@ -8,6 +8,7 @@ import playerList from './PlayerListBackground.png'
 import gamelogo from './Upward_Mobility_big.png'
 import { moveDist } from "./Game";
 import { eventsArray} from "./eventsfile";
+import {itemsArray} from "./itemsFile";
 
 // console.log("Events array: " + eventsArray)
 
@@ -244,41 +245,60 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             break;
 
         case "visitShopScreen":
-
-
             eventScreenContents = (
                 <div>
-                    <span id="rollVal" className="inGameText"> We are in the shop now</span>
-                    <img src="" className="EventImage" id="EventImage"></img>
+                    <span className="inGameText">We are in the shop now</span>
+                    <img src="" className="EventImage" id="EventImage" alt="Shop Image"></img>
                     <div className="event-button-container">
-                        <button onClick={() => events.setPhase("eventScreen")} className="answerButton">Item 1: 40 $$</button>
-                        <button onClick={() => events.setPhase("eventScreen")} className="answerButton">Item 2: 30 $$</button>
-                        <button onClick={() => events.setPhase("eventScreen")} className="answerButton">Item 3: 20 $$</button>
+                        {itemsArray.map((item) => (
+                            <button key={item.itemID} onClick={() => {
+                                if (G.players[ctx.currentPlayer].currency >= item.cost) {
+                                    moves.subtractCurrency(item.cost);
+                                    moves.pickUpItemFromStore(item.item);
+                                    events.setPhase("successfulPurchaseScreen");
+                                } else {
+                                    events.setPhase("unsuccessfulPurchaseScreen");
+                                }
+                            }} className="answerButton">{item.item.name}: {item.cost} $$</button>
+                        ))}
                     </div>
                 </div>
-            )
+            );
             break;
-            case "successfulPurchaseScreen":
-                eventScreenContents = (
-                    <div>
-                        <span className="inGameText">Successful purchase</span>
-                        <div className="event-button-container">
-                            <button onClick={() => events.setPhase("eventScreen")} className="answerButton">Proceed</button>
-                        </div>
+
+        case "successfulPurchaseScreen":
+            eventScreenContents = (
+                <div>
+                    <span className="inGameText">Successful purchase</span>
+                    <div className="event-button-container">
+                        <button onClick={() => events.setPhase("proceedToEventScreen")} className="answerButton">Proceed</button>
                     </div>
-                )
-                break;
+                </div>
+            );
+            break;
 
         case "unsuccessfulPurchaseScreen":
             eventScreenContents = (
                 <div>
                     <span className="inGameText">Insufficient funds for this item</span>
                     <div className="event-button-container">
+                        <button onClick={() => events.setPhase("proceedToEventScreen")} className="answerButton">Proceed</button>
+                    </div>
+                </div>
+            );
+            break;
+
+        case "proceedToEventScreen":
+            eventScreenContents = (
+                <div>
+                    <span className="inGameText">Proceed to Event</span>
+                    <div className="event-button-container">
                         <button onClick={() => events.setPhase("eventScreen")} className="answerButton">Proceed</button>
                     </div>
                 </div>
-            )
+            );
             break;
+
 
 
         case "insufficientFundsScreen":

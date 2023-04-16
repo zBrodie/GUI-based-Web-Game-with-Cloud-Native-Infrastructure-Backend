@@ -16,7 +16,7 @@ export const eventsArray = [
             "What is an unladen swallow?"
         ],
         results: [
-            { description: "this is what happens on the first answer", effect: "effectResponse1", cost: 10,
+            { description: "this is what happens on the first answer", effect: "effectResponse1", cost: -1000,
                 resultReward: {
                     type: "buff",
                     description: "Description for index 0 inside of resultReward",
@@ -26,7 +26,7 @@ export const eventsArray = [
                     description: "you dont have enough money to do this index 0",
                 },
             },
-            { description: "header Response description for index 1", effect: "effectResponse1", image: windowsError, cost: 20,
+            { description: "header Response description for index 1", effect: "effectResponse1", image: windowsError, cost: -1000,
                 resultReward: {
                     type: "item",
                     description: "Description for index 1 inside of resultReward",
@@ -36,7 +36,7 @@ export const eventsArray = [
                     description: "you dont have enough money to do this index 1",
                 },
             },
-            { description: "header Response description for index 2", effect: "effectResponse1", image : usbDrive, cost: 30,
+            { description: "header Response description for index 2", effect: "effectResponse1", image : usbDrive, cost: -1000,
                 resultReward: {
                     type: "item",
                     description: "Description for index 2 inside of resultReward",

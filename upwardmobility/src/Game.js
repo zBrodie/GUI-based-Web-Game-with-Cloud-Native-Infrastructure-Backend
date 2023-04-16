@@ -2,7 +2,8 @@ import { TurnOrder } from "boardgame.io/core";
 import montyPythonImage from "./monypython.png";
 import React from 'react';
 import { UpwardMobilityBoard } from "./Board";
-import { eventsArray, itemsArray, buffsArray } from "./eventsfile";
+import { eventsArray } from "./eventsfile";
+import { itemsArray } from "./itemsFile";
 import buriedTreasure from "./buriedtreasure.avif";
 
 
@@ -30,12 +31,12 @@ export const UpwardsMobility = {
             0: {
                 position: 0,
                 inventory: [
-                    { name: "Staff of MoMoney", image: montyPythonImage, description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
-                    { name: "Staff of NoMoney", image: montyPythonImage, description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
-                    { name: "Orb of MoMoney", image: montyPythonImage, description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
+                    // { name: "Staff of MoMoney", image: montyPythonImage, description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
+                    // { name: "Staff of NoMoney", image: montyPythonImage, description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
+                    // { name: "Orb of MoMoney", image: montyPythonImage, description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
                 ],
                 buffs: [],
-                currency: 0,
+                currency: 50,
                 jobTitle: "Starting job title",
                 jobTitleDescription: "Starting job description",
                 selectedOption: -1,
@@ -44,9 +45,9 @@ export const UpwardsMobility = {
             1: {
                 position: 0,
                 inventory: [
-                    { name: "Staff of MoMoney", image: montyPythonImage, description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
-                    { name: "Staff of NoMoney", image: montyPythonImage, description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
-                    { name: "Orb of MoMoney", image: montyPythonImage, description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
+                    // { name: "Staff of MoMoney", image: montyPythonImage, description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
+                    // { name: "Staff of NoMoney", image: montyPythonImage, description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
+                    // { name: "Orb of MoMoney", image: montyPythonImage, description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
                 ],
                 buffs: [],
                 currency: 0,
@@ -236,7 +237,8 @@ export const UpwardsMobility = {
 
         pickUpItem: ({G, ctx}, obj) => {
 
-            console.log("Inside of pickUpItem function. Object: " + obj.type)
+            // console.log("Inside of pickUpItem function. Object: " + obj.type)
+            console.log(obj)
 
             if (obj.type === "item") {
                 G.players[ctx.currentPlayer].inventory.push(obj.item);
@@ -250,7 +252,10 @@ export const UpwardsMobility = {
             if (obj.type === "both") {
                 console.log("both item and buff will be pushed here")
             }
+        },
 
+        pickUpItemFromStore: ({G, ctx}, obj) => {
+            G.players[ctx.currentPlayer].inventory.push(obj);
         },
 
         eventResponse: ({G, ctx}, eventEffect) => {
@@ -356,6 +361,9 @@ export const UpwardsMobility = {
 
         },
         unsuccessfulPurchaseScreen: {
+
+        },
+        proceedToEventScreen: {
 
         }
     },
