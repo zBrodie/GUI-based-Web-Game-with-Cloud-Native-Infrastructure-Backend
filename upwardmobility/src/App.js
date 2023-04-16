@@ -4,7 +4,7 @@ import React from "react";
 import { Client } from "boardgame.io/react";
 import { UpwardsMobility } from "./Game";
 import { UpwardMobilityBoard } from "./Board";
-import { Server } from "boardgame.io/server";
+// import { Server } from "boardgame.io/server";
 import './GamePageStyle.css';
 
 // const server = Server({

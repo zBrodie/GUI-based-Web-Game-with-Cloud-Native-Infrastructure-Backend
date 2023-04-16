@@ -203,35 +203,97 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             eventScreenContents = (
                 <div>
                     <span id="rollVal" className="inGameText"> Player {ctx.currentPlayer + 1} with job title: {G.players[ctx.currentPlayer].jobTitle} rolls a {moveDist} landing on cell {G.players[ctx.currentPlayer].position}</span>
-                    <button onClick={() => events.setPhase("eventScreen")} className="inGameButton" id="showEventButton">Show Event</button>
-                    <button onClick={() => events.setPhase("useItemScreen")} className="inGameButton" id="use-item-button">Use Item</button>
+                    <div className="event-button-container">
+                        <button onClick={() => events.setPhase("eventScreen")} className="answerButton">Show Event</button>
+                        <button onClick={() => events.setPhase("visitShopScreen")} className="answerButton">Visit Shop</button>
+                        <button onClick={() => events.setPhase("useItemScreen")} className="answerButton">Use Item</button>
+                    </div>
                 </div>
             )
             break;
         case "eventScreen":
+
+            const handleOptionClick = (index) => {
+                const selectedOption = G.currentEvent.results[index];
+
+                // Check if the player has enough money for the chosen option
+                if (G.players[ctx.currentPlayer].currency >= selectedOption.cost) {
+                    moves.selectAnswer(index);
+                    moves.eventResponse(selectedOption.effect);
+                    // G.players[ctx.currentPlayer].currency -= selectedOption.cost;
+                    moves.subtractCurrency(selectedOption.cost);
+                    events.setPhase("eventResponseScreen");
+                } else {
+                    moves.selectAnswer(index);
+                    events.setPhase("insufficientFundsScreen");
+                }
+            };
             eventScreenContents = (
                 <div>
                     <div>
                         <span className="inGameText">{G.currentEvent.description}</span>
-                        <img className="EventImage" id="EventImage" src={G.currentEvent.image} />
+                        {G.currentEvent.image && <img className="EventImage" id="EventImage" src={G.currentEvent.image} />}
                     </div>
                     <div className="event-button-container">
                         {G.currentEvent.options && G.currentEvent.options.map((option, index) => (
-                            <button key={index} onClick={() => {
-                                moves.selectAnswer(index);
-                                // console.log("This is index: ", index)
-                                // console.log("This is event response: ", G.currentEvent.results[index].effect)
-                                moves.eventResponse(G.currentEvent.results[index].effect);
-                                // moves.pickUpItem(G.currentEvent.results[index].resultReward);
-                                events.setPhase("eventResponseScreen");
-                            }} className="answerButton">{option}</button>
+                            <button key={index} onClick={() => handleOptionClick(index)} className="answerButton">{option}</button>
                         ))}
                     </div>
+                </div>
+            );
+            break;
 
+        case "visitShopScreen":
+
+
+            eventScreenContents = (
+                <div>
+                    <span id="rollVal" className="inGameText"> We are in the shop now</span>
+                    <img src="" className="EventImage" id="EventImage"></img>
+                    <div className="event-button-container">
+                        <button onClick={() => events.setPhase("eventScreen")} className="answerButton">Item 1: 40 $$</button>
+                        <button onClick={() => events.setPhase("eventScreen")} className="answerButton">Item 2: 30 $$</button>
+                        <button onClick={() => events.setPhase("eventScreen")} className="answerButton">Item 3: 20 $$</button>
+                    </div>
                 </div>
             )
-
             break;
+            case "successfulPurchaseScreen":
+                eventScreenContents = (
+                    <div>
+                        <span className="inGameText">Successful purchase</span>
+                        <div className="event-button-container">
+                            <button onClick={() => events.setPhase("eventScreen")} className="answerButton">Proceed</button>
+                        </div>
+                    </div>
+                )
+                break;
+
+        case "unsuccessfulPurchaseScreen":
+            eventScreenContents = (
+                <div>
+                    <span className="inGameText">Insufficient funds for this item</span>
+                    <div className="event-button-container">
+                        <button onClick={() => events.setPhase("eventScreen")} className="answerButton">Proceed</button>
+                    </div>
+                </div>
+            )
+            break;
+
+
+        case "insufficientFundsScreen":
+            let answerIndex = G.players[ctx.currentPlayer].selectedOption;
+            let getEventResult = G.currentEvent.results[answerIndex].effect;
+                eventScreenContents = (
+                    <div>
+                        <span className="inGameText">{G.currentEvent.results[answerIndex].resultInsufficientFunds.description}</span>
+                        <div className="event-button-container">
+                            <button onClick={() => events.setPhase("endTurnScreen")} className="answerButton">Proceed</button>
+                        </div>
+                    </div>
+                );
+                break;
+
 
         case "useItemScreen":
             eventScreenContents = (
@@ -299,13 +361,14 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             // event response screen
 
         case "eventResponseScreen":
-            const answerIndex = G.players[ctx.currentPlayer].selectedOption;
-            const getEventResult = G.currentEvent.results[answerIndex].effect;
+            let answerIndex2 = G.players[ctx.currentPlayer].selectedOption;
+            // const answerIndex = G.players[ctx.currentPlayer].selectedOption;
+            // const getEventResult = G.currentEvent.results[answerIndex].effect;
             // console.log("This is index of users answer: "+ answerIndex)
             // console.log("Event effect : " + getEventResult)
             eventScreenContents = (
                 <div>
-                    <span className="inGameText">Event Result Screen {G.currentEvent.results[answerIndex].description}</span>
+                    <span className="inGameText">{G.currentEvent.results[answerIndex2].description}</span>
                     <div className="event-button-container">
                         <button onClick={() => events.setPhase("eventResponseScreen2")} className="answerButton">Proceed</button>
                     </div>
@@ -317,7 +380,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             const answerInd = G.players[ctx.currentPlayer].selectedOption;
             eventScreenContents = (
                 <div>
-                    <span className="inGameText">Event Result Screen {G.currentEvent.results[answerInd].resultReward.description}</span>
+                    <span className="inGameText">{G.currentEvent.results[answerInd].resultReward.description}</span>
                     <div className="event-button-container">
                         <button onClick={() => {
                             events.setPhase("endTurnScreen");
