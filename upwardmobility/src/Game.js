@@ -175,21 +175,6 @@ export const UpwardsMobility = {
 
             console.log("Current player job title : " + G.players[ctx.currentPlayer].jobTitle)
 
-            // Check for players active buffs
-            // G.players[ctx.currentPlayer].buffs.forEach((buff) => {
-            //     if (buff.type === "moMoneyBuff") {
-            //         moveDist += 1;
-            //         buff.duration--;
-            //         if (buff.duration === 0) {
-            //             G.players[ctx.currentPlayer].buffs.splice(
-            //                 G.players[ctx.currentPlayer].buffs.indexOf(buff),
-            //                 1
-            //             );
-            //         }
-            //     }
-            // });
-
-
 
             G.players[ctx.currentPlayer].buffs.forEach((buff, index) => {
                 switch (buff.name) {
@@ -205,10 +190,6 @@ export const UpwardsMobility = {
             });
 
             G.currentEvent = eventsArray[Math.floor(Math.random() * eventsArray.length)];
-            // G.currentEvent = eventsArray[Math.floor(Math.random() * 2)];
-
-            // console.log("current event reward type: ", G.currentEvent.eventReward.type)
-
             events.setPhase("eventOrItemScreen");
         },
 
@@ -260,8 +241,6 @@ export const UpwardsMobility = {
 
         eventResponse: ({G, ctx}, eventEffect) => {
 
-            // console.log("Inside of eventResponse function. Effect: " + eventEffect)
-
             switch (eventEffect) {
                 case "effectResponse1":
                     G.players[ctx.currentPlayer].currency += 3;
@@ -276,6 +255,9 @@ export const UpwardsMobility = {
                 case "effectResponse3":
                     G.players[ctx.currentPlayer].currency += 5;
                     console.log("Inside of move switch case for response 3")
+                    break;
+                case "insufficientFundsEffect":
+                    console.log("Inside of insufficient funds switch case")
                     break;
             }
         },

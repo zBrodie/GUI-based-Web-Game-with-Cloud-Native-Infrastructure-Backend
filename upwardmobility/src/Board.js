@@ -299,8 +299,6 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             );
             break;
 
-
-
         case "insufficientFundsScreen":
             let answerIndex = G.players[ctx.currentPlayer].selectedOption;
             let getEventResult = G.currentEvent.results[answerIndex].effect;
@@ -308,12 +306,11 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                     <div>
                         <span className="inGameText">{G.currentEvent.results[answerIndex].resultInsufficientFunds.description}</span>
                         <div className="event-button-container">
-                            <button onClick={() => events.setPhase("endTurnScreen")} className="answerButton">Proceed</button>
+                            <button onClick={() =>  {events.setPhase("endTurnScreen"); moves.eventResponse(G.currentEvent.results[answerIndex].resultInsufficientFunds.effect)}} className="answerButton">Proceed</button>
                         </div>
                     </div>
                 );
                 break;
-
 
         case "useItemScreen":
             eventScreenContents = (
