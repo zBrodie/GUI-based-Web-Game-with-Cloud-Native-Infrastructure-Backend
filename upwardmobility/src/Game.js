@@ -1,9 +1,13 @@
-import { TurnOrder, Client, Server, Game } from "boardgame.io/core";
+import { TurnOrder } from "boardgame.io/core";
 import montyPythonImage from "./monypython.png";
-
-import react from 'react';
+import React from 'react';
 import { UpwardMobilityBoard } from "./Board";
-import {eventsArray, itemsArray, buffsArray} from "./eventsfile";
+import { eventsArray } from "./eventsfile";
+import { itemsArray } from "./itemsFile";
+import buriedTreasure from "./buriedtreasure.avif";
+
+
+
 export const UpwardsMobility = {
 
     // Turn phase flow
@@ -32,7 +36,7 @@ export const UpwardsMobility = {
                     // { name: "Orb of MoMoney", image: montyPythonImage, description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
                 ],
                 buffs: [],
-                currency: 0,
+                currency: 50,
                 jobTitle: "Starting job title",
                 jobTitleDescription: "Starting job description",
                 selectedOption: -1,
@@ -41,9 +45,9 @@ export const UpwardsMobility = {
             1: {
                 position: 0,
                 inventory: [
-                //     { name: "Staff of MoMoney", image: montyPythonImage, description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
-                //     { name: "Staff of NoMoney", image: montyPythonImage, description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
-                //     { name: "Orb of MoMoney", image: montyPythonImage, description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
+                    // { name: "Staff of MoMoney", image: montyPythonImage, description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
+                    // { name: "Staff of NoMoney", image: montyPythonImage, description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
+                    // { name: "Orb of MoMoney", image: montyPythonImage, description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
                 ],
                 buffs: [],
                 currency: 0,
@@ -171,27 +175,13 @@ export const UpwardsMobility = {
 
             console.log("Current player job title : " + G.players[ctx.currentPlayer].jobTitle)
 
-            // Check for players active buffs
-            // G.players[ctx.currentPlayer].buffs.forEach((buff) => {
-            //     if (buff.type === "moMoneyBuff") {
-            //         moveDist += 1;
-            //         buff.duration--;
-            //         if (buff.duration === 0) {
-            //             G.players[ctx.currentPlayer].buffs.splice(
-            //                 G.players[ctx.currentPlayer].buffs.indexOf(buff),
-            //                 1
-            //             );
-            //         }
-            //     }
-            // });
-
 
             G.players[ctx.currentPlayer].buffs.forEach((buff, index) => {
                 switch (buff.name) {
                     case "Buff of Mo Money":
                         G.players[ctx.currentPlayer].currency += 2;
-                        buff.duration--;
 
+                        buff.duration--;
                         if (buff.duration === 0) {
                             G.players[ctx.currentPlayer].buffs.splice(index, 1);
                         }
@@ -200,10 +190,6 @@ export const UpwardsMobility = {
             });
 
             G.currentEvent = eventsArray[Math.floor(Math.random() * eventsArray.length)];
-            // G.currentEvent = eventsArray[Math.floor(Math.random() * 2)];
-
-            // console.log("current event reward type: ", G.currentEvent.eventReward.type)
-
             events.setPhase("eventOrItemScreen");
         },
 
@@ -211,7 +197,7 @@ export const UpwardsMobility = {
             G.players[ctx.currentPlayer].currency += currency;
         },
 
-        loseCurrency: ({G, ctx, events}, currency) => {
+        subtractCurrency: ({G, ctx, events}, currency) => {
             G.players[ctx.currentPlayer].currency -= currency;
         },
 
@@ -230,20 +216,30 @@ export const UpwardsMobility = {
             G.players[ctx.currentPlayer].selectedOption = answerIndex;
         },
 
-        pickUpItem: ({G, ctx}) => {
+        pickUpItem: ({G, ctx}, obj) => {
 
-            if (G.currentEvent.eventReward.type === "item") {
-                G.players[ctx.currentPlayer].inventory.push(G.currentEvent.eventReward.item);
-            }
-            if (G.currentEvent.eventReward.type === "buff") {
-                G.players[ctx.currentPlayer].buffs.push(G.currentEvent.eventReward.buff);
-            }
+            // console.log("Inside of pickUpItem function. Object: " + obj.type)
+            console.log(obj)
 
+            if (obj.type === "item") {
+                G.players[ctx.currentPlayer].inventory.push(obj.item);
+            }
+            if (obj.type === "buff") {
+                G.players[ctx.currentPlayer].buffs.push(obj.buff);
+            }
+            if (obj.type === "nothing") {
+                console.log("Nothing happened")
+            }
+            if (obj.type === "both") {
+                console.log("both item and buff will be pushed here")
+            }
+        },
+
+        pickUpItemFromStore: ({G, ctx}, obj) => {
+            G.players[ctx.currentPlayer].inventory.push(obj);
         },
 
         eventResponse: ({G, ctx}, eventEffect) => {
-
-            // console.log("Inside of eventResponse function. Effect: " + eventEffect)
 
             switch (eventEffect) {
                 case "effectResponse1":
@@ -259,6 +255,9 @@ export const UpwardsMobility = {
                 case "effectResponse3":
                     G.players[ctx.currentPlayer].currency += 5;
                     console.log("Inside of move switch case for response 3")
+                    break;
+                case "insufficientFundsEffect":
+                    console.log("Inside of insufficient funds switch case")
                     break;
             }
         },
@@ -277,7 +276,7 @@ export const UpwardsMobility = {
                     G.players[ctx.currentPlayer].currency -= Math.random() * 5;
                     break;
                 case "Orb of MoMoney":
-                    G.players[ctx.currentPlayer].buffs.push({name: "Buff of Mo Money", duration: 3});
+                    G.players[ctx.currentPlayer].buffs.push({ name: "Buff of Mo Money", image: buriedTreasure, description: "Description of buff", duration: 5 });
                     break;
             }
 
@@ -289,9 +288,9 @@ export const UpwardsMobility = {
 
         // apply buff function
 
-        applyBuff: ({ G, ctx }, playerId, buffType, duration) => {
-            G.players[ctx.currentPlayer].buffs.push({ type: buffType, duration: duration });
-        },
+        // applyBuff: ({ G, ctx }, playerId, buffType, duration) => {
+        //     G.players[ctx.currentPlayer].buffs.push({ type: buffType, duration: duration });
+        // },
 
     },
     phases: {
@@ -330,6 +329,26 @@ export const UpwardsMobility = {
         },
         eventResponseScreen: {
 
+        },
+        eventResponseScreen2: {
+
+        },
+        insufficientFundsScreen: {
+
+        },
+        visitShopScreen: {
+
+        },
+        successfulPurchaseScreen: {
+
+        },
+        unsuccessfulPurchaseScreen: {
+
+        },
+        proceedToEventScreen: {
+
         }
     },
 }
+
+// module.exports = { UpwardsMobility };
