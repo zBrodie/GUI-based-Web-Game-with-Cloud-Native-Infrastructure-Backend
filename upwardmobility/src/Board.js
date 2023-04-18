@@ -46,6 +46,36 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
     const [player5, setPlayer5] = useState(false)
     const [player6, setPlayer6] = useState(false)
 
+    const [player1Token, setP1Token] = useState(false)
+    const [player2Token, setP2Token] = useState(false)
+    const [player3Token, setP3Token] = useState(false)
+    const [player4Token, setP4Token] = useState(false)
+    const [player5Token, setP5Token] = useState(false)
+    const [player6Token, setP6Token] = useState(false)
+
+    const[playerTokenGen, setGen] = useState(false)
+
+    function getRightState(num){
+        if(num === 0){
+            return player1Token
+        }
+        if(num === 1){
+            return player2Token
+        }
+        if(num === 2){
+            return player3Token
+        }
+        if(num === 3){
+            return player4Token
+        }
+        if(num === 4){
+            return player5Token
+        }
+        if(num === 5){
+            return player6Token
+        }
+    }
+
     useEffect(() =>{
         if(G.players[0] !== undefined){
             setPlayer1(true)
@@ -130,26 +160,32 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
       if(G.players[0] !== undefined){
           setPlay1Name("Player 1")
           setPlay1Job(G.players[0].jobTitle)
+          setP1Token(true)
       }
       if(G.players[1] !== undefined){
           setPlay2Name("Player 2")
           setPlay2Job(G.players[1].jobTitle)
+          setP2Token(true)
       }
       if(G.players[2] !== undefined){
           setPlay3Name("Player 3")
           setPlay3Job(G.players[2].jobTitle)
+          setP3Token(true)
       }
         if(G.players[3] !== undefined){
             setPlay4Name("Player 4")
             setPlay4Job(G.players[3].jobTitle)
+            setP4Token(true)
         }
         if(G.players[4] !== undefined){
             setPlay5Name("Player 5")
             setPlay5Job(G.players[4].jobTitle)
+            setP5Token(true)
         }
         if(G.players[5] !== undefined){
             setPlay6Name("Player 6")
             setPlay6Job(G.players[5].jobTitle)
+            setP6Token(true)
         }
     })
 
@@ -166,10 +202,107 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
         ctx.phase = "winningGameScreen"
     }
 
+    function setRightState(num){
+        if(num === 0){
+            setP1Token(true)
+            return player1Token
+        }
+        if(num === 1){
+            setP2Token(true)
+            return player2Token
+        }
+        if(num === 2){
+            setP3Token(true)
+            return player3Token
+        }
+        if(num === 3){
+            setP4Token(true)
+            return player4Token
+        }
+        if(num === 4){
+            setP5Token(true)
+            return player5Token
+        }
+        if(num === 5){
+            setP6Token(true)
+            return player6Token
+        }
+
+    }
+
+    useEffect(() =>{
+        if(player1Token == true){
+            console.log("HITS 1")
+            let playerToken = document.createElement("div")
+            playerToken.setAttribute("id", "playerToken" + 0);
+            playerToken.setAttribute("class", "playerToken")
+            playerToken.style.top = "93%"
+            playerToken.style.backgroundColor = "rgba(234,0,217,1)"
+            document.getElementById("progressionDiv").append(playerToken)
+            setP1Token(true)
+        }
+        if(player2Token == true){
+            console.log("HITS 2")
+            let playerToken = document.createElement("div")
+            playerToken.setAttribute("id", "playerToken" + 1);
+            playerToken.setAttribute("class", "playerToken")
+            playerToken.style.top = "93%"
+            playerToken.style.backgroundColor = "rgba(115,248,255,1)"
+            document.getElementById("progressionDiv").append(playerToken)
+            setP2Token(true)
+        }
+        if(player3Token == true){
+            console.log("HITS 2")
+            let playerToken = document.createElement("div")
+            playerToken.setAttribute("id", "playerToken" + 2);
+            playerToken.setAttribute("class", "playerToken")
+            playerToken.style.top = "93%"
+            playerToken.style.backgroundColor = "rgba(115,248,255,1)"
+            document.getElementById("progressionDiv").append(playerToken)
+            setP3Token(true)
+        }
+        if(player4Token == true){
+            console.log("HITS 2")
+            let playerToken = document.createElement("div")
+            playerToken.setAttribute("id", "playerToken" + 3);
+            playerToken.setAttribute("class", "playerToken")
+            playerToken.style.top = "93%"
+            playerToken.style.backgroundColor = "rgba(115,248,255,1)"
+            document.getElementById("progressionDiv").append(playerToken)
+            setP4Token(true)
+        }
+        if(player5Token == true){
+            console.log("HITS 2")
+            let playerToken = document.createElement("div")
+            playerToken.setAttribute("id", "playerToken" + 4);
+            playerToken.setAttribute("class", "playerToken")
+            playerToken.style.top = "93%"
+            playerToken.style.backgroundColor = "rgba(115,248,255,1)"
+            document.getElementById("progressionDiv").append(playerToken)
+            setP5Token(true)
+        }
+        if(player6Token == true){
+            console.log("HITS 2")
+            let playerToken = document.createElement("div")
+            playerToken.setAttribute("id", "playerToken" + 5);
+            playerToken.setAttribute("class", "playerToken")
+            playerToken.style.top = "93%"
+            playerToken.style.backgroundColor = "rgba(115,248,255,1)"
+            document.getElementById("progressionDiv").append(playerToken)
+            setP6Token(true)
+        }
+
+    }, [])
+/*
     useEffect(() => {
-        if(alreadyGen === false){
-            for(let i = 0; i< 2; i++){
-                if(G.players[i] !== undefined){
+        if(playerTokenGen == false){
+            for(let i = 0; i< 6; i++){
+                if(getRightState(i) == true){
+
+                }
+                else if(G.players[i] !== undefined){
+                    setRightState(i)
+                    console.log(setRightState(i))
                     let playerToken = document.createElement("div")
                     playerToken.setAttribute("id", "playerToken" + i);
                     playerToken.setAttribute("class", "playerToken")
@@ -188,11 +321,14 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                         playerToken.style.backgroundColor = "rgba(0,61,204,1)"
 
                     document.getElementById("progressionDiv").append(playerToken)
+
                 }
             }
             alreadyGen = true;
         }
     })
+
+ */
 
     const handleAnswerSelect = (answerIndex) => {
         moves.selectAnswer(answerIndex);
@@ -468,8 +604,8 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             </div>
 
             <div className="GameProgression" id = "progressionDiv">
-
                 <img id="ProgresionImage" src={startFinish} srcSet="NoPath_-_Copy_6.png 1x, NoPath_-_Copy_6@2x.png 2x"/>
+
             </div>
 
 

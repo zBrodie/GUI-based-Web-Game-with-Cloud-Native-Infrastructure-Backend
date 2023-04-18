@@ -339,11 +339,78 @@
     display: block;
     width: 25px;
     height: 25px;
-    background-color: green;
+    background-color: rgba(234,0,217,1);
     border-radius: 50%;
     left: 4%;
-    top: 93%;
+    top: 94%;
 }
+
+#playerToken0{
+    position: absolute;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-color: rgba(234,0,217,1);
+    border-radius: 50%;
+    left: 4%;
+    top: 94%;
+}
+
+#playerToken1{
+    position: absolute;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-color: rgba(115,248,255,1);;
+    border-radius: 50%;
+    left: 4%;
+    top: 94%;
+}
+
+#playerToken2{
+    position: absolute;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-color: rgba(0,201,60,1);
+    border-radius: 50%;
+    left: 4%;
+    top: 94%;
+}
+
+#playerToken3{
+    position: absolute;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-color: rgba(196,0,0,1);
+    border-radius: 50%;
+    left: 4%;
+    top: 94%;
+}
+
+#playerToken4{
+    position: absolute;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-color: rgba(105,0,225,1);
+    border-radius: 50%;
+    left: 4%;
+    top: 94%;
+}
+
+#playerToken5{
+    position: absolute;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-color: rgba(0,61,204,1);
+    border-radius: 50%;
+    left: 4%;
+    top: 94%;
+}
+
 
 #GamePlayer_1 {
     stroke-width: 5px;
@@ -353,6 +420,7 @@
     shape-rendering: auto;
     height: 100%;
     width: 100%;
+    top: 93%;
     background-color: rgba(54,57,63,1);
     border: 5px solid rgba(234,0,217,1);
     border-radius: 50%;
@@ -373,6 +441,7 @@
     shape-rendering: auto;
     height: 100%;
     width: 100%;
+    top: 93%;
     background-color: rgba(54,57,63,1);
     border: 5px solid rgba(115,248,255,1);;
     border-radius: 50%;
@@ -393,6 +462,7 @@
     shape-rendering: auto;
     height: 100%;
     width: 100%;
+    top: 93%;
     background-color: rgba(54,57,63,1);
     border: 5px solid rgba(0,201,60,1);
     border-radius: 50%;
@@ -413,6 +483,7 @@
     shape-rendering: auto;
     height: 100%;
     width: 100%;
+    top: 93%;
     background-color: rgba(54,57,63,1);
     border: 5px solid rgba(196,0,0,1);
     border-radius: 50%;
@@ -433,6 +504,7 @@
     shape-rendering: auto;
     height: 100%;
     width: 100%;
+    top: 93%;
     background-color: rgba(54,57,63,1);
     border: 5px solid rgba(105,0,225,1);
     border-radius: 50%;
@@ -453,6 +525,7 @@
     shape-rendering: auto;
     height: 100%;
     width: 100%;
+    top: 93%;
     background-color: rgba(54,57,63,1);
     border: 5px solid rgba(0,61,204,1);
     border-radius: 50%;
