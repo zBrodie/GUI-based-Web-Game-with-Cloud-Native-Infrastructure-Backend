@@ -9,6 +9,7 @@ import gamelogo from './Upward_Mobility_big.png'
 import { moveDist } from "./Game";
 import { eventsArray} from "./eventsfile";
 import {itemsArray} from "./itemsFile";
+import startFinish from "./StartFinishScale.png"
 
 // console.log("Events array: " + eventsArray)
 
@@ -37,6 +38,35 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
 
     const [mouseOverInventoryItem, setMouseOverInventoryItem] = useState(false)
     const [loadInventoryItems, setInventoryItems] = useState("")
+
+    const [player1, setPlayer1] = useState(false)
+    const [player2, setPlayer2] = useState(false)
+    const [player3, setPlayer3] = useState(false)
+    const [player4, setPlayer4] = useState(false)
+    const [player5, setPlayer5] = useState(false)
+    const [player6, setPlayer6] = useState(false)
+
+    useEffect(() =>{
+        if(G.players[0] !== undefined){
+            setPlayer1(true)
+        }
+        if(G.players[1] !== undefined){
+            setPlayer2(true)
+        }
+        if(G.players[2] !== undefined){
+            setPlayer3(true)
+        }
+        if(G.players[3] !== undefined){
+            setPlayer4(true)
+        }
+        if(G.players[4] !== undefined){
+            setPlayer5(true)
+        }
+        if(G.players[5] !== undefined){
+            setPlayer6(true)
+        }
+    })
+
 
     function handleMouseOver(){
         setMouseOverBuffs(true)
@@ -438,11 +468,11 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             </div>
 
             <div className="GameProgression" id = "progressionDiv">
-                <rect id="GameProgressionMenu" rx="0" ry="0" x="0" y="0">
-                </rect>
+
+                <img id="ProgresionImage" src={startFinish} srcSet="NoPath_-_Copy_6.png 1x, NoPath_-_Copy_6@2x.png 2x"/>
             </div>
 
-            <img id="ProgresionImage" src="src/Templates/assets/StartFinishScale.png" srcSet="NoPath_-_Copy_6.png 1x, NoPath_-_Copy_6@2x.png 2x"/>
+
 
 
             {/*Player List*/}
@@ -450,36 +480,52 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             </svg>
             <img id="NoPath_-_Copy_10" src="NoPath_-_Copy_10.png" srcSet="NoPath_-_Copy_10.png 1x, NoPath_-_Copy_10@2x.png 2x"/>
 
-            <div className="GamePlayer_1" >
-                <span className = "playerNameDis">{disPlay1Name}</span>
-                <ellipse id="GamePlayer_1" ></ellipse>
-                <span className="playerJobTitleDis">{disPlay1Job}</span>
-            </div>
-            <div className="GamePlayer_2">
-                <span className="playerNameDis">{disPlay2Name}</span>
-                <ellipse id="GamePlayer_2" rx="53" ry="53" cx="53" cy="53"></ellipse>
-                <span className="playerJobTitleDis">{disPlay2Job}</span>
-            </div>
-            <div className="GamePlayer_3">
-                <span className="playerNameDis">{disPlay3Name}</span>
-                <ellipse id="GamePlayer_3" rx="53" ry="53" cx="53" cy="53"></ellipse>
-                <span className="playerJobTitleDis">{disPlay3Job}</span>
-            </div>
-            <div className="GamePlayer_4">
-                <span className="playerNameDis">{disPlay4Name}</span>
-                <ellipse id="GamePlayer_4" rx="53" ry="53" cx="53" cy="53"></ellipse>
-                <span className="playerJobTitleDis">{disPlay4Job}</span>
-            </div>
-            <div className="GamePlayer_5">
-                <span className="playerNameDis">{disPlay5Name}</span>
-                <ellipse id="GamePlayer_5" rx="53" ry="53" cx="53" cy="53"></ellipse>
-                <span className="playerJobTitleDis">{disPlay5Job}</span>
-            </div>
-            <div className="GamePlayer_6">
-                <span className="playerNameDis">{disPlay6Name}</span>
-                <ellipse id="GamePlayer_6" rx="53" ry="53" cx="53" cy="53"></ellipse>
-                <span className="playerJobTitleDis">{disPlay6Job}</span>
-            </div>
+            {player1 &&
+                <div className="GamePlayer_1" >
+                    <span className = "playerNameDis">{disPlay1Name}</span>
+                    <ellipse id="GamePlayer_1" ></ellipse>
+                    <span className="playerJobTitleDis">{disPlay1Job}</span>
+                </div>
+            }
+            {player2 &&
+                <div className="GamePlayer_2">
+                    <span className="playerNameDis">{disPlay2Name}</span>
+                    <ellipse id="GamePlayer_2" rx="53" ry="53" cx="53" cy="53"></ellipse>
+                    <span className="playerJobTitleDis">{disPlay2Job}</span>
+                </div>
+            }
+
+            {player3 &&
+                <div className="GamePlayer_3">
+                    <span className="playerNameDis">{disPlay3Name}</span>
+                    <ellipse id="GamePlayer_3" rx="53" ry="53" cx="53" cy="53"></ellipse>
+                    <span className="playerJobTitleDis">{disPlay3Job}</span>
+                </div>
+            }
+
+            {player4 &&
+                <div className="GamePlayer_4">
+                    <span className="playerNameDis">{disPlay4Name}</span>
+                    <ellipse id="GamePlayer_4" rx="53" ry="53" cx="53" cy="53"></ellipse>
+                    <span className="playerJobTitleDis">{disPlay4Job}</span>
+                </div>
+            }
+
+            {player5 &&
+                <div className="GamePlayer_5">
+                    <span className="playerNameDis">{disPlay5Name}</span>
+                    <ellipse id="GamePlayer_5" rx="53" ry="53" cx="53" cy="53"></ellipse>
+                    <span className="playerJobTitleDis">{disPlay5Job}</span>
+                </div>
+            }
+
+            {player6 &&
+                <div className="GamePlayer_6">
+                    <span className="playerNameDis">{disPlay6Name}</span>
+                    <ellipse id="GamePlayer_6" rx="53" ry="53" cx="53" cy="53"></ellipse>
+                    <span className="playerJobTitleDis">{disPlay6Job}</span>
+                </div>
+            }
             {/*Player List*/}
 
 
