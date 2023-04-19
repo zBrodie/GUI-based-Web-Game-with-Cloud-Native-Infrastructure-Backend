@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react'
+import React, {Component, useEffect, useRef, useState} from 'react'
 import { Dropdown } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Popup from 'reactjs-popup';
@@ -53,7 +53,9 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
     const [player5Token, setP5Token] = useState(false)
     const [player6Token, setP6Token] = useState(false)
 
+
     const[playerTokenGen, setGen] = useState(false)
+    const genRef = useRef(playerTokenGen)
 
     function getRightState(num){
         if(num === 0){
@@ -292,7 +294,8 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             setP6Token(true)
         }
 
-    }, [])
+    }, )
+
 /*
     useEffect(() => {
         if(playerTokenGen == false){
