@@ -294,7 +294,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             setP6Token(true)
         }
 
-    }, )
+    }, [player1Token, player2Token, player3Token, player4Token, player5Token, player6Token])
 
 /*
     useEffect(() => {
