@@ -540,6 +540,21 @@
 }
 /*Player List*/
 
+.playerImg1{
+     position: absolute;
+     width: 80%;
+     height: 80%;
+     left: 8%;
+     top: 30%;
+ }
+
+.playerImg2{
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    left: 8%;
+    top: 35%;
+}
 
 /*Inventory List*/
 #Inventory {
@@ -668,6 +683,7 @@
     color: rgba(255,255,255,1);
     content: url("./BuffIcon.png");
     filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 1));
+    cursor: pointer;
 }
 
 #PlayerDebuffsIcon {
@@ -685,7 +701,7 @@
     top: 68.883425%;
     position: absolute;
     overflow: visible;
-    width: 17.645121%;
+    width: 76.645121%;
     height: 25px;
     text-align: left;
     font-family: Common Pixel;
@@ -996,7 +1012,8 @@
     text-shadow: 4px 6px 6px rgba(0,0,0,1);
     font-family: "Common Pixel";
     -webkit-text-fill-color: white;
-    font-size: 1vw;
+    font-size: .75vw;
+    cursor: pointer;
 }
 
 .showItemDescription{

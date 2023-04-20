@@ -11,6 +11,13 @@ import { eventsArray} from "./eventsfile";
 import {itemsArray, nightMarketItemsArray} from "./itemsFile";
 import startFinish from "./StartFinishScale.png"
 
+import icon1 from './imcute.png'
+import icon2 from './improud.png'
+import icon3 from './img1.png'
+import icon4 from './impointing.png'
+import icon5 from './imcool.png'
+import icon6 from './imawesome.png'
+
 // console.log("Events array: " + eventsArray)
 
 export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
@@ -155,7 +162,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
     useEffect(() =>{
         setPlayerName("Player 1")
         setPlayerJob("Job: " + G.players[0].jobTitle)
-        setPlayerCur("$" + G.players[0].currency)
+        setPlayerCur( G.players[0].currency + " Credits")
     })
 
     useEffect(()=>{
@@ -259,7 +266,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             playerToken.setAttribute("id", "playerToken" + 2);
             playerToken.setAttribute("class", "playerToken")
             playerToken.style.top = "93%"
-            playerToken.style.backgroundColor = "rgba(115,248,255,1)"
+            playerToken.style.backgroundColor = "rgba(0,201,60,1)"
             document.getElementById("progressionDiv").append(playerToken)
             setP3Token(true)
         }
@@ -269,7 +276,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             playerToken.setAttribute("id", "playerToken" + 3);
             playerToken.setAttribute("class", "playerToken")
             playerToken.style.top = "93%"
-            playerToken.style.backgroundColor = "rgba(115,248,255,1)"
+            playerToken.style.backgroundColor = "rgba(196,0,0,1)"
             document.getElementById("progressionDiv").append(playerToken)
             setP4Token(true)
         }
@@ -279,7 +286,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             playerToken.setAttribute("id", "playerToken" + 4);
             playerToken.setAttribute("class", "playerToken")
             playerToken.style.top = "93%"
-            playerToken.style.backgroundColor = "rgba(115,248,255,1)"
+            playerToken.style.backgroundColor = "rgba(105,0,225,1)"
             document.getElementById("progressionDiv").append(playerToken)
             setP5Token(true)
         }
@@ -289,7 +296,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             playerToken.setAttribute("id", "playerToken" + 5);
             playerToken.setAttribute("class", "playerToken")
             playerToken.style.top = "93%"
-            playerToken.style.backgroundColor = "rgba(115,248,255,1)"
+            playerToken.style.backgroundColor = "rgba(0,61,204,1)"
             document.getElementById("progressionDiv").append(playerToken)
             setP6Token(true)
         }
@@ -367,7 +374,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                             <button onClick = {() => moves.rollDice()}  className="DiceButton" id="DiceButton"></button>
                             <img  onClick = {() => moves.rollDice()} className="DiceImage" id="NoPath_-_Copy_8" src="NoPath_-_Copy_8.png" srcSet="NoPath_-_Copy_8.png 1x, NoPath_-_Copy_8@2x.png 2x"/>
                             <div id="A_pair_of_strange_dice_lay_bef">
-                                A pair of strange dice lay before you...
+                                Roll the Dice of Destiny
                             </div>
                         </div>
                     )
@@ -380,7 +387,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                     console.log("eventOrItemScreen")
                     newContent = (
                         <div>
-                            <span id="rollVal" className="inGameText"> Player {ctx.currentPlayer + 1} with job title: {G.players[ctx.currentPlayer].jobTitle} rolls a {moveDist} landing on cell {G.players[ctx.currentPlayer].position}</span>
+                            <span id="rollVal" className="inGameText">{G.players[ctx.currentPlayer].jobTitle} Player {parseInt((ctx.currentPlayer)) + 1} rolls a {moveDist}. They now have a social tier of {G.players[ctx.currentPlayer].position}</span>
                             <div className="event-button-container">
                                 <button onClick={() => events.setPhase("eventScreen")} className="answerButton">Show Event</button>
                                 <button onClick={() => events.setPhase("visitShopScreen")} className="answerButton">Visit Shop</button>
@@ -653,14 +660,18 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             {player1 &&
                 <div className="GamePlayer_1" >
                     <span className = "playerNameDis">{disPlay1Name}</span>
-                    <ellipse id="GamePlayer_1" ></ellipse>
+                    <ellipse id="GamePlayer_1" >
+                        <img className="playerImg1" src = {icon1}/>
+                    </ellipse>
                     <span className="playerJobTitleDis">{disPlay1Job}</span>
                 </div>
             }
             {player2 &&
                 <div className="GamePlayer_2">
                     <span className="playerNameDis">{disPlay2Name}</span>
-                    <ellipse id="GamePlayer_2" rx="53" ry="53" cx="53" cy="53"></ellipse>
+                    <ellipse id="GamePlayer_2" rx="53" ry="53" cx="53" cy="53">
+                        <img className="playerImg2" src = {icon2}/>
+                    </ellipse>
                     <span className="playerJobTitleDis">{disPlay2Job}</span>
                 </div>
             }
@@ -668,7 +679,9 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             {player3 &&
                 <div className="GamePlayer_3">
                     <span className="playerNameDis">{disPlay3Name}</span>
-                    <ellipse id="GamePlayer_3" rx="53" ry="53" cx="53" cy="53"></ellipse>
+                    <ellipse id="GamePlayer_3" rx="53" ry="53" cx="53" cy="53">
+                        <img className="playerImg1" src = {icon3}/>
+                    </ellipse>
                     <span className="playerJobTitleDis">{disPlay3Job}</span>
                 </div>
             }
@@ -676,7 +689,9 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             {player4 &&
                 <div className="GamePlayer_4">
                     <span className="playerNameDis">{disPlay4Name}</span>
-                    <ellipse id="GamePlayer_4" rx="53" ry="53" cx="53" cy="53"></ellipse>
+                    <ellipse id="GamePlayer_4" rx="53" ry="53" cx="53" cy="53">
+                        <img className="playerImg1" src = {icon4}/>
+                    </ellipse>
                     <span className="playerJobTitleDis">{disPlay4Job}</span>
                 </div>
             }
@@ -684,7 +699,9 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             {player5 &&
                 <div className="GamePlayer_5">
                     <span className="playerNameDis">{disPlay5Name}</span>
-                    <ellipse id="GamePlayer_5" rx="53" ry="53" cx="53" cy="53"></ellipse>
+                    <ellipse id="GamePlayer_5" rx="53" ry="53" cx="53" cy="53">
+                        <img className="playerImg1" src = {icon5}/>
+                    </ellipse>
                     <span className="playerJobTitleDis">{disPlay5Job}</span>
                 </div>
             }
@@ -692,7 +709,9 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
             {player6 &&
                 <div className="GamePlayer_6">
                     <span className="playerNameDis">{disPlay6Name}</span>
-                    <ellipse id="GamePlayer_6" rx="53" ry="53" cx="53" cy="53"></ellipse>
+                    <ellipse id="GamePlayer_6" rx="53" ry="53" cx="53" cy="53">
+                        <img className="playerImg1" src = {icon6}/>
+                    </ellipse>
                     <span className="playerJobTitleDis">{disPlay6Job}</span>
                 </div>
             }
@@ -711,7 +730,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                                 </React.Fragment>
                             ))}
                         </p>
-                        <p className="inventoryItemDescriptionText" onMouseOver={handleMouseOutInventory} >
+                        <p className="inventoryItemDescriptionText" onClick={handleMouseOutInventory} >
                             Hover over this to go back
                         </p>
                     </div>
@@ -759,7 +778,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                                 </React.Fragment>
                             ))}
                         </p>
-                        <p className="playerBuffText" onMouseOver={handleMouseOut}>Hover over this to go back</p>
+                        <p className="playerBuffText" onClick={handleMouseOut}>Click this to go back</p>
                     </div>
                 ) : (
                     <div>
@@ -770,7 +789,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                         <div className="PlayerJobTitle" id="PlayerJobTitle">
                             {disPlayerJob}
                         </div>
-                        <img onMouseOver={handleMouseOver} className="PlayerBuffsIcon" id="PlayerBuffsIcon" src="BuffIcon.png" srcSet="BuffIcon.png 1x, BuffIcon.png.png 2x"/>
+                        <img onClick={handleMouseOver} className="PlayerBuffsIcon" id="PlayerBuffsIcon" src="BuffIcon.png" srcSet="BuffIcon.png 1x, BuffIcon.png.png 2x"/>
                         <img className="PlayerDebuffsIcon" id="PlayerDebuffsIcon" src="DebuffIcon.png" srcSet="DebuffIcon.png 1x, DebuffIcon.png.png 2x"/>
                         <div className="PlayerCurrency" id="PlayerCurrency">
                             {disPlayerCur}
