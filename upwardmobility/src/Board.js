@@ -399,7 +399,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                             moves.selectAnswer(index);
                             moves.eventResponse(selectedOption.effect);
                             // G.players[ctx.currentPlayer].currency -= selectedOption.cost;
-                            // moves.subtractCurrency(selectedOption.cost);
+                            moves.subtractCurrency(selectedOption.cost);
                             events.setPhase("eventResponseScreen");
                         } else {
                             moves.selectAnswer(index);
@@ -431,7 +431,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                                 {itemsArray.map((item) => (
                                     <button key={item.itemID} onClick={() => {
                                         if (G.players[ctx.currentPlayer].currency >= item.cost) {
-                                            // moves.subtractCurrency(item.cost);
+                                            moves.subtractCurrency(item.cost);
                                             moves.pickUpItemFromStore(item.item);
                                             events.setPhase("successfulPurchaseScreen");
                                         } else {
@@ -453,7 +453,7 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                                 {nightMarketItemsArray.map((item) => (
                                     <button key={item.itemID} onClick={() => {
                                         if (G.players[ctx.currentPlayer].currency >= item.cost) {
-                                            // moves.subtractCurrency(item.cost);
+                                            moves.subtractCurrency(item.cost);
                                             moves.pickUpItemFromStore(item.item);
                                             events.setPhase("successfulPurchaseScreen");
                                         } else {

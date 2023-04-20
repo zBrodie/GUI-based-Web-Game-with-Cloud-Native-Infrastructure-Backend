@@ -84,35 +84,35 @@ export const eventsArray = [
         ],
         image: montyPythonImage,
     },
-    {
-        id: 2,
-        description: "This will the the market event prompting the user about three different stores to visit",
-        options: [
-            "Go to nightmarket",
-            "Go to nightmarket",
-            "Go to nightmarket"
-        ],
-        results: [
-            { description: "Proceed to the night market", effect: "nightMarketStore", cost: -9999,
-                resultReward: {
-                    type: "nothing",
-                    description: "nothing happens",
-                },
-            },
-            { description: "Proceed to the day market", effect: "nightMarketStore", cost: -9999,
-                resultReward: {
-                    type: "nothing",
-                    description: "nothing happens",
-                },
-            },
-            { description: "Proceed to sheets", effect: "nightMarketStore", cost: -9999,
-                resultReward: {
-                    type: "nothing",
-                    description: "nothing happens",
-                },
-            },
-        ],
-    },
+    // {
+    //     id: 2,
+    //     description: "This will the the market event prompting the user about three different stores to visit",
+    //     options: [
+    //         "Go to nightmarket",
+    //         "Go to nightmarket",
+    //         "Go to nightmarket"
+    //     ],
+    //     results: [
+    //         { description: "Proceed to the night market", effect: "nightMarketStore", cost: -9999,
+    //             resultReward: {
+    //                 type: "nothing",
+    //                 description: "nothing happens",
+    //             },
+    //         },
+    //         { description: "Proceed to the day market", effect: "nightMarketStore", cost: -9999,
+    //             resultReward: {
+    //                 type: "nothing",
+    //                 description: "nothing happens",
+    //             },
+    //         },
+    //         { description: "Proceed to sheets", effect: "nightMarketStore", cost: -9999,
+    //             resultReward: {
+    //                 type: "nothing",
+    //                 description: "nothing happens",
+    //             },
+    //         },
+    //     ],
+    // },
     {
         id: 3,
         description: "A rogue hacker approaches you, offering to sell you an exclusive piece of cyberware. 'This will give you the edge you need,' they say.",

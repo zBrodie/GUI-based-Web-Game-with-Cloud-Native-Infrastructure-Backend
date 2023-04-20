@@ -10,30 +10,11 @@ import buriedTreasure from "./buriedtreasure.avif";
 
 export const UpwardsMobility = {
 
-    // Turn phase flow
-    // 1) Roll dice move piece
-    // 2) Choose event or use item
-    // 3a) If event, show event, if answer question correctly something good happens otherwise something bad happens
-    // if correct answer than they pick up item and or gain currency then end turn
-    // if incorrect answer than negativeness happens then end turn
-    // 3b) If they choose the item, activate the item and do item thing and then show event
-
-    // rollScreen
-    // eventOrItemScreen
-    // itemScreen
-    // eventScreen
-    // correctAnswerScreen
-    // wrongAnswerScreen
-    // endTurnScreen
-
     setup: () => ({
         players: {
             0: {
                 position: 0,
                 inventory: [
-                    // { name: "Staff of MoMoney", image: montyPythonImage, description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
-                    // { name: "Staff of NoMoney", image: montyPythonImage, description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
-                    // { name: "Orb of MoMoney", image: montyPythonImage, description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
                 ],
                 buffs: [],
                 currency: 50,
@@ -45,9 +26,6 @@ export const UpwardsMobility = {
             1: {
                 position: 0,
                 inventory: [
-                    // { name: "Staff of MoMoney", image: montyPythonImage, description: "item 1 description", onUse: "You randomly generate between 0 and 10 coins" },
-                    // { name: "Staff of NoMoney", image: montyPythonImage, description: "item 2 description", onUse: "You randomly lose between 0 and 10 coins" },
-                    // { name: "Orb of MoMoney", image: montyPythonImage, description: "item 3 description", onUse: "You gain the buff of MoMoney for 3 turns." }
                 ],
                 buffs: [],
                 currency: 0,
@@ -67,6 +45,7 @@ export const UpwardsMobility = {
     ],
 
         currentEvent: null,
+        lastEvent: null,
 
     }),
     turn: {
@@ -161,8 +140,12 @@ export const UpwardsMobility = {
                 }
             });
 
-            G.currentEvent = eventsArray[Math.floor(Math.random() * eventsArray.length)];
-            // G.currentEvent = eventsArray[2];
+            const availableEvents = eventsArray.filter(event => event !== G.lastEvent);
+            const randomEventIndex = Math.floor(Math.random() * availableEvents.length);
+            G.currentEvent = availableEvents[randomEventIndex];
+            console.log("Current event: " + G.currentEvent.id)
+            // console.log("Last event: " + G.lastEvent.id)
+            G.lastEvent = G.currentEvent;
             events.setPhase("eventOrItemScreen");
         },
 
@@ -172,7 +155,11 @@ export const UpwardsMobility = {
 
         subtractCurrency: ({G, ctx, events}, currency) => {
             G.players[ctx.currentPlayer].currency -= currency;
+            if (G.players[ctx.currentPlayer].currency < 0) {
+                G.players[ctx.currentPlayer].currency = 0;
+            }
         },
+
 
         moveForward: ({G, ctx, events}, moveDist) => {
             G.players[ctx.currentPlayer].position += moveDist;
@@ -331,5 +318,3 @@ export const UpwardsMobility = {
         }
     },
 }
-
-// module.exports = { UpwardsMobility };
