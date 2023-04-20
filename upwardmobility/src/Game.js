@@ -68,36 +68,6 @@ export const UpwardsMobility = {
 
         currentEvent: null,
 
-        board: {
-            0: { currency: 0 },
-            1: { currency: 2 },
-            2: { currency: 2 },
-            3: { currency: -1 },
-            4: { currency: 3 },
-            5: { currency: 5, },
-            6: { currency: 1 },
-            7: { currency: 0 },
-            8: { currency: 0 },
-            9: { currency: -2 },
-            10: { currency: 0 },
-            11: { currency: 0 },
-            12: { currency: 2 },
-            13: { currency: 2 },
-            14: { currency: -1 },
-            15: { currency: 3 },
-            16: { currency: -2 },
-            17: { currency: 1 },
-            18: { currency: 2 },
-            19: { currency: 0 },
-            20: { currency: -2 },
-            21: { currency: 2 },
-            22: { currency: -2 },
-            23: { currency: -2 },
-            24: { currency: 0 },
-            25: { currency: 0 },
-        },
-
-
     }),
     turn: {
         order: TurnOrder.CONTINUE,
@@ -192,6 +162,7 @@ export const UpwardsMobility = {
             });
 
             G.currentEvent = eventsArray[Math.floor(Math.random() * eventsArray.length)];
+            // G.currentEvent = eventsArray[2];
             events.setPhase("eventOrItemScreen");
         },
 
@@ -241,7 +212,7 @@ export const UpwardsMobility = {
             G.players[ctx.currentPlayer].inventory.push(obj);
         },
 
-        eventResponse: ({G, ctx}, eventEffect) => {
+        eventResponse: ({G, ctx, events}, eventEffect) => {
 
             switch (eventEffect) {
                 case "effectResponse1":
@@ -261,6 +232,11 @@ export const UpwardsMobility = {
                 case "insufficientFundsEffect":
                     console.log("Inside of insufficient funds switch case")
                     break;
+                case "nightMarketStore":
+                    events.setPhase("nightMarketScreen");
+                    console.log("Inside of night market store switch case")
+                    break;
+
             }
         },
 
@@ -348,6 +324,9 @@ export const UpwardsMobility = {
 
         },
         proceedToEventScreen: {
+
+        },
+        nightMarketScreen: {
 
         }
     },
