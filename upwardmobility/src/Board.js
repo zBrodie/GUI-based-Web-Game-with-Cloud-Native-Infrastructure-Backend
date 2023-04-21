@@ -8,7 +8,7 @@ import playerList from './PlayerListBackground.png'
 import gamelogo from './Upward_Mobility_big.png'
 import { moveDist } from "./Game";
 import { eventsArray} from "./eventsfile";
-import {itemsArray, nightMarketItemsArray} from "./itemsFile";
+import {itemsArray} from "./itemsFile";
 import startFinish from "./StartFinishScale.png"
 
 import icon1 from './imcute.png'
@@ -466,29 +466,6 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                                 <div className="event-button-container">
                                     <button onClick={() => events.setPhase("eventScreen")} className="leaveShopButton">Leave the Shop</button>
                                 </div>
-                            </div>
-                        </div>
-                    );
-                    break;
-
-                case "nightMarketScreen":
-                    console.log("nightMarketScreen")
-                    newContent = (
-                        <div>
-                            <span className="inGameText">You are in the nightmarket</span>
-                            <img src="" className="EventImage" id="EventImage" alt="Shop Image"></img>
-                            <div className="event-button-container">
-                                {nightMarketItemsArray.map((item) => (
-                                    <button key={item.itemID} onClick={() => {
-                                        if (G.players[ctx.currentPlayer].currency >= item.cost) {
-                                            moves.subtractCurrency(item.cost);
-                                            moves.pickUpItemFromStore(item.item);
-                                            events.setPhase("successfulPurchaseScreen");
-                                        } else {
-                                            events.setPhase("unsuccessfulPurchaseScreen");
-                                        }
-                                    }} className="answerButton">{item.item.name}: {item.cost} $$</button>
-                                ))}
                             </div>
                         </div>
                     );

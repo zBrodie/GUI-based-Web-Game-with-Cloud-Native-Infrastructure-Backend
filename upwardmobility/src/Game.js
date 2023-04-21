@@ -131,7 +131,6 @@ export const UpwardsMobility = {
                 switch (buff.name) {
                     case "Buff of Mo Money":
                         G.players[ctx.currentPlayer].currency += 2;
-
                         buff.duration--;
                         if (buff.duration === 0) {
                             G.players[ctx.currentPlayer].buffs.splice(index, 1);
@@ -140,12 +139,18 @@ export const UpwardsMobility = {
                 }
             });
 
-            const availableEvents = eventsArray.filter(event => event !== G.lastEvent);
-            const randomEventIndex = Math.floor(Math.random() * availableEvents.length);
-            G.currentEvent = availableEvents[randomEventIndex];
-            // G.currentEvent = eventsArray[1]
-            console.log("Current event: " + G.currentEvent.id)
-            // console.log("Last event: " + G.lastEvent.id)
+            // const availableEvents = eventsArray.filter(event => event !== G.lastEvent);
+            // const randomEventIndex = Math.floor(Math.random() * availableEvents.length);
+            // G.currentEvent = availableEvents[randomEventIndex];
+            // events.setPhase("eventOrItemScreen");
+
+            let newEvent;
+            do {
+                const randomEventIndex = Math.floor(Math.random() * eventsArray.length);
+                newEvent = eventsArray[randomEventIndex];
+            } while (newEvent === G.lastEvent);
+
+            G.currentEvent = newEvent;
             G.lastEvent = G.currentEvent;
             events.setPhase("eventOrItemScreen");
         },
@@ -256,9 +261,9 @@ export const UpwardsMobility = {
 
         // apply buff function
 
-        // applyBuff: ({ G, ctx }, playerId, buffType, duration) => {
-        //     G.players[ctx.currentPlayer].buffs.push({ type: buffType, duration: duration });
-        // },
+        applyBuff: ({ G, ctx }, buff) => {
+            G.players[ctx.currentPlayer].buffs.push(buff);
+        },
 
     },
     phases: {
