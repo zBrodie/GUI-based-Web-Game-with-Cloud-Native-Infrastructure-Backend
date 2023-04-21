@@ -142,8 +142,8 @@ export const UpwardsMobility = {
 
             const availableEvents = eventsArray.filter(event => event !== G.lastEvent);
             const randomEventIndex = Math.floor(Math.random() * availableEvents.length);
-            // G.currentEvent = availableEvents[randomEventIndex];
-            G.currentEvent = eventsArray[1]
+            G.currentEvent = availableEvents[randomEventIndex];
+            // G.currentEvent = eventsArray[1]
             console.log("Current event: " + G.currentEvent.id)
             // console.log("Last event: " + G.lastEvent.id)
             G.lastEvent = G.currentEvent;
@@ -155,10 +155,12 @@ export const UpwardsMobility = {
         },
 
         subtractCurrency: ({G, ctx, events}, currency) => {
-            G.players[ctx.currentPlayer].currency -= currency;
             if (G.players[ctx.currentPlayer].currency < 0) {
                 G.players[ctx.currentPlayer].currency = 0;
+            } else {
+                G.players[ctx.currentPlayer].currency -= currency;
             }
+
         },
 
 

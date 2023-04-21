@@ -408,12 +408,9 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                     console.log("eventScreen")
                     const handleOptionClick = (index) => {
                         const selectedOption = G.currentEvent.results[index];
-
-                        // Check if the player has enough money for the chosen option
                         if (G.players[ctx.currentPlayer].currency >= selectedOption.cost) {
                             moves.selectAnswer(index);
                             moves.eventResponse(selectedOption.effect);
-                            // G.players[ctx.currentPlayer].currency -= selectedOption.cost;
                             moves.subtractCurrency(selectedOption.cost);
                             events.setPhase("eventResponseScreen");
                         } else {
@@ -473,11 +470,6 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                         </div>
                     );
                     break;
-
-
-
-
-
 
                 case "nightMarketScreen":
                     console.log("nightMarketScreen")
