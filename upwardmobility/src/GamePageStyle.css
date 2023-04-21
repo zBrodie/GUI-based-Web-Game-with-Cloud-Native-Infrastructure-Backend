@@ -156,14 +156,14 @@
     position: absolute;
     overflow: visible;
     width: 1000px;
-    height: 150px;
-    left: 90px;
+    /*height: 150px;*/
+    left: 150px;
     text-align: center;
     font-family: Common Pixel;
     font-style: normal;
     font-weight: normal;
     font-size: 1.25vw;
-    margin-top: 5%;
+    margin-top: 3%;
     color: rgba(255, 255, 255, 1);
 }
 
@@ -1031,3 +1031,65 @@
     -webkit-text-fill-color: white;
     font-size: 1vw;
 }
+
+.shop-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+    gap: 10px;
+    font-family: "Common Pixel";
+    font-size: .50vw;
+    -webkit-text-fill-color: white;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 4px 6px 6px rgba(0,0,0,1);
+}
+
+.item-image {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    margin-bottom: 1px;
+    font-family: "Common Pixel";
+    -webkit-text-fill-color: white;
+
+}
+
+.shop-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1px;
+    cursor: pointer;
+    font-family: "Common Pixel";
+    font-size: .60vw;
+    -webkit-text-fill-color: white;
+    text-shadow: 4px 6px 6px rgba(0,0,0,1);
+}
+
+.item-cost {
+    margin-top: 0.5em;
+}
+
+.leaveShopButton {
+    box-shadow: 10px 10px rgba(0,0,0,0.5);
+    border-radius: 10px;
+    /*position: absolute;*/
+    border: solid white 3px;
+    -webkit-text-fill-color: white;
+    background-color: #36393F;
+    font-family: "Common Pixel";
+    font-size: 1vw;
+    width: 300px;
+    height: 100px;
+    margin: 30px;
+}
+
+
+
+

@@ -27,7 +27,61 @@ export const itemsArray = [
                 description: "item 1 description",
                 onUse: "You randomly generate between 0 and 10 coins"
             }
-    }
+    },
+    {
+        itemID: 4, cost: 5, item:
+            {
+                name: "Staff of MoMoney",
+                image: montyPythonImage,
+                description: "item 1 description",
+                onUse: "You randomly generate between 0 and 10 coins"
+            }
+    },
+    {
+        itemID: 5, cost: 5, item:
+            {
+                name: "Staff of MoMoney",
+                image: montyPythonImage,
+                description: "item 1 description",
+                onUse: "You randomly generate between 0 and 10 coins"
+            }
+    },
+    {
+        itemID: 6, cost: 5, item:
+            {
+                name: "Staff of MoMoney",
+                image: montyPythonImage,
+                description: "item 1 description",
+                onUse: "You randomly generate between 0 and 10 coins"
+            }
+    },
+    {
+        itemID: 7, cost: 5, item:
+            {
+                name: "Staff of MoMoney",
+                image: montyPythonImage,
+                description: "item 1 description",
+                onUse: "You randomly generate between 0 and 10 coins"
+            }
+    },
+    {
+        itemID: 8, cost: 5, item:
+            {
+                name: "Staff of MoMoney",
+                image: montyPythonImage,
+                description: "item 1 description",
+                onUse: "You randomly generate between 0 and 10 coins"
+            }
+    },
+    {
+        itemID: 9, cost: 5, item:
+            {
+                name: "Staff of MoMoney",
+                image: montyPythonImage,
+                description: "item 1 description",
+                onUse: "You randomly generate between 0 and 10 coins"
+            }
+    },
 ];
 
 export const nightMarketItemsArray = [

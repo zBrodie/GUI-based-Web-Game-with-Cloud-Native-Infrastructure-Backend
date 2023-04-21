@@ -159,6 +159,14 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
         // console.log(items)
     }
 
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
     useEffect(() =>{
         setPlayerName("Player 1")
         setPlayerJob("Job: " + G.players[0].jobTitle)
@@ -429,27 +437,48 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                     break;
 
                 case "visitShopScreen":
-                    console.log("visitShopScreen")
+                    console.log("visitShopScreen");
+
+                    const shuffledItemsArray = shuffleArray([...itemsArray]);
+
                     newContent = (
                         <div>
-                            <span className="inGameText">We are in the shop now</span>
-                            <img src="" className="EventImage" id="EventImage" alt="Shop Image"></img>
-                            <div className="event-button-container">
-                                {itemsArray.map((item) => (
-                                    <button key={item.itemID} onClick={() => {
-                                        if (G.players[ctx.currentPlayer].currency >= item.cost) {
-                                            moves.subtractCurrency(item.cost);
-                                            moves.pickUpItemFromStore(item.item);
-                                            events.setPhase("successfulPurchaseScreen");
-                                        } else {
-                                            events.setPhase("unsuccessfulPurchaseScreen");
-                                        }
-                                    }} className="answerButton">{item.item.name}: {item.cost} $$</button>
-                                ))}
+                            <div id="eventScreen">
+                                <span className="inGameText">Welcome to the Shop</span>
+                                <div className="shop-container">
+                                    {shuffledItemsArray.slice(0, 6).map((item) => (
+                                        <div
+                                            key={item.itemID}
+                                            onClick={() => {
+                                                if (G.players[ctx.currentPlayer].currency >= item.cost) {
+                                                    moves.subtractCurrency(item.cost);
+                                                    moves.pickUpItemFromStore(item.item);
+                                                    events.setPhase("successfulPurchaseScreen");
+                                                } else {
+                                                    events.setPhase("unsuccessfulPurchaseScreen");
+                                                }
+                                            }}
+                                            className="shop-item"
+                                        >
+                                            <img src={item.item.image} alt={item.item.name} className="item-image" />
+                                            <div className="item-name">{item.item.name}</div>
+                                            <div className="item-cost">{item.cost} Credits</div>
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="event-button-container">
+                                    <button onClick={() => events.setPhase("eventScreen")} className="leaveShopButton">Leave the Shop</button>
+                                </div>
                             </div>
                         </div>
                     );
                     break;
+
+
+
+
+
+
                 case "nightMarketScreen":
                     console.log("nightMarketScreen")
                     newContent = (
