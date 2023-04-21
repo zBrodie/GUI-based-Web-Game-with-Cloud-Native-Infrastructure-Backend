@@ -378,10 +378,6 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                             </div>
                         </div>
                     )
-                    // if (G.players[ctx.currentPlayer].position === 25) {
-                    //     events.setPhase("winningGameScreen");
-                    //     G.winningPlayer = ctx.currentPlayer;
-                    // }
                     break;
                 case "eventOrItemScreen":
                     console.log("eventOrItemScreen")
