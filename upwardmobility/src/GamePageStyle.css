@@ -541,12 +541,12 @@
 /*Player List*/
 
 .playerImg1{
-     position: absolute;
-     width: 80%;
-     height: 80%;
-     left: 8%;
-     top: 30%;
- }
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    left: 8%;
+    top: 30%;
+}
 
 .playerImg2{
     position: absolute;
@@ -1037,13 +1037,14 @@
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
+    height: 70%;
     max-width: 500px;
     gap: 10px;
     font-family: "Common Pixel";
     font-size: .50vw;
     -webkit-text-fill-color: white;
     position: absolute;
-    top: 40%;
+    top: 44%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-shadow: 4px 6px 6px rgba(0,0,0,1);
@@ -1056,7 +1057,6 @@
     margin-bottom: 1px;
     font-family: "Common Pixel";
     -webkit-text-fill-color: white;
-
 }
 
 .shop-item {
@@ -1086,9 +1086,27 @@
     font-family: "Common Pixel";
     font-size: 1vw;
     width: 300px;
-    height: 100px;
+    height: 50px;
     margin: 30px;
+    top: 30%;
 }
+
+.inventoryBackButton{
+    box-shadow: 10px 10px rgba(0,0,0,0.5);
+    border-radius: 10px;
+    /*position: absolute;*/
+    border: solid white 3px;
+    -webkit-text-fill-color: white;
+    background-color: #36393F;
+    font-family: "Common Pixel";
+    font-size: 1vw;
+    width: 300px;
+    height: 50px;
+    margin: 30px;
+    top: 30%;
+}
+
+
 
 
 

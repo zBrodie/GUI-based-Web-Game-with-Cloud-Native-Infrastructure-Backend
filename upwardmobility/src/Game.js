@@ -26,6 +26,7 @@ export const UpwardsMobility = {
             1: {
                 position: 0,
                 inventory: [
+
                 ],
                 buffs: [],
                 currency: 0,
@@ -42,7 +43,7 @@ export const UpwardsMobility = {
             {name: "job title 2", description: "description for job title 2", previouslyHeldBy: []},
             {name: "job title 3", description: "description for job title 3", previouslyHeldBy: []},
             {name: "job title 4", description: "description for job title 4", previouslyHeldBy: []},
-    ],
+        ],
 
         currentEvent: null,
         lastEvent: null,
