@@ -139,11 +139,6 @@ export const UpwardsMobility = {
                 }
             });
 
-            // const availableEvents = eventsArray.filter(event => event !== G.lastEvent);
-            // const randomEventIndex = Math.floor(Math.random() * availableEvents.length);
-            // G.currentEvent = availableEvents[randomEventIndex];
-            // events.setPhase("eventOrItemScreen");
-
             let newEvent;
             do {
                 const randomEventIndex = Math.floor(Math.random() * eventsArray.length);
@@ -160,11 +155,16 @@ export const UpwardsMobility = {
         },
 
         subtractCurrency: ({G, ctx, events}, currency) => {
-            if (G.players[ctx.currentPlayer].currency < 0) {
+            console.log("Before subtraction:", G.players[ctx.currentPlayer].currency);
+            currency = Math.abs(currency);
+            if (G.players[ctx.currentPlayer].currency < currency) {
                 G.players[ctx.currentPlayer].currency = 0;
             } else {
                 G.players[ctx.currentPlayer].currency -= currency;
             }
+
+            console.log("After subtraction:", G.players[ctx.currentPlayer].currency);
+
 
         },
 
@@ -186,7 +186,6 @@ export const UpwardsMobility = {
 
         pickUpItem: ({G, ctx}, obj) => {
 
-            // console.log("Inside of pickUpItem function. Object: " + obj.type)
             console.log(obj)
 
             if (obj.type === "item") {
