@@ -17,7 +17,7 @@ export const UpwardsMobility = {
                 inventory: [
                 ],
                 buffs: [],
-                currency: 50,
+                currency: 10000,
                 jobTitle: "Scrap Metal Salvager",
                 jobTitleDescription: "Starting job description",
                 selectedOption: -1,
@@ -38,8 +38,7 @@ export const UpwardsMobility = {
             moveDist: 0,
         },
 
-<<<<<<< HEAD
-=======
+
         jobTitles: [
             {name: "job title 1", description: "description for job title 1", previouslyHeldBy: []},
             {name: "job title 2", description: "description for job title 2", previouslyHeldBy: []},
@@ -47,7 +46,7 @@ export const UpwardsMobility = {
             {name: "job title 4", description: "description for job title 4", previouslyHeldBy: []},
         ],
 
->>>>>>> 7288999225ed8e405be491f11be9b1267364cd0b
+
         currentEvent: null,
         lastEvent: null,
 
@@ -257,14 +256,37 @@ export const UpwardsMobility = {
             console.log("use item function");
 
             switch (item) {
-                case "Staff of MoMoney":
+                case "Assorted Paycards":
                     G.players[ctx.currentPlayer].currency += Math.random() * 5;
                     break;
-                case "Staff of NoMoney":
+                case "Keygen Staff":
                     G.players[ctx.currentPlayer].currency -= Math.random() * 5;
                     break;
-                case "Orb of MoMoney":
+                case "temp":
                     G.players[ctx.currentPlayer].buffs.push({ name: "Buff of Mo Money", image: buriedTreasure, description: "Description of buff", duration: 5 });
+                    break;
+                case "Slurp Energy":
+                    G.players[ctx.currentEvent].position += 1;
+                    break;
+                case "Rat":
+                    G.players[ctx.currentPlayer].position -= 5;
+                    break;
+                case "Cyber Hand":
+                    G.players[ctx.currentPlayer].position -=1;
+                    break;
+                case "Cyber Leg":
+                    G.players[ctx.currentPlayer].position +=2;
+                    break;
+                case "Goggles":
+                    G.players[ctx.currentPlayer].position += 3;
+                    break;
+                case "Bagged Lobster":
+                    break;
+                case "Brain Drain":
+                    G.players[ctx.currentPlayer].position +=3;
+                    break;
+                case "DataBlade X1":
+                    G.players[ctx.currentPlayer].currency += 25;
                     break;
             }
 

@@ -670,7 +670,7 @@
     font-family: Common Pixel;
     font-style: normal;
     font-weight: normal;
-    font-size: 1vw;
+    font-size: .75vw;
     color: rgba(255,255,255,1);
 }
 
@@ -979,13 +979,14 @@
     height: 60.287293%;
     top: 15.497238%;
     overflow: visible;
+    cursor: pointer;
 }
 
 .playerJobTitleDis{
     text-shadow: 4px 6px 6px rgba(0,0,0,1);
     display: block;
     -webkit-text-fill-color: white;
-    font-size: .5vw;
+    font-size: .45vw;
     font-family: "Common Pixel";
     text-align: center;
     margin-top: 10px;

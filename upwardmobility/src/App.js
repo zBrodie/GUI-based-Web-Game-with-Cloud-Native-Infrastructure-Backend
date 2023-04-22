@@ -16,7 +16,7 @@ import './GamePageStyle.css';
 const App = Client({
     game: UpwardsMobility,
     board: UpwardMobilityBoard,
-    // debug: false,
+    debug: false,
     // multiplayer: { server: "localhost:8000" },
 });
 

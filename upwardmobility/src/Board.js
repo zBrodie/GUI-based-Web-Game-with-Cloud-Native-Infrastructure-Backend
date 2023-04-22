@@ -162,11 +162,11 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
 
     useEffect(() =>{
         setPlayerName("Player " + (parseInt(ctx.currentPlayer) + 1))
-<<<<<<< HEAD
+
         setPlayerJob(G.players[ctx.currentPlayer].jobTitle)
-=======
+
         setPlayerJob("Job: " + G.players[ctx.currentPlayer].jobTitle)
->>>>>>> 7288999225ed8e405be491f11be9b1267364cd0b
+
         setPlayerCur( G.players[ctx.currentPlayer].currency + " Credits")
     })
 
