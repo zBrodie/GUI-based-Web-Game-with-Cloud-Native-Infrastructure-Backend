@@ -26,6 +26,7 @@ export const UpwardsMobility = {
             1: {
                 position: 0,
                 inventory: [
+
                 ],
                 buffs: [],
                 currency: 0,
@@ -37,6 +38,16 @@ export const UpwardsMobility = {
             moveDist: 0,
         },
 
+<<<<<<< HEAD
+=======
+        jobTitles: [
+            {name: "job title 1", description: "description for job title 1", previouslyHeldBy: []},
+            {name: "job title 2", description: "description for job title 2", previouslyHeldBy: []},
+            {name: "job title 3", description: "description for job title 3", previouslyHeldBy: []},
+            {name: "job title 4", description: "description for job title 4", previouslyHeldBy: []},
+        ],
+
+>>>>>>> 7288999225ed8e405be491f11be9b1267364cd0b
         currentEvent: null,
         lastEvent: null,
 
