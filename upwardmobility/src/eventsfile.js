@@ -205,7 +205,7 @@ export const eventsArray = [
         description:"You decide to take a different way home from work today, taking a route that brings you straight through the local night market. Vendors of all kinds line the streets, each peddling their wares. A couple merchants catch your eye.", image: nightMarket,
         options: [
             "A lone woman trying to sell a gun (500 credits)",
-            "A large man with a large inventory of cybernetic enhancements (250 credits)",
+            "A man with a table full of cybernetics (250 credits)",
             "Leave the night market"
         ],
         results: [

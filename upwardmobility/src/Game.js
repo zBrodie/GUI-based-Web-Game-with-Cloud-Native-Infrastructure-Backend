@@ -5,12 +5,12 @@ import { UpwardMobilityBoard } from "./Board";
 import { eventsArray } from "./eventsfile";
 import { itemsArray } from "./itemsFile";
 import buriedTreasure from "./buriedtreasure.avif";
-
-
+import { starterJobTitles } from "./jobTitles";
 
 export const UpwardsMobility = {
 
     setup: () => ({
+
         players: {
             0: {
                 position: 0,
@@ -18,7 +18,7 @@ export const UpwardsMobility = {
                 ],
                 buffs: [],
                 currency: 50,
-                jobTitle: "Starting job title",
+                jobTitle: "Scrap Metal Salvager",
                 jobTitleDescription: "Starting job description",
                 selectedOption: -1,
 
@@ -29,20 +29,13 @@ export const UpwardsMobility = {
                 ],
                 buffs: [],
                 currency: 0,
-                jobTitle: "Starting job title",
+                jobTitle: "Cyber Beggar",
                 jobTitleDescription: "Starting job title description",
                 selectedOption: -1,
 
             },
             moveDist: 0,
         },
-
-        jobTitles: [
-            {name: "job title 1", description: "description for job title 1", previouslyHeldBy: []},
-            {name: "job title 2", description: "description for job title 2", previouslyHeldBy: []},
-            {name: "job title 3", description: "description for job title 3", previouslyHeldBy: []},
-            {name: "job title 4", description: "description for job title 4", previouslyHeldBy: []},
-    ],
 
         currentEvent: null,
         lastEvent: null,
@@ -55,6 +48,52 @@ export const UpwardsMobility = {
     // Define the moves for rolling the dice and updating the game state.
     moves: {
         rollDice: ({G, ctx, events}) => {
+
+            let starterJobTitles = [
+                {name: "Retail Employee", description: "You Work retail at your local grociery store", previouslyHeldBy: []},
+                {name: "Scrap Metal Salvager", description: "You collect and sell scrap metal from abandoned buildings, broken machines, and old vehicles.", previouslyHeldBy: []},
+                {name: "Plasma Dumpster Diver", description: "You search through virtual and physical dumpsters to find discarded or lost items to sell.", previouslyHeldBy: []},
+                {name: "Hologram Waiter - You serve food and drinks to the wealthy in virtual and physical restaurants, earning very little in tips.", description: "You Work retail at your local grociery store", previouslyHeldBy: []},
+                {name: "Robot Mechanic", description: " You repair and maintain Robots and vehicles for little pay, often working long hours in unsafe conditions.", previouslyHeldBy: []},
+                {name: "Hologram Hair Stylist", description: "You specialize in creating and maintaining holographic hairstyles for your clients.", previouslyHeldBy: []},
+                {name: "School Janitor", description: "You are the janitor at a school designed only for robots", previouslyHeldBy: []},
+                {name: "Cyber Beggar", description: "You Work retail at your local grociery store", previouslyHeldBy: []},
+                {name: "Robot Customer Service", description: "You work customer service at a super store dealing with various angry people wanting to return stolen items", previouslyHeldBy: []},
+            ]
+            let jobTitlesLevel2 =  [
+                {name: "AI Dating Consultant", description: "You help people find love by creating custom AI algorithms that match them with compatible partners.", previouslyHeldBy: []},
+                {name: "Cyber Security Clown", description: "You entertain and educate people about cyber security by dressing up as a clown and performing funny skits.", previouslyHeldBy: []},
+                {name: "Virtual Reality Game Tester", description: "You test and provide feedback on virtual reality games and simulations, often testing the limits of these immersive experiences.", previouslyHeldBy: []},
+                {name: "Black Market Dealer", description: "You sell illegal or restricted goods on the black market, such as drugs, weapons, or forbidden technologies.", previouslyHeldBy: []},
+                {name: "Cyberpunk DJ", description: "You perform music in clubs and other venues that cater to the cyberpunk subculture.", previouslyHeldBy: []},
+                {name: "Urban Gardener", description: "You cultivate plants in urban environments, often using hydroponic or aeroponic systems to grow crops in small spaces.", previouslyHeldBy: []},
+                {name: "Black Market Dealer", description: "You sell illegal or restricted goods on the black market, such as drugs, weapons, or forbidden technologies.", previouslyHeldBy: []},
+                {name: "Personal Transport Driver", description: "You drive customized vehicles that provide specialized transportation for individuals, such as flying cars or high-speed motorcycles.", previouslyHeldBy: []},
+                {name: "Street Artist", description: "You use graffiti and other street art to express political or social commentary in public spaces.", previouslyHeldBy: []},
+            ]
+            let jobTitlesLevel3 = [
+                {name: "Nanochemist", description: "You help people find love by creating custom AI algorithms that match them with compatible partners.", previouslyHeldBy: []},
+                {name: "Security Officer", description: "You provide security and protection for corporate buildings, executives, and assets, often utilizing advanced weaponry and cybernetic enhancements.", previouslyHeldBy: []},
+                {name: "Virtual Assistant", description: "You provide administrative and personal assistance to individuals through virtual reality communication.", previouslyHeldBy: []},
+                {name: "Cyberspace Architect", description: "You design and create advanced digital environments and networks, such as virtual marketplaces or social networks.", previouslyHeldBy: []},
+                {name: "Robotics Developer", description: "You develop and program advanced robots and automated systems for various industries, such as manufacturing or transportation.", previouslyHeldBy: []},
+                {name: "Cybernetic Law Enforcement Officer", description: "You enforce the law in a world where cybernetic enhancements and advanced technologies blur the line between human and machine.", previouslyHeldBy: []},
+                {name: "Biomech Technician", description: "You install and maintain biomechanical implants that enhance physical abilities, such as strength or speed.", previouslyHeldBy: []},
+                {name: "Virtual Reality Experience Designer", description: "You create immersive virtual reality experiences for various industries, such as gaming, education, or advertising.", previouslyHeldBy: []},
+                {name: "Sustainable Architecture Designer", description: "You design and create sustainable buildings and infrastructure that utilize advanced energy and material technologies.", previouslyHeldBy: []},
+            ]
+            let jobTitlesLevel4 = [
+                {name: "Cyberdoc", description: "You perform medical procedures that involve cybernetic implants, such as installation or removal of implants.", previouslyHeldBy: []},
+                {name: "Artificial Intelligence Ethics Advisor", description: "You provide guidance and advice to corporations and governments on the ethical and societal implications of developing and using advanced artificial intelligence systems.", previouslyHeldBy: []},
+                {name: "Fusion Reactor Physicist", description: "You research and develop new ways to harness the power of nuclear fusion to create a virtually unlimited energy source, requiring a deep understanding of plasma physics and nuclear reactions.", previouslyHeldBy: []},
+                {name: "Spacecraft Engineer", description: "You design and create advanced spacecraft and starships, incorporating the latest technology and materials to ensure safe and efficient travel.", previouslyHeldBy: []},
+                {name: "Artificial Intelligence Strategist", description: "You develop and implement strategies for corporations and governments on how to leverage artificial intelligence systems for business or military advantage.", previouslyHeldBy: []},
+                {name: "Neural Interface Developer", description: "You design and create advanced neural interfaces that can directly connect a human brain to computers or other cybernetic systems, enabling unprecedented levels of control and information access.", previouslyHeldBy: []},
+                {name: "Biomedical Engineer", description: "You design and create advanced medical technologies, such as cybernetic organs or advanced prosthetics, to enhance or replace human body parts.", previouslyHeldBy: []},
+                {name: "Nanochemist", description: "You create and manipulate microscopic particles and molecules to create advanced materials and substances, such as self-healing materials or advanced fuels.", previouslyHeldBy: []},
+                {name: "Advanced Nanotechnology Scientist", description: "You research and develop advanced nanotechnologies that can enable new capabilities and applications, such as nanorobotics or nanosensors.", previouslyHeldBy: []},
+            ]
+
             const die1 = Math.floor(Math.random() * 6) + 1;
             const die2 = Math.floor(Math.random() * 6) + 1;
             let moveDist = die1 + die2;
@@ -76,56 +115,21 @@ export const UpwardsMobility = {
             const player = G.players[ctx.currentPlayer];
             if (player.position >= 10 && player.position <= 20) {
                 console.log("Inside of job title check 10 - 20. Player position: " + player.position)
-                // Choose a random job title from the list that the player has not held before
-                let availableJobTitles = G.jobTitles.filter((jobTitle) => !jobTitle.previouslyHeldBy.includes(ctx.currentPlayer));
-                if (availableJobTitles.length === 0) {
-                    availableJobTitles = G.jobTitles;
-                }
-                const jobTitleIndex = Math.floor(Math.random() * availableJobTitles.length);
-                const jobTitle = availableJobTitles[jobTitleIndex];
-                player.jobTitle = jobTitle.name;
-                player.jobTitleDescription = jobTitle.description;
-                jobTitle.previouslyHeldBy.push(ctx.currentPlayer);
+                G.players[ctx.currentPlayer].jobTitle = jobTitlesLevel2[Math.floor(Math.random() * jobTitlesLevel2.length)].name;
             }
             if (player.position >= 20 && player.position <= 30) {
                 console.log("Inside of job title check 20 - 30. Player position: " + player.position)
-                let availableJobTitles = G.jobTitles.filter((jobTitle) => !jobTitle.previouslyHeldBy.includes(ctx.currentPlayer));
-                if (availableJobTitles.length === 0) {
-                    availableJobTitles = G.jobTitles;
-                }
-                const jobTitleIndex = Math.floor(Math.random() * availableJobTitles.length);
-                const jobTitle = availableJobTitles[jobTitleIndex];
-                player.jobTitle = jobTitle.name;
-                player.jobTitleDescription = jobTitle.description;
-                jobTitle.previouslyHeldBy.push(ctx.currentPlayer);
+                G.players[ctx.currentPlayer].jobTitle = jobTitlesLevel2[Math.floor(Math.random() * jobTitlesLevel3.length)].name
             }
             if (player.position >= 30 && player.position <= 40) {
                 console.log("Inside of job title check 30 - 40. Player position: " + player.position)
-                let availableJobTitles = G.jobTitles.filter((jobTitle) => !jobTitle.previouslyHeldBy.includes(ctx.currentPlayer));
-                if (availableJobTitles.length === 0) {
-                    availableJobTitles = G.jobTitles;
-                }
-                const jobTitleIndex = Math.floor(Math.random() * availableJobTitles.length);
-                const jobTitle = availableJobTitles[jobTitleIndex];
-                player.jobTitle = jobTitle.name;
-                player.jobTitleDescription = jobTitle.description;
-                jobTitle.previouslyHeldBy.push(ctx.currentPlayer);
+                G.players[ctx.currentPlayer].jobTitle = jobTitlesLevel2[Math.floor(Math.random() * jobTitlesLevel4.length)].name
             }
             if (player.position >= 40 && player.position <= 50) {
-                console.log("Inside of job title check 40 - 50. Player position: " + player.position)
-                let availableJobTitles = G.jobTitles.filter((jobTitle) => !jobTitle.previouslyHeldBy.includes(ctx.currentPlayer));
-                if (availableJobTitles.length === 0) {
-                    availableJobTitles = G.jobTitles;
-                }
-                const jobTitleIndex = Math.floor(Math.random() * availableJobTitles.length);
-                const jobTitle = availableJobTitles[jobTitleIndex];
-                player.jobTitle = jobTitle.name;
-                player.jobTitleDescription = jobTitle.description;
-                jobTitle.previouslyHeldBy.push(ctx.currentPlayer);
+                G.players[ctx.currentPlayer].jobTitle = "Regional Overlord"
             }
 
             console.log("Current player job title : " + G.players[ctx.currentPlayer].jobTitle)
-
 
             G.players[ctx.currentPlayer].buffs.forEach((buff, index) => {
                 switch (buff.name) {
@@ -146,7 +150,8 @@ export const UpwardsMobility = {
             } while (newEvent === G.lastEvent);
 
             G.currentEvent = newEvent;
-            G.lastEvent = G.currentEvent;
+            // G.currentEvent = eventsArray[7]
+            // G.lastEvent = G.currentEvent;
             events.setPhase("eventOrItemScreen");
         },
 

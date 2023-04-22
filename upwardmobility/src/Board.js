@@ -17,6 +17,7 @@ import icon3 from './img1.png'
 import icon4 from './impointing.png'
 import icon5 from './imcool.png'
 import icon6 from './imawesome.png'
+import {starterJobTitles} from "./jobTitles";
 
 // console.log("Events array: " + eventsArray)
 
@@ -168,9 +169,9 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
     }
 
     useEffect(() =>{
-        setPlayerName("Player 1")
-        setPlayerJob("Job: " + G.players[0].jobTitle)
-        setPlayerCur( G.players[0].currency + " Credits")
+        setPlayerName("Player " + (parseInt(ctx.currentPlayer) + 1))
+        setPlayerJob(G.players[ctx.currentPlayer].jobTitle)
+        setPlayerCur( G.players[ctx.currentPlayer].currency + " Credits")
     })
 
     useEffect(()=>{
@@ -572,6 +573,8 @@ export function UpwardMobilityBoard ({ctx, G, moves, events, eventsArray}){
                     let answerIndex2 = G.players[ctx.currentPlayer].selectedOption;
                     newContent = (
                         <div>
+                            {/*<img className="EventImage" src={G.currentEvent.results[answerIndex2].image} alt="result image"/>*/}
+                            {G.currentEvent.results[answerIndex2].image && <img className="EventImage" id="EventImage" src={G.currentEvent.results[answerIndex2].image} />}
                             <span className="inGameText">{G.currentEvent.results[answerIndex2].description}</span>
                             <div className="event-button-container">
                                 <button onClick={() => events.setPhase("eventResponseScreen2")} className="answerButton">Proceed</button>
